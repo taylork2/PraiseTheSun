@@ -39,6 +39,18 @@ game.Background.prototype.setVisible=function(visible) {
     }
 }
 
+game.Background.prototype.update=function(){
+
+    for(x=0;x<this.textArray.length;x++) {
+        this.textArray[x].update();
+    }
+}
+
+//Statistics tracker
+game.StatNumber=function(number){
+    this.number=number;
+}
+
 //Text objects are offset from a Background and go on top of it
 //Whenever the Background is drawn, the Text it has will be drawn after on top of it
 //The location of the text is relative to the location of the Background
@@ -52,7 +64,7 @@ game.Text=function(background,x_offset,y_offset,text,font,fillStyle,lineWidth,st
     this.fillStyle=fillStyle;
     this.lineWidth=lineWidth;
     this.strokeStyle=strokeStyle;
-    background.textArray.push(this); //add this text to the background
+    this.background.textArray.push(this); //add this text to the background
 }
 
 game.Text.prototype.render = function(context) {
@@ -71,11 +83,24 @@ context.strokeText(this.text,this.background.x+this.x_offset,this.background.y+t
     
 }
 
+game.Text.prototype.update = function(){
+    
+}
+
+
 //Numbers are text objects that display numbers
 //They dynamically update the text within to match an internal counter
 //Formatting for larger numbers e.g. 1 billion, 2.014 e24
-game.Number=function() {
-    Text.call(this); //Numbers are a subclass of Text
+game.TextNumber=function(background,x_offset,y_offset,text,font,fillStyle,lineWidth,strokeStyle,trackedStat) {
+        game.Text.call(this,background,x_offset,y_offset,text,font,fillStyle,lineWidth,strokeStyle); //Numbers are a subclass of Text
+    this.trackedStat=trackedStat;
+}
+
+game.TextNumber.prototype=Object.create(game.Text.prototype);
+game.TextNumber.prototype.constructor=game.TextNumber;
+
+game.TextNumber.prototype.update = function(){
+    this.text=this.trackedStat.number;   
 }
 
 //a Button is a rectangular canvas element that can be clicked
@@ -123,6 +148,8 @@ game.Button.prototype.update = function(canvas) {
     if (this.visible && this.clicked && wasNotClicked) {
         this.onClick();
     }
+    
+    this.background.update();
 }
 
 game.Button.prototype.render = function(context) {
@@ -147,35 +174,32 @@ game.Button.prototype.setVisible=function(visible) {
 //A ToolButton is a type of Button that represents a Tool
 //Tools, when purchased, affect the rate of production
 //It has a Background(as per its superclass), Numbers that represent the cost
-game.ToolButton = function(x,y,width,height,background,baseCostPP, baseCostCult, prodRateCult, prodRatePris, prodRateExec) {
-    Button.call(this,x,y,width,height,background);
+game.ToolButton = function(x,y,width,height,background,baseCostPP, baseCostCult, prodRateCult, prodRatePris, prodRateExec, numTools) {
+    game.Button.call(this,x,y,width,height,background);
+    
     this.costPP=baseCostPP;
     this.costCult=baseCostCult;
     this.prodRateCult=prodRateCult;
     this.prodRatePris=prodRatePris;
     this.prodRateExec=prodRateExec;
     
-    this.numTools=0;
+    this.numTools=numTools;
 }
+
+game.ToolButton.prototype=Object.create(game.Button.prototype);
+game.ToolButton.prototype.constructor=game.ToolButton;
 
 //When clicked, a ToolButton will buy one more of that tool, provided the cost is appropriate
 game.ToolButton.prototype.onClick = function() {
-    if(game.PlayerStats.prayerPoints>this.costPP && game.PlayerStats.cultists>this.costCult) {
-        this.numTools+=1;
+    if(game.PlayerStats.prayerPoints>=this.costPP && game.PlayerStats.cultists>=this.costCult) {
+        this.numTools.number+=1;
         //Costs are stored as floats, but are used and displayed as ints
         game.PlayerStats.prayerPoints-=int(this.costPP);
         game.PlayerStats.cultists-=int(this.costCult);
         //Update the costs by a scaling factor
-        this.costPP*=1.05;
-        this.costCult*=1.05;
+        this.costPP.number*=1.05;
+        this.costCult.number*=1.05;
     }
-}
-
-//When clicked, a ToolButton will apply its applyUpgrade() method, provided the cost is appropriate
-//UpgradeButtons will have their applyUpgrade() methods coded in the game initialization
-//It will then destroy itself, as Upgrades can only be bought once
-game.ToolButton.prototype.onClick = function() {
-    this.applyUpgrade();
 }
 
 //An UpgradeButton has an effect on some game system
@@ -185,6 +209,12 @@ game.UpgradeButton=function(x,y,width,height,background,baseCostPP, baseCostCult
     Button.call(this,x,y,width,height,background);
     this.costPP=baseCostPP;
     this.costCult=baseCostCult;
+}
+
+//UpgradeButtons will have their applyUpgrade() methods coded in the game initialization
+//It will then destroy itself, as Upgrades can only be bought once
+game.UpgradeButton.prototype.onClick = function() {
+    this.applyUpgrade();
 }
 
 //a Sprite is a moving, animated object with no interactivity, that can be destroyed
@@ -218,17 +248,25 @@ game.Scrollbar=function(x,y,width,height,backgroundBar,backgroundScroller,gameOb
 game.Tab=function(x,y,width,height,background,gameObjects) {
     game.Button.call(this,x,y,width,height,background);
     this.gameObjects=gameObjects;
-    this.visible=false;
+    this.tabVisible=false;
 }
 
 game.Tab.prototype.onClick=function() {
     //needs to shut off all other tabs
     for(x=0;x<game.tabs.length;x++) {
         //shut off tab
+        game.tabs[x].setTabVisible(false);
     }
+    this.setTabVisible(true);
+    
+}
+
+game.Tab.prototype.setTabVisible=function(visible){
+    this.tabVisible=visible;
+    
     //turn on this tab
     for(x=0;x<this.gameObjects.length;x++) {
-        this.gameObjects[x].visible=true;
+        this.gameObjects[x].visible=tabVisible;
     }
 }
 
@@ -253,24 +291,27 @@ window.cancelRequestAnimFrame = (function(callback) {
 		clearTimeout
 })();
 
-game.update=function(context) {
+game.update=function(canvas,context) {
     //clear the screen
     context.clearRect(0, 0, canvas.width, canvas.height);
     
     //update all objects to reflect the new game state
+    for(x=0;x<game.buttons.length;x++) {
+        game.buttons[x].update(canvas);
+    }
+    
     
     //render all objects in order
     for(x=0;x<game.backgrounds.length;x++) {
         game.backgrounds[x].render(context);
     }
+    
     for(x=0;x<game.buttons.length;x++) {
         game.buttons[x].render(context);
     }
-//    console.log(game.widthScale, game.heightScale);
-//    context.scale(game.widthScale, game.heightScale);
     
     // request new frame
-    requestAnimFrame(function() {
+     requestAnimFrame(function() {
       game.update(context);
     });
 }

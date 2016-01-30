@@ -26,6 +26,6 @@ setTimeout(function() {
     //animate(myRectangle, canvas, context, startTime);
     
     //This function is the main tick for the game
-    game.update(context);
+    game.update(canvas,context);
     console.log(game);
 }, 1000);
