@@ -3,12 +3,12 @@ game.playerStats=[];
 //Initialize all values
 game.playerStats.prayerPoints=new game.StatNumber(10000);
 game.playerStats.cultists=new game.StatNumber(1000);
-game.playerStats.prisoners=new game.StatNumber(0);
-game.playerStats.prodRateCult=new game.StatNumber(0);
-game.playerStats.prodRatePris=new game.StatNumber(0);
-game.playerStats.prodRateExec=new game.StatNumber(0);
+game.playerStats.prisoners=new game.StatNumber(1);
+game.playerStats.prodRateCult=new game.StatNumber(2);
+game.playerStats.prodRatePris=new game.StatNumber(3);
+game.playerStats.prodRateExec=new game.StatNumber(4);
 
-game.playerStats.booksStats=new game.toolStats(new game.StatNumber(10),new game.StatNumber(1),new game.StatNumber(0),new game.StatNumber(5),new game.StatNumber(0));
+game.playerStats.booksStats=new game.toolStats(new game.StatNumber(10),new game.StatNumber(1),new game.StatNumber(6),new game.StatNumber(5),new game.StatNumber(8),new game.StatNumber(7));
 
 //These are the reference resolutions for all images
 //Images are drawn scaled based on these
@@ -34,7 +34,7 @@ game.tabs=[];
 
 console.log(window.innerWidth);
 
-var test2=new game.ToolButton(0,267,580,98,"img/conversion_book.png");
+var test2=new game.ToolButton(0,267,580,98,"img/conversion_book.png",game.playerStats.booksStats);
 var testText2=new game.Text(test2.background,150,5,"BOOK","bold 30pt lucida console ","white",6,"#5f3c0f");
 
 console.log(test2);
