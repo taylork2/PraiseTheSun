@@ -51,12 +51,12 @@ game.StatNumber=function(number){
     this.number=number;
 }
 
-game.costStats=function(costPP,costCult) {
+game.CostStats=function(costPP,costCult) {
     this.costPP=costPP;
     this.costCult=costCult;
 }
 
-game.toolStats=function(costPP,costCult,prodRatePP,prodRateCult,prodRateExec,numTools) {
+game.ToolStats=function(costPP,costCult,prodRatePP,prodRateCult,prodRateExec,numTools) {
     this.costPP=costPP;
     this.costCult=costCult;
     this.prodRatePP=prodRatePP;
@@ -140,7 +140,7 @@ game.Button.prototype.intersects=function(mouse) {
 
 game.Button.prototype.updateStats=function(context){
     //update whether the button has been clicked
-    if (this.intersects(this, context.mouse)) {
+    if (this.intersects(context.mouse)) {
         this.hovered = true;
         if (context.mouse.clicked) {
             this.clicked = true;
@@ -190,7 +190,6 @@ game.Button.prototype.setVisible=function(visible) {
 //It has a Background(as per its superclass), Numbers that represent the cost
 game.ToolButton = function(x,y,width,height,background,toolStats) {
     game.Button.call(this,x,y,width,height,background);
-    
     this.toolStats=toolStats;
     this.costPPText=new game.TextNumber(this.background,300,55,"0","bold 28pt lucida console ","white",6,"#5f3c0f",this.toolStats.costPP);
     this.costCultText=new game.TextNumber(this.background,450,55,"0","bold 28pt lucida console ","white",6,"#5f3c0f",this.toolStats.costCult);
@@ -202,7 +201,11 @@ game.ToolButton.prototype.constructor=game.ToolButton;
 
 //When clicked, a ToolButton will buy one more of that tool, provided the cost is appropriate
 game.ToolButton.prototype.onClick = function() {
-    if(game.playerStats.prayerPoints.number>=this.costPP.number && game.playerStats.cultists.number>=this.costCult.number) {
+    console.log("clicked");
+    console.log(game);
+    console.log(game.playerStats.prayerPoints.number);
+    console.log(this.toolStats.costPP.number);
+    if(game.playerStats.prayerPoints.number>=this.toolStats.costPP.number && game.playerStats.cultists.number>=this.toolStats.costCult.number) {
         this.toolStats.numTools.number+=1;
         //Costs are stored as floats, but are used and displayed as ints
         game.playerStats.prayerPoints.number-=Math.floor(this.toolStats.costPP.number);
@@ -317,14 +320,57 @@ game.update=function() {
     
     //update all stats
     //recalculate all the production rates
+    var conversionRate=0;
+    for(x=0;x<game.conversionToolButtons.length;x++) {
+        var tempToolStats=game.conversionToolButtons[x].toolStats;
+        conversionRate+=tempToolStats.prodRateCult.number*tempToolStats.numTools.number;
+    }
     
+    var captureRate=0;
+    for(x=0;x<game.captureToolButtons.length;x++) {
+        var tempToolStats=game.captureToolButtons[x].toolStats;
+        captureRate+=tempToolStats.prodRatePris.number*tempToolStats.numTools.number;
+    }
+    
+    var executionRate=0;
+    for(x=0;x<game.executionToolButtons.length;x++) {
+        var tempToolStats=game.executionToolButtons[x].toolStats;
+        executionRate+=tempToolStats.prodRateExec.number*tempToolStats.numTools.number;
+    }
+    
+    game.playerStats.prodRateCult.number=conversionRate;
+    game.playerStats.prodRateExec.number=executionRate;
+    
+    //if there are not enough prisoners, cannot execute them
+    var realExecutionRate=0;
+    if(game.playerStats.prisoners.number>0) {
+        realExecutionRate=executionRate;
+    } else {
+        realExecutionRate=captureRate;
+    }
+    
+    game.playerStats.prodRatePris.number=captureRate-realExecutionRate;
     
     //check sun happiness
+    var sunMultiplier=1.5;//normally bonus
+    if(realExecutionRate<0.75*Math.max(executionRate,captureRate)) {
+        if(realExecutionRate>0.25*Math.max(executionRate,captureRate)) {
+            sunMultiplier=1-(0.75*Math.max(executionRate,captureRate)-realExecutionRate)/max(executionRate,captureRate);
+        } else {
+            sunMultiplier=0.5;
+        }
+    } 
     
-    //adjust production rate
-    
-    //apply production rate
-    
+    //apply cultist rate
+    game.playerStats.cultists.number+=game.playerStats.prodRateCult.number/60;
+    //apply prisoner rate
+    if(game.playerStats.prisoners.number>=game.playerStats.prodRatePris.number/60) {
+        game.playerStats.prisoners.number+=game.playerStats.prodRatePris.number/60;
+    } else {
+        game.playerStats.prisoners.number=0;
+    }
+    //apply PP rate
+    game.playerStats.prayerPoints.number+=realExecutionRate/60*game.playerStats.ppMultiplier.number*sunMultiplier;    
     
     //render all objects in order
     for(x=0;x<game.backgrounds.length;x++) {
