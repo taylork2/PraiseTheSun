@@ -8,7 +8,7 @@ var context = canvas.getContext('2d');
 
 canvas.width=window.innerWidth;
 canvas.height=window.innerHeight;
-//context.scale(game.widthScale,game.heightScale);
+context.scale(game.widthScale,game.heightScale);
 
 var myRectangle = {
 x: 0,

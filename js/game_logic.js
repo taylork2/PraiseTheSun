@@ -31,7 +31,7 @@ var test=new game.Background(0,0,1920,1080,"img/bg3.png");
 test.setVisible(true);
 
 var test2=new game.Button(0,267,580,98,"img/conversion_book.png");
-var testText2=new game.Text(test2.background,150,0,"BOOK","bold 30pt lucida console ","white",3,"0xFFFFFF");
+var testText2=new game.Text(test2.background,150,5,"BOOK","bold 30pt lucida console ","white",6,"#5f3c0f");
 testText2.text="BOOK";
 
 test2.setVisible(true);

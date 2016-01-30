@@ -25,7 +25,7 @@ game.Background=function(x,y,width,height,imgSrc) {
 game.Background.prototype.render = function(context) {
     //Backgrounds 
     if(this.visible && this.img.imgReady) {
-        context.drawImage(this.img,this.x*game.widthScale,this.y*game.heightScale,this.img.width*game.widthScale,this.img.height*game.heightScale);
+        context.drawImage(this.img,this.x,this.y,this.img.width,this.img.height);
     }
     for(x=0;x<this.textArray.length;x++) {
         this.textArray[x].render(context);
@@ -57,10 +57,18 @@ game.Text=function(background,x_offset,y_offset,text,font,fillStyle,lineWidth,st
 
 game.Text.prototype.render = function(context) {
     context.font=this.font;
+    context.textBaseline="top";
     context.fillStyle=this.fillStyle;
     context.strokeStyle=this.strokeStyle;
-    context.fillText(this.text,this.background.x+this.x_offset,this.background.y+this.y_offset);
-    context.strokeText(this.text,this.background.x+this.x_offset,this.background.y+this.y_offset);
+    context.lineWidth=this.lineWidth;
+    
+    //to prevent ugly spike
+    context.lineJoin='round';
+    context.miterLimit=2;
+    
+    
+context.strokeText(this.text,this.background.x+this.x_offset,this.background.y+this.y_offset);           context.fillText(this.text,this.background.x+this.x_offset,this.background.y+this.y_offset);
+    
 }
 
 //Numbers are text objects that display numbers
@@ -258,6 +266,8 @@ game.update=function(context) {
     for(x=0;x<game.buttons.length;x++) {
         game.buttons[x].render(context);
     }
+//    console.log(game.widthScale, game.heightScale);
+//    context.scale(game.widthScale, game.heightScale);
     
     // request new frame
     requestAnimFrame(function() {
