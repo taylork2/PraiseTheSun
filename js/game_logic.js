@@ -7,9 +7,8 @@ game.playerStats.prisoners=new game.StatNumber(0);
 game.playerStats.prodRateCult=new game.StatNumber(0);
 game.playerStats.prodRatePris=new game.StatNumber(0);
 game.playerStats.prodRateExec=new game.StatNumber(0);
-game.playerStats.numBooks=new game.StatNumber(0);
-game.playerStats.costBooksPP=new game.StatNumber(10);
-game.playerStats.costBooksCult=new game.StatNumber(5);
+
+game.playerStats.booksStats=new game.toolStats(new game.StatNumber(10),new game.StatNumber(1),new game.StatNumber(0),new game.StatNumber(5),new game.StatNumber(0));
 
 //These are the reference resolutions for all images
 //Images are drawn scaled based on these
@@ -27,13 +26,15 @@ game.backgrounds=[];
 game.buttons=[];
 
 //This array holds all ToolButtons, which are still in Buttons
-game.toolButtons=[];
+game.conversionToolButtons=[];
+game.captureToolButtons=[];
+game.executionToolButtons=[];
 
 game.tabs=[];
 
 console.log(window.innerWidth);
 
-var test2=new game.ToolButton(0,267,580,98,"img/conversion_book.png",game.playerStats.costBooksPP,game.playerStats.costBooksCult,0,0,0,game.playerStats.numBooks);
+var test2=new game.ToolButton(0,267,580,98,"img/conversion_book.png");
 var testText2=new game.Text(test2.background,150,5,"BOOK","bold 30pt lucida console ","white",6,"#5f3c0f");
 
 console.log(test2);
@@ -41,7 +42,9 @@ test2.setVisible(true);
 
 
 game.buttons.push(test2);
-game.toolButtons.push(test2);
+game.conversionToolButtons.push(test2);
+//game.captureToolButtons.push(test2);
+//game.executionToolButtons.push(test2);
 
 
 //This master background is behind everything

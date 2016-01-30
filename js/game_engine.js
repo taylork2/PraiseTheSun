@@ -51,6 +51,20 @@ game.StatNumber=function(number){
     this.number=number;
 }
 
+game.costStats=function(costPP,costCult) {
+    this.costPP=costPP;
+    this.costCult=costCult;
+}
+
+game.toolStats=function(costPP,costCult,prodRatePP,prodRateCult,prodRateExec,numTools) {
+    this.costPP=costPP;
+    this.costCult=costCult;
+    this.prodRatePP=prodRatePP;
+    this.prodRateCult=prodRateCult;
+    this.prodRateExec=prodRateExec;
+    this.numTools=numTools;
+}
+
 //Text objects are offset from a Background and go on top of it
 //Whenever the Background is drawn, the Text it has will be drawn after on top of it
 //The location of the text is relative to the location of the Background
@@ -174,19 +188,13 @@ game.Button.prototype.setVisible=function(visible) {
 //A ToolButton is a type of Button that represents a Tool
 //Tools, when purchased, affect the rate of production
 //It has a Background(as per its superclass), Numbers that represent the cost
-game.ToolButton = function(x,y,width,height,background,baseCostPP, baseCostCult, prodRateCult, prodRatePris, prodRateExec, numTools) {
+game.ToolButton = function(x,y,width,height,background,toolStats) {
     game.Button.call(this,x,y,width,height,background);
     
-    this.costPP=baseCostPP;
-    this.costPPText=new game.TextNumber(this.background,300,55,"0","bold 28pt lucida console ","white",6,"#5f3c0f",this.costPP);
-    this.costCult=baseCostCult;
-    this.costCultText=new game.TextNumber(this.background,450,55,"0","bold 28pt lucida console ","white",6,"#5f3c0f",this.costCult);
-    this.prodRateCult=prodRateCult;
-    this.prodRatePris=prodRatePris;
-    this.prodRateExec=prodRateExec;
-    
-    this.numTools=numTools;
-    this.numToolsText=new game.TextNumber(this.background,150,55,"0","bold 28pt lucida console ","white",6,"#5f3c0f",numTools);
+    this.toolStats=toolStats;
+    this.costPPText=new game.TextNumber(this.background,300,55,"0","bold 28pt lucida console ","white",6,"#5f3c0f",this.toolStats.costPP);
+    this.costCultText=new game.TextNumber(this.background,450,55,"0","bold 28pt lucida console ","white",6,"#5f3c0f",this.toolStats.costCult);
+    this.numToolsText=new game.TextNumber(this.background,150,55,"0","bold 28pt lucida console ","white",6,"#5f3c0f",this.toolStats.numTools);
 }
 
 game.ToolButton.prototype=Object.create(game.Button.prototype);
@@ -195,13 +203,13 @@ game.ToolButton.prototype.constructor=game.ToolButton;
 //When clicked, a ToolButton will buy one more of that tool, provided the cost is appropriate
 game.ToolButton.prototype.onClick = function() {
     if(game.playerStats.prayerPoints.number>=this.costPP.number && game.playerStats.cultists.number>=this.costCult.number) {
-        this.numTools.number+=1;
+        this.toolStats.numTools.number+=1;
         //Costs are stored as floats, but are used and displayed as ints
-        game.playerStats.prayerPoints.number-=Math.floor(this.costPP.number);
-        game.playerStats.cultists.number-=Math.floor(this.costCult.number);
+        game.playerStats.prayerPoints.number-=Math.floor(this.toolStats.costPP.number);
+        game.playerStats.cultists.number-=Math.floor(this.toolStats.costCult.number);
         //Update the costs by a scaling factor
-        this.costPP.number*=1.05;
-        this.costCult.number*=1.05;
+        this.toolStats.costPP.number*=1.05;
+        this.toolStats.costCult.number*=1.05;
     }
 }
 
