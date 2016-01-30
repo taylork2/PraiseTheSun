@@ -8,59 +8,69 @@ function button1Click(){
 
 
 window.requestAnimFrame = (function(callback) {
-        return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
-        function(callback) {
-          window.setTimeout(callback, 1000 / 60);
-        };
-      })();
+    return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
+    function(callback) {
+    //lock to 60 FPS
+      window.setTimeout(callback, 1000 / 60);
+    };
+})();
 
-      function drawRectangle(myRectangle, context) {
-        context.beginPath();
-        context.rect(myRectangle.x, myRectangle.y, myRectangle.width, myRectangle.height);
-        context.fillStyle = '#8ED6FF';
-        context.fill();
-        context.lineWidth = myRectangle.borderWidth;
-        context.strokeStyle = 'black';
-        context.stroke();
-      }
+window.cancelRequestAnimFrame = ( function() {
+	return window.cancelAnimationFrame          ||
+		window.webkitCancelRequestAnimationFrame    ||
+		window.mozCancelRequestAnimationFrame       ||
+		window.oCancelRequestAnimationFrame     ||
+		window.msCancelRequestAnimationFrame        ||
+		clearTimeout
+} )();
 
-      function animate(myRectangle, canvas, context, startTime) {
-        // update
-        var time = (new Date()).getTime() - startTime;
+function drawRectangle(myRectangle, context) {
+    context.beginPath();
+    context.rect(myRectangle.x, myRectangle.y, myRectangle.width, myRectangle.height);
+    context.fillStyle = '#8ED6FF';
+    context.fill();
+    context.lineWidth = myRectangle.borderWidth;
+    context.strokeStyle = 'black';
+    context.stroke();
+}
 
-        var linearSpeed = 100;
-        // pixels / second
-        var newX = linearSpeed * time / 1000;
+function animate(myRectangle, canvas, context, startTime) {
+    // update
+    var time = (new Date()).getTime() - startTime;
 
-        if(newX < canvas.width - myRectangle.width - myRectangle.borderWidth / 2) {
-          myRectangle.x = newX;
-        }
+    var linearSpeed = 100;
+    // pixels / second
+    var newX = linearSpeed * time / 1000;
 
-        // clear
-        context.clearRect(0, 0, canvas.width, canvas.height);
+    if(newX < canvas.width - myRectangle.width - myRectangle.borderWidth / 2) {
+      myRectangle.x = newX;
+    }
 
-        drawRectangle(myRectangle, context);
+    // clear
+    context.clearRect(0, 0, canvas.width, canvas.height);
 
-        // request new frame
-        requestAnimFrame(function() {
-          animate(myRectangle, canvas, context, startTime);
-        });
-      }
-      var canvas = document.getElementById('game');
-      var context = canvas.getContext('2d');
+    drawRectangle(myRectangle, context);
 
-      var myRectangle = {
-        x: 0,
-        y: 75,
-        width: 100,
-        height: 50,
-        borderWidth: 5
-      };
+    // request new frame
+    requestAnimFrame(function() {
+      animate(myRectangle, canvas, context, startTime);
+    });
+    }
+    var canvas = document.getElementById('game');
+    var context = canvas.getContext('2d');
 
-      drawRectangle(myRectangle, context);
+    var myRectangle = {
+    x: 0,
+    y: 75,
+    width: 100,
+    height: 50,
+    borderWidth: 5
+};
 
-      // wait one second before starting animation
-      setTimeout(function() {
-        var startTime = (new Date()).getTime();
-        animate(myRectangle, canvas, context, startTime);
-      }, 1000);
+drawRectangle(myRectangle, context);
+
+// wait one second before starting animation
+setTimeout(function() {
+    var startTime = (new Date()).getTime();
+    animate(myRectangle, canvas, context, startTime);
+}, 1000);
