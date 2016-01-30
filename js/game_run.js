@@ -8,7 +8,7 @@ var context = canvas.getContext('2d');
 
 canvas.width=window.innerWidth;
 canvas.height=window.innerHeight;
-
+//context.scale(game.widthScale,game.heightScale);
 
 var myRectangle = {
 x: 0,
@@ -18,12 +18,13 @@ height: 50,
 borderWidth: 5
 };
 
-drawRectangle(myRectangle, context);
+//drawRectangle(myRectangle, context);
 
 // wait one second before starting animation
 setTimeout(function() {
     var startTime = (new Date()).getTime();
-    animate(myRectangle, canvas, context, startTime);
+    //animate(myRectangle, canvas, context, startTime);
+    
     //This function is the main tick for the game
     game.update(context);
     console.log(game);

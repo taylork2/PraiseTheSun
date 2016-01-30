@@ -25,7 +25,10 @@ game.Background=function(x,y,width,height,imgSrc) {
 game.Background.prototype.render = function(context) {
     //Backgrounds 
     if(this.visible && this.img.imgReady) {
-        context.drawImage(this.img,this.x,this.y,this.img.width,this.img.height);
+        context.drawImage(this.img,this.x*game.widthScale,this.y*game.heightScale,this.img.width*game.widthScale,this.img.height*game.heightScale);
+    }
+    for(x=0;x<this.textArray.length;x++) {
+        this.textArray[x].render(context);
     }
 }
 
@@ -39,10 +42,25 @@ game.Background.prototype.setVisible=function(visible) {
 //Text objects are offset from a Background and go on top of it
 //Whenever the Background is drawn, the Text it has will be drawn after on top of it
 //The location of the text is relative to the location of the Background
-game.Text=function(x_offset,y_offset) {
+game.Text=function(background,x_offset,y_offset,text,font,fillStyle,lineWidth,strokeStyle) {
+    this.background=background; //linked Background
     this.x_offset=x_offset;
     this.y_offset=y_offset;
     this.visible=false;
+    this.text=text;
+    this.font=font;
+    this.fillStyle=fillStyle;
+    this.lineWidth=lineWidth;
+    this.strokeStyle=strokeStyle;
+    background.textArray.push(this); //add this text to the background
+}
+
+game.Text.prototype.render = function(context) {
+    context.font=this.font;
+    context.fillStyle=this.fillStyle;
+    context.strokeStyle=this.strokeStyle;
+    context.fillText(this.text,this.background.x+this.x_offset,this.background.y+this.y_offset);
+    context.strokeText(this.text,this.background.x+this.x_offset,this.background.y+this.y_offset);
 }
 
 //Numbers are text objects that display numbers
@@ -145,6 +163,13 @@ game.ToolButton.prototype.onClick = function() {
     }
 }
 
+//When clicked, a ToolButton will apply its applyUpgrade() method, provided the cost is appropriate
+//UpgradeButtons will have their applyUpgrade() methods coded in the game initialization
+//It will then destroy itself, as Upgrades can only be bought once
+game.ToolButton.prototype.onClick = function() {
+    this.applyUpgrade();
+}
+
 //An UpgradeButton has an effect on some game system
 //Typically, this will be increasing the effectiveness of a Tool
 //UpgradeButtons are smaller squares that have no text
@@ -152,13 +177,6 @@ game.UpgradeButton=function(x,y,width,height,background,baseCostPP, baseCostCult
     Button.call(this,x,y,width,height,background);
     this.costPP=baseCostPP;
     this.costCult=baseCostCult;
-}
-
-//When clicked, a ToolButton will apply its applyUpgrade() method, provided the cost is appropriate
-//UpgradeButtons will have their applyUpgrade() methods coded in the game initialization
-//It will then destroy itself, as Upgrades can only be bought once
-game.ToolButton.prototype.onClick = function() {
-    this.applyUpgrade();
 }
 
 //a Sprite is a moving, animated object with no interactivity, that can be destroyed
@@ -196,8 +214,13 @@ game.Tab=function(x,y,width,height,background,gameObjects) {
 }
 
 game.Tab.prototype.onClick=function() {
+    //needs to shut off all other tabs
+    for(x=0;x<game.tabs.length;x++) {
+        //shut off tab
+    }
+    //turn on this tab
     for(x=0;x<this.gameObjects.length;x++) {
-        this.gameObjects[x].visible=this.visible;
+        this.gameObjects[x].visible=true;
     }
 }
 
@@ -223,6 +246,11 @@ window.cancelRequestAnimFrame = (function(callback) {
 })();
 
 game.update=function(context) {
+    //clear the screen
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    
+    //update all objects to reflect the new game state
+    
     //render all objects in order
     for(x=0;x<game.backgrounds.length;x++) {
         game.backgrounds[x].render(context);
@@ -237,7 +265,7 @@ game.update=function(context) {
     });
 }
 
-function drawRectangle(myRectangle, context) {
+/*function drawRectangle(myRectangle, context) {
     context.beginPath();
     context.rect(myRectangle.x, myRectangle.y, myRectangle.width, myRectangle.height);
     context.fillStyle = '#8ED6FF';
@@ -268,4 +296,4 @@ function animate(myRectangle, canvas, context, startTime) {
     requestAnimFrame(function() {
       animate(myRectangle, canvas, context, startTime);
     });
-}
+}*/
