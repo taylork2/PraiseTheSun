@@ -1,16 +1,13 @@
+
+
+
 var b1 = 0;
 
 var canvas = document.getElementById('game');
 var context = canvas.getContext('2d');
 
-// Add mousemove and mousedown events to the canvas
-canvas.addEventListener("mousemove", trackPosition, true);
-canvas.addEventListener("mousedown", btnClick, true);
-
-var gameObjects=[]; //this array holds all game objects
-//define game objects here
-
-
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
 
 
 var myRectangle = {
@@ -27,4 +24,7 @@ drawRectangle(myRectangle, context);
 setTimeout(function() {
     var startTime = (new Date()).getTime();
     animate(myRectangle, canvas, context, startTime);
+    //This function is the main tick for the game
+    game.update(context);
+    console.log(game);
 }, 1000);
