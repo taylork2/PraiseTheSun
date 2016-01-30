@@ -204,14 +204,6 @@ game.ToolButton.prototype.constructor=game.ToolButton;
 
 //When clicked, a ToolButton will buy one more of that tool, provided the cost is appropriate
 game.ToolButton.prototype.onClick = function() {
-<<<<<<< HEAD
-    console.log("clicked");
-    console.log(game);
-    console.log(game.playerStats.prayerPoints.number);
-    console.log(this.toolStats.costPP.number);
-=======
-    console.log(this.toolStats.costPP);
->>>>>>> origin/master
     if(game.playerStats.prayerPoints.number>=this.toolStats.costPP.number && game.playerStats.cultists.number>=this.toolStats.costCult.number) {
         this.toolStats.numTools.number+=1;
         //Costs are stored as floats, but are used and displayed as ints
