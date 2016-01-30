@@ -1,3 +1,10 @@
+var b1 = 0;
+
+function button1Click(){
+	b1+=1;
+	var textbox = document.getElementById('text');
+	textbox.placeholder = "hello";
+}
 
 
 window.requestAnimFrame = (function(callback) {
@@ -16,7 +23,7 @@ window.requestAnimFrame = (function(callback) {
         context.strokeStyle = 'black';
         context.stroke();
       }
-      
+
       function animate(myRectangle, canvas, context, startTime) {
         // update
         var time = (new Date()).getTime() - startTime;

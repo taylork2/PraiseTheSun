@@ -1,16 +1,44 @@
 <html>
-<p>Praise the Sun!</p>
 <head>
 	<title>Praise the Sun</title>
 	<style>
 		body{
-		margin:0;
-		padding:0;
+			margin: 0;
+			top:0;
 		}
+
+		#text {
+			z-index:3;
+			position: absolute;
+			top:10px;
+			left:10px;
+		}
+		#button1{
+			z-index:2; 
+			position:absolute; 
+			top:50px; 
+			left:10px		
+		}
+		#game{			
+			z-index:1; 
+			background:gray; 
+			width:70%; 
+			height: 70%;
+		}
+
 	</style>
 	</head>
 	<body>
-		<canvas id="game" width='600px' height='400px'></canvas> 
+
+			<textarea id="text">something</textarea>
+			<canvas id="game"></canvas>
+			<input id="button1" type="button" value="test" onclick=	"button1Click()"/>
+
+			
+
+	
+		
+		
 		<script src='js/game.js'></script>
 	</body>
 </html>
