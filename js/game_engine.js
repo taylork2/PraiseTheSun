@@ -106,15 +106,18 @@ game.Text.prototype.update = function(context){
 //They dynamically update the text within to match an internal counter
 //Formatting for larger numbers e.g. 1 billion, 2.014 e24
 game.TextNumber=function(background,x_offset,y_offset,text,font,fillStyle,lineWidth,strokeStyle,trackedStat) {
-        game.Text.call(this,background,x_offset,y_offset,text,font,fillStyle,lineWidth,strokeStyle); //Numbers are a subclass of Text
-    this.trackedStat=trackedStat;
+                game.Text.call(this,background,x_offset,y_offset,text,font,fillStyle,lineWidth,strokeStyle); //Numbers are a subclass of Text
+    
+        this.trackedStat=trackedStat;
+    console.log(this.trackedStat.number);
 }
 
 game.TextNumber.prototype=Object.create(game.Text.prototype);
 game.TextNumber.prototype.constructor=game.TextNumber;
 
 game.TextNumber.prototype.update = function(context){
-    this.text=Math.floor(this.trackedStat.number);
+    
+        this.text=Math.floor(this.trackedStat.number);
 }
 
 //a Button is a rectangular canvas element that can be clicked
@@ -201,10 +204,14 @@ game.ToolButton.prototype.constructor=game.ToolButton;
 
 //When clicked, a ToolButton will buy one more of that tool, provided the cost is appropriate
 game.ToolButton.prototype.onClick = function() {
+<<<<<<< HEAD
     console.log("clicked");
     console.log(game);
     console.log(game.playerStats.prayerPoints.number);
     console.log(this.toolStats.costPP.number);
+=======
+    console.log(this.toolStats.costPP);
+>>>>>>> origin/master
     if(game.playerStats.prayerPoints.number>=this.toolStats.costPP.number && game.playerStats.cultists.number>=this.toolStats.costCult.number) {
         this.toolStats.numTools.number+=1;
         //Costs are stored as floats, but are used and displayed as ints
