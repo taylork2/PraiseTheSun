@@ -39,10 +39,10 @@ game.Background.prototype.setVisible=function(visible) {
     }
 }
 
-game.Background.prototype.update=function(){
+game.Background.prototype.update=function(context){
 
     for(x=0;x<this.textArray.length;x++) {
-        this.textArray[x].update();
+        this.textArray[x].update(context);
     }
 }
 
@@ -83,7 +83,7 @@ context.strokeText(this.text,this.background.x+this.x_offset,this.background.y+t
     
 }
 
-game.Text.prototype.update = function(){
+game.Text.prototype.update = function(context){
     
 }
 
@@ -99,8 +99,8 @@ game.TextNumber=function(background,x_offset,y_offset,text,font,fillStyle,lineWi
 game.TextNumber.prototype=Object.create(game.Text.prototype);
 game.TextNumber.prototype.constructor=game.TextNumber;
 
-game.TextNumber.prototype.update = function(){
-    this.text=this.trackedStat.number;   
+game.TextNumber.prototype.update = function(context){
+    this.text=Math.floor(this.trackedStat.number);
 }
 
 //a Button is a rectangular canvas element that can be clicked
@@ -124,32 +124,32 @@ game.Button.prototype.intersects=function(mouse) {
     return  xIntersect && yIntersect;
 }
 
-game.Button.prototype.updateStats=function(canvas){
+game.Button.prototype.updateStats=function(context){
     //update whether the button has been clicked
-    if (this.intersects(this, canvas.mouse)) {
+    if (this.intersects(this, context.mouse)) {
         this.hovered = true;
-        if (canvas.mouse.clicked) {
+        if (context.mouse.clicked) {
             this.clicked = true;
         }
     } else {
         this.hovered = false;
     }
 
-    if (!canvas.mouse.down) {
+    if (!context.mouse.down) {
         this.clicked = false;
     }
 }
 
-game.Button.prototype.update = function(canvas) {
+game.Button.prototype.update = function(context) {
     var wasNotClicked = !this.clicked;
-    this.updateStats(canvas);
+    this.updateStats(context);
     
     //check if after updating, the button is now clicked
     if (this.visible && this.clicked && wasNotClicked) {
         this.onClick();
     }
     
-    this.background.update();
+    this.background.update(context);
 }
 
 game.Button.prototype.render = function(context) {
@@ -178,12 +178,15 @@ game.ToolButton = function(x,y,width,height,background,baseCostPP, baseCostCult,
     game.Button.call(this,x,y,width,height,background);
     
     this.costPP=baseCostPP;
+    this.costPPText=new game.TextNumber(this.background,300,55,"0","bold 28pt lucida console ","white",6,"#5f3c0f",this.costPP);
     this.costCult=baseCostCult;
+    this.costCultText=new game.TextNumber(this.background,450,55,"0","bold 28pt lucida console ","white",6,"#5f3c0f",this.costCult);
     this.prodRateCult=prodRateCult;
     this.prodRatePris=prodRatePris;
     this.prodRateExec=prodRateExec;
     
     this.numTools=numTools;
+    this.numToolsText=new game.TextNumber(this.background,150,55,"0","bold 28pt lucida console ","white",6,"#5f3c0f",numTools);
 }
 
 game.ToolButton.prototype=Object.create(game.Button.prototype);
@@ -191,11 +194,11 @@ game.ToolButton.prototype.constructor=game.ToolButton;
 
 //When clicked, a ToolButton will buy one more of that tool, provided the cost is appropriate
 game.ToolButton.prototype.onClick = function() {
-    if(game.PlayerStats.prayerPoints>=this.costPP && game.PlayerStats.cultists>=this.costCult) {
+    if(game.playerStats.prayerPoints.number>=this.costPP.number && game.playerStats.cultists.number>=this.costCult.number) {
         this.numTools.number+=1;
         //Costs are stored as floats, but are used and displayed as ints
-        game.PlayerStats.prayerPoints-=int(this.costPP);
-        game.PlayerStats.cultists-=int(this.costCult);
+        game.playerStats.prayerPoints.number-=Math.floor(this.costPP.number);
+        game.playerStats.cultists.number-=Math.floor(this.costCult.number);
         //Update the costs by a scaling factor
         this.costPP.number*=1.05;
         this.costCult.number*=1.05;
@@ -291,28 +294,42 @@ window.cancelRequestAnimFrame = (function(callback) {
 		clearTimeout
 })();
 
-game.update=function(canvas,context) {
+game.update=function() {
     //clear the screen
-    context.clearRect(0, 0, canvas.width, canvas.height);
+    game.context.clearRect(0, 0, game.canvas.width, game.canvas.height);
     
     //update all objects to reflect the new game state
     for(x=0;x<game.buttons.length;x++) {
-        game.buttons[x].update(canvas);
+        game.buttons[x].update(game.context);
     }
+
+    for(x=0;x<game.backgrounds.length;x++) {
+        game.backgrounds[x].update(game.context);
+    }
+    
+    //update all stats
+    //recalculate all the production rates
+    
+    
+    //check sun happiness
+    
+    //adjust production rate
+    
+    //apply production rate
     
     
     //render all objects in order
     for(x=0;x<game.backgrounds.length;x++) {
-        game.backgrounds[x].render(context);
+        game.backgrounds[x].render(game.context);
     }
     
     for(x=0;x<game.buttons.length;x++) {
-        game.buttons[x].render(context);
+        game.buttons[x].render(game.context);
     }
     
     // request new frame
      requestAnimFrame(function() {
-      game.update(context);
+      game.update(game.context);
     });
 }
 

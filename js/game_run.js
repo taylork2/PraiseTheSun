@@ -3,12 +3,36 @@
 
 var b1 = 0;
 
-var canvas = document.getElementById('game');
-var context = canvas.getContext('2d');
+game.canvas = document.getElementById('game');
+game.context = game.canvas.getContext('2d');
 
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
-context.scale(game.widthScale,game.heightScale);
+game.canvas.width=window.innerWidth;
+game.canvas.height=window.innerHeight;
+game.context.scale(game.widthScale,game.heightScale);
+
+game.context.mouse = {
+    x: 0,
+    y: 0,
+    clicked: false,
+    down: false
+}
+
+game.canvas.addEventListener("mousemove", function(e) {
+    game.context.mouse.x = e.offsetX;
+    game.context.mouse.y = e.offsetY;
+    game.context.mouse.clicked = (e.which == 1 && !game.context.mouse.down);
+    game.context.mouse.down = (e.which == 1);
+});
+
+game.canvas.addEventListener("mousedown", function(e) {
+    game.context.mouse.clicked = !game.context.mouse.down;
+    game.context.mouse.down = true;
+});
+
+game.canvas.addEventListener("mouseup", function(e) {
+    game.context.mouse.down = false;
+    game.context.mouse.clicked = false;
+});
 
 var myRectangle = {
 x: 0,
@@ -26,6 +50,6 @@ setTimeout(function() {
     //animate(myRectangle, canvas, context, startTime);
     
     //This function is the main tick for the game
-    game.update(canvas,context);
+    game.update();
     console.log(game);
 }, 1000);
