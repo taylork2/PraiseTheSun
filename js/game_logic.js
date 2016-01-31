@@ -1,9 +1,9 @@
 //PlayerStats is an array that holds all of the player's statistics
 game.playerStats=[];
 //Initialize all values
-game.playerStats.prayerPoints=new game.StatNumber(100);
-game.playerStats.cultists=new game.StatNumber(4);
-game.playerStats.prisoners=new game.StatNumber(1);
+game.playerStats.prayerPoints=new game.StatNumber(50);
+game.playerStats.cultists=new game.StatNumber(5);
+game.playerStats.prisoners=new game.StatNumber(5);
 game.playerStats.prodRateCult=new game.StatNumber(0);
 game.playerStats.prodRatePris=new game.StatNumber(0);
 game.playerStats.prodRateExec=new game.StatNumber(0);
@@ -12,13 +12,13 @@ game.playerStats.ppMultiplier=new game.StatNumber(4);
 game.playerStats.costPPMultiplier=new game.StatNumber(1.1);
 game.playerStats.costCultMultiplier=new game.StatNumber(1.1);
 
-game.playerStats.booksStats=new game.ToolStats(10,1,1,0,0,0);
-game.playerStats.soapboxStats=new game.ToolStats(100,1,10,0,0,0);
-game.playerStats.speakerStats=new game.ToolStats(1000,1,100,0,0,0);
-game.playerStats.podiumStats=new game.ToolStats(10000,1,1000,0,0,0);
-game.playerStats.camcorderStats=new game.ToolStats(100000,1,10000,0,0,0);
-game.playerStats.computerStats=new game.ToolStats(1000000,1,100000,0,0,0);
-game.playerStats.laptopStats=new game.ToolStats(10000000,1,1000000,0,0,0);
+game.playerStats.booksStats=new game.ToolStats(10,1,.1,0,0,0);
+game.playerStats.soapboxStats=new game.ToolStats(100,1,1,0,0,0);
+game.playerStats.speakerStats=new game.ToolStats(1000,1,10,0,0,0);
+game.playerStats.podiumStats=new game.ToolStats(10000,1,100,0,0,0);
+game.playerStats.camcorderStats=new game.ToolStats(100000,1,1000,0,0,0);
+game.playerStats.computerStats=new game.ToolStats(1000000,1,10000,0,0,0);
+game.playerStats.laptopStats=new game.ToolStats(10000000,1,100000,0,0,0);
 
 game.playerStats.netStats=new game.ToolStats(10,1,0,1,0,0);
 game.playerStats.lassoStats=new game.ToolStats(100,1,0,10,0,0);
