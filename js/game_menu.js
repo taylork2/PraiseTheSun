@@ -54,37 +54,37 @@ for(var x=0;x<game.conversionToolButtons.length;x++) {
 game.conversionPanels=[];
 
 //These are all the conversion panels
-var panelConversionBook=new game.Background(0,267,580,98,"img/conversion_panels/panel_book.png");
+var panelConversionBook=new game.Background(647,267,647,100,"img/conversion_panels/panel_book.png");
 panelConversionBook.setVisible(true);
 game.backgrounds.push(panelConversionBook);
 game.conversionPanels.push(panelConversionBook);
 
-var panelConversionSoapbox=new game.Background(0,384,580,98,"img/conversion_panels/panel_soapbox.png");
+var panelConversionSoapbox=new game.Background(647,384,647,100,"img/conversion_panels/panel_soapbox.png");
 panelConversionSoapbox.setVisible(true);
 game.backgrounds.push(panelConversionSoapbox);
 game.conversionPanels.push(panelConversionSoapbox);
 
-var panelConversionSpeaker=new game.Background(0,500,580,98,"img/conversion_panels/panel_speaker.png");
+var panelConversionSpeaker=new game.Background(647,500,647,100,"img/conversion_panels/panel_speaker.png");
 panelConversionSpeaker.setVisible(true);
 game.backgrounds.push(panelConversionSpeaker);
 game.conversionPanels.push(panelConversionSpeaker);
 
-var panelConversionPodium=new game.Background(0,617,580,98,"img/conversion_panels/panel_podium.png");
+var panelConversionPodium=new game.Background(647,617,647,100,"img/conversion_panels/panel_podium.png");
 panelConversionPodium.setVisible(true);
 game.backgrounds.push(panelConversionPodium);
 game.conversionPanels.push(panelConversionPodium);
 
-var panelConversionCamcorder=new game.Background(0,734,580,98,"img/conversion_panels/panel_camcorder.png");
+var panelConversionCamcorder=new game.Background(647,734,647,100,"img/conversion_panels/panel_camcorder.png");
 panelConversionCamcorder.setVisible(true);
 game.backgrounds.push(panelConversionCamcorder);
 game.conversionPanels.push(panelConversionCamcorder);
 
-var panelConversionComputer=new game.Background(0,849,580,98,"img/conversion_panels/panel_computer.png");
+var panelConversionComputer=new game.Background(647,849,647,100,"img/conversion_panels/panel_computer.png");
 panelConversionComputer.setVisible(true);
 game.backgrounds.push(panelConversionComputer);
 game.conversionPanels.push(panelConversionComputer);
 
-var panelConversionLaptop=new game.Background(0,964,580,98,"img/conversion_panels/panel_laptop.png");
+var panelConversionLaptop=new game.Background(647,964,647,100,"img/conversion_panels/panel_laptop.png");
 panelConversionLaptop.setVisible(true);
 game.backgrounds.push(panelConversionLaptop);
 game.conversionPanels.push(panelConversionLaptop);
