@@ -178,35 +178,35 @@ buttonCaptureNet.setVisible(true);
 game.buttons.push(buttonCaptureNet);
 game.captureToolButtons.push(buttonCaptureNet);
 
-//var buttonCaptureLasso=new game.ToolButton(0,384,580,98,"lasso","",game.playerStats.lassoStats,"capture",game.captureTab);
-//buttonCaptureLasso.setVisible(true);
-//game.buttons.push(buttonCaptureLasso);
-//game.captureToolButtons.push(buttonCaptureLasso);
-//
-//var buttonCaptureTrapdoor=new game.ToolButton(0,500,580,98,"trapdoor","",game.playerStats.trapdoorStats,"capture",game.captureTab);
-//buttonCaptureTrapdoor.setVisible(true);
-//game.buttons.push(buttonCaptureTrapdoor);
-//game.captureToolButtons.push(buttonCaptureTrapdoor);
-//
-//var buttonCaptureVan=new game.ToolButton(0,617,580,98,"van","",game.playerStats.vanStats,"capture",game.captureTab);
-//buttonCaptureVan.setVisible(true);
-//game.buttons.push(buttonCaptureVan);
-//game.captureToolButtons.push(buttonCaptureVan);
-//
-//var buttonCaptureInvasion=new game.ToolButton(0,734,580,98,"invasion","",game.playerStats.invasionStats,"capture",game.captureTab);
-//buttonCaptureInvasion.setVisible(true);
-//game.buttons.push(buttonCaptureInvasion);
-//game.captureToolButtons.push(buttonCaptureInvasion);
-//
-//var buttonCapturePhaser=new game.ToolButton(0,849,580,98,"phaser","",game.playerStats.phaserStats,"capture",game.captureTab);
-//buttonCapturePhaser.setVisible(true);
-//game.buttons.push(buttonCapturePhaser);
-//game.captureToolButtons.push(buttonCapturePhaser);
-//
-//var buttonCaptureCloning=new game.ToolButton(0,964,580,98,"cloning","",game.playerStats.cloningStats,"capture",game.captureTab);
-//buttonCaptureCloning.setVisible(true);
-//game.buttons.push(buttonCaptureCloning);
-//game.captureToolButtons.push(buttonCaptureCloning);
+var buttonCaptureLasso=new game.ToolButton(0,384,580,98,"lasso","",game.playerStats.lassoStats,"capture",game.captureTab,"Yeehaw!");
+buttonCaptureLasso.setVisible(true);
+game.buttons.push(buttonCaptureLasso);
+game.captureToolButtons.push(buttonCaptureLasso);
+
+var buttonCaptureTrapdoor=new game.ToolButton(0,500,580,98,"trapdoor","",game.playerStats.trapdoorStats,"capture",game.captureTab,"Also makes for good flowerpots");
+buttonCaptureTrapdoor.setVisible(true);
+game.buttons.push(buttonCaptureTrapdoor);
+game.captureToolButtons.push(buttonCaptureTrapdoor);
+
+var buttonCaptureVan=new game.ToolButton(0,617,580,98,"van","",game.playerStats.vanStats,"capture",game.captureTab,"No, we're not the FBI. Yes, we're still listening.");
+buttonCaptureVan.setVisible(true);
+game.buttons.push(buttonCaptureVan);
+game.captureToolButtons.push(buttonCaptureVan);
+
+var buttonCaptureInvasion=new game.ToolButton(0,734,580,98,"invasion","",game.playerStats.invasionStats,"capture",game.captureTab,"Walls are simply a compact way of storing future prisoners.");
+buttonCaptureInvasion.setVisible(true);
+game.buttons.push(buttonCaptureInvasion);
+game.captureToolButtons.push(buttonCaptureInvasion);
+
+var buttonCapturePhaser=new game.ToolButton(0,849,580,98,"phaser","",game.playerStats.phaserStats,"capture",game.captureTab,"Tried to use this as an execution weapon, but someone keeps leaving it locked to stun.");
+buttonCapturePhaser.setVisible(true);
+game.buttons.push(buttonCapturePhaser);
+game.captureToolButtons.push(buttonCapturePhaser);
+
+var buttonCaptureCloning=new game.ToolButton(0,964,580,98,"cloning","",game.playerStats.cloningStats,"capture",game.captureTab,"We breed them to have thin necks.");
+buttonCaptureCloning.setVisible(true);
+game.buttons.push(buttonCaptureCloning);
+game.captureToolButtons.push(buttonCaptureCloning);
 
 for(var x=0;x<game.captureToolButtons.length;x++) {
     game.captureObjects.push(game.captureToolButtons[x]);
@@ -307,35 +307,35 @@ buttonExecutionKnife.setVisible(true);
 game.buttons.push(buttonExecutionKnife);
 game.executionToolButtons.push(buttonExecutionKnife);
 
-//var buttonExecutionCleaver=new game.ToolButton(0,384,580,98,"cleaver","",game.playerStats.cleaversStats,"execution",game.executionTab);
-//buttonExecutionCleaver.setVisible(true);
-//game.buttons.push(buttonExecutionCleaver);
-//game.executionToolButtons.push(buttonExecutionCleaver);
-//
-//var buttonExecutionAxe=new game.ToolButton(0,500,580,98,"axe","",game.playerStats.axeStats,"execution",game.executionTab);
-//buttonExecutionAxe.setVisible(true);
-//game.buttons.push(buttonExecutionAxe);
-//game.executionToolButtons.push(buttonExecutionAxe);
-//
-//var buttonExecutionBlade=new game.ToolButton(0,617,580,98,"blade","",game.playerStats.bladeStats,"execution",game.executionTab);
-//buttonExecutionBlade.setVisible(true);
-//game.buttons.push(buttonExecutionBlade);
-//game.executionToolButtons.push(buttonExecutionBlade);
-//
-//var buttonExecutionGuillotine=new game.ToolButton(0,734,580,98,"guillotine","",game.playerStats.guillotineStats,"execution",game.executionTab);
-//buttonExecutionGuillotine.setVisible(true);
-//game.buttons.push(buttonExecutionGuillotine);
-//game.executionToolButtons.push(buttonExecutionGuillotine);
-//
-//var buttonExecutionSaw=new game.ToolButton(0,849,580,98,"saw","",game.playerStats.sawStats,"execution",game.executionTab);
-//buttonExecutionSaw.setVisible(true);
-//game.buttons.push(buttonExecutionSaw);
-//game.executionToolButtons.push(buttonExecutionSaw);
-//
-//var buttonExecutionLightsaber=new game.ToolButton(0,964,580,98,"lightsaber","",game.playerStats.lightsaberStats,"execution",game.executionTab);
-//buttonExecutionLightsaber.setVisible(true);
-//game.buttons.push(buttonExecutionLightsaber);
-//game.executionToolButtons.push(buttonExecutionLightsaber);
+var buttonExecutionCleaver=new game.ToolButton(0,384,580,98,"cleaver","",game.playerStats.cleaversStats,"execution",game.executionTab,"I 'ardly knew her!");
+buttonExecutionCleaver.setVisible(true);
+game.buttons.push(buttonExecutionCleaver);
+game.executionToolButtons.push(buttonExecutionCleaver);
+
+var buttonExecutionAxe=new game.ToolButton(0,500,580,98,"axe","",game.playerStats.axeStats,"execution",game.executionTab,"The favorite weapon of past presidents and crazed writers");
+buttonExecutionAxe.setVisible(true);
+game.buttons.push(buttonExecutionAxe);
+game.executionToolButtons.push(buttonExecutionAxe);
+
+var buttonExecutionBlade=new game.ToolButton(0,617,580,98,"blade","",game.playerStats.bladeStats,"execution",game.executionTab,"Pens suck");
+buttonExecutionBlade.setVisible(true);
+game.buttons.push(buttonExecutionBlade);
+game.executionToolButtons.push(buttonExecutionBlade);
+
+var buttonExecutionGuillotine=new game.ToolButton(0,734,580,98,"guillotine","",game.playerStats.guillotineStats,"execution",game.executionTab,"Literally made for the job");
+buttonExecutionGuillotine.setVisible(true);
+game.buttons.push(buttonExecutionGuillotine);
+game.executionToolButtons.push(buttonExecutionGuillotine);
+
+var buttonExecutionSaw=new game.ToolButton(0,849,580,98,"saw","",game.playerStats.sawStats,"execution",game.executionTab,"Zombie slaying classic");
+buttonExecutionSaw.setVisible(true);
+game.buttons.push(buttonExecutionSaw);
+game.executionToolButtons.push(buttonExecutionSaw);
+
+var buttonExecutionLightsaber=new game.ToolButton(0,964,580,98,"lightsaber","",game.playerStats.lightsaberStats,"execution",game.executionTab,"An elegant weapon for a less civilized age");
+buttonExecutionLightsaber.setVisible(true);
+game.buttons.push(buttonExecutionLightsaber);
+game.executionToolButtons.push(buttonExecutionLightsaber);
 
 for(var x=0;x<game.executionToolButtons.length;x++) {
     game.executionObjects.push(game.executionToolButtons[x]);
