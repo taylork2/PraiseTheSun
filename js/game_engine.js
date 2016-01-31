@@ -522,7 +522,6 @@ game.SpriteClimber.prototype.update=function() {
     }
     if(this.y<300) {
         this.destroy=true;
-        console.log("destroy");
     }
 }
 
