@@ -62,7 +62,11 @@ game.tabs=[];
 //This array holds all of the sprites
 game.sprites=[];
 
-console.log(window.innerWidth);
+game.testSprite=new game.SpriteClimber(500,500,136,328,1,1,"img/sprites/blueclimb_strip16.png",16);
+game.testSprite.setVisible(true);
+game.sprites.push(game.testSprite);
+
+
 
 //This master background is behind everything
 //It holds objects that will always appear on the screen

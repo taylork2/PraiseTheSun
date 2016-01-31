@@ -119,8 +119,8 @@ game.TextNumber.prototype=Object.create(game.Text.prototype);
 game.TextNumber.prototype.constructor=game.TextNumber;
 
 game.TextNumber.prototype.update = function(context){
-    if(this.trackedStat.number==0) {
-        this.text=this.trackedStat.number;
+    if(this.trackedStat.number<1000) {
+        this.text=Math.floor(this.trackedStat.number);
     } else{
         var power=Math.floor(Math.log10(this.trackedStat.number));
         var order=Math.floor(power/3);
@@ -223,7 +223,7 @@ game.ToolButton.prototype.constructor=game.ToolButton;
 
 //When clicked, a ToolButton will buy one more of that tool, provided the cost is appropriate
 game.ToolButton.prototype.onClick = function() {
-    if(game.playerStats.prayerPoints.number>=this.toolStats.costPP.number && game.playerStats.cultists.number>=this.toolStats.costCult.number) {
+    if(game.playerStats.prayerPoints.number>=Math.floor(this.toolStats.costPP.number) && game.playerStats.cultists.number>=Math.floor(this.toolStats.costCult.number)) {
         this.toolStats.numTools.number+=1;
         //Costs are stored as floats, but are used and displayed as ints
         game.playerStats.prayerPoints.number-=Math.floor(this.toolStats.costPP.number);
@@ -253,24 +253,80 @@ game.UpgradeButton.prototype.onClick = function() {
 }
 
 //a Sprite is a moving, animated object with no interactivity, that can be destroyed
-game.Sprite=function(x,y,width,height,xspeed,yspeed,imageSrc) {
+game.Sprite=function(x,y,width,height,xspeed,yspeed,imgSrc) {
     this.x=x;
     this.y=y;
     this.width=width;
     this.height=height;
     this.xspeed=xspeed;
     this.yspeed=yspeed;
-    this.image=image; //source file of image
+    this.img=new Image();
+    this.imgSrc=imgSrc; //source file of image
+    this.img.src=this.imgSrc;
     this.destroy=false;
     this.visible=false;
 }
 
 game.Sprite.prototype.render = function(context) {
-    ctx.drawImage(resources.get(this.url),
+    if(this.visible) {
+        context.drawImage(this.img,
                   this.x, this.y,
                   this.width, this.height,
                   0, 0,
-                  this.width, height);
+                  this.width, this.height);
+    }
+}
+
+game.Sprite.prototype.update=function() {
+    //speed is in pixels per second
+    //assume 60 FPS
+    this.x+=this.xspeed/60;
+    this.y+=this.yspeed/60;
+}
+
+//A hardcoded sprite of a climber that is animated 
+game.SpriteClimber=function(x,y,width,height,xspeed,yspeed,imgSrc,maxIndex) {
+    game.Sprite.call(this,x,y,width,height,xspeed,yspeed,imgSrc);
+    //keep track of the current image index
+    this.imageIndex=0;
+    this.maxIndex=maxIndex;
+    //number of frames the same image has been on screen for
+    this.numFrames=0;
+    //this.maxFramesSame=game.maxFramesSame;
+    this.maxFramesSame=2;
+}
+
+game.SpriteClimber.prototype=Object.create(game.Sprite.prototype);
+game.SpriteClimber.prototype.constructor=game.SpriteClimber;
+
+game.SpriteClimber.prototype.update=function() {
+    game.Sprite.prototype.update.call(this);
+    this.numFrames++;
+    if(this.numFrames>=this.maxFramesSame) {
+        //switch the image
+        this.imageIndex+=1;
+        if(this.imageIndex>=this.maxIndex) {
+            this.imageIndex=0;
+        }
+        //reset the same frame counter
+        this.numFrames-=this.maxFramesSame;
+    }
+}
+
+game.SpriteClimber.prototype.render = function(context) {
+    //SpriteClimber's image has multiple sprites of animation
+    //Based on the imageIndex, cut out the appropriate sprite
+    if(this.visible) {
+        context.drawImage(this.img,
+                  this.width*this.imageIndex, 0,
+                  this.width, this.height,
+                  this.x, this.y,
+                  this.width, this.height);
+    }
+}
+
+game.SpriteClimber.prototype.setVisible=function(visible) {
+    this.visible=visible;
 }
 
 //A Scrollbar is a Background with another movable Background on top of it
@@ -367,9 +423,10 @@ game.update=function() {
     game.playerStats.prodRateCult.number=conversionRate;
     game.playerStats.prodRateExec.number=executionRate;
     
+    game.playerStats.prodRatePris.number=captureRate-executionRate;
     //if there are not enough prisoners, cannot execute them
     var realExecutionRate=0;
-    if(game.playerStats.prisoners.number>0) {
+    if(game.playerStats.prisoners.number>0||game.playerStats.prodRatePris>0) {
         realExecutionRate=executionRate;
     } else {
         realExecutionRate=captureRate;
@@ -386,16 +443,16 @@ game.update=function() {
             sunMultiplier=0.5;
         }
     } 
-    
+        
     //apply cultist rate
     game.playerStats.cultists.number+=game.playerStats.prodRateCult.number/60;
     
     //apply prisoner rate
-    if(game.playerStats.prisoners.number>-game.playerStats.prodRatePris.number/60) {
-        game.playerStats.prisoners.number+=game.playerStats.prodRatePris.number/60;
-    } else {
+    game.playerStats.prisoners.number+=game.playerStats.prodRatePris.number/60;
+    if(game.playerStats.prisoners.number<0) {
         game.playerStats.prisoners.number=0;
     }
+    
     //apply PP rate
     game.playerStats.prayerPoints.number+=realExecutionRate/60*game.playerStats.ppMultiplier.number*sunMultiplier;    
     
@@ -414,15 +471,23 @@ game.update=function() {
     
     //update and render sprites last for performance
     
+    for(var x=0;x<game.sprites.length;x++) {
+        game.sprites[x].update();
+    }
+    
     //Iterate backwards through array, so indexes of remaining sprites don't change on delete
-    /*
     var x=game.sprites.length-1;
     while(x>=0) {
         if(game.sprites[x].destroy) {
+            game.sprites[x].onDestroy();
             game.sprites.splice(x,1);
         }
         x--;
-    }*/
+    }
+    
+    for(var x=0;x<game.sprites.length;x++) {
+        game.sprites[x].render(game.context);
+    }
     
     // request new frame
      requestAnimFrame(function() {
