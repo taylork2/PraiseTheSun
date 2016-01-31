@@ -210,8 +210,6 @@ game.captureTab=new game.Tab(840,137,113,108,"img/tab_buttons/capture_button.png
 game.captureTab.setVisible(true);
 game.tabs.push(game.captureTab);
 
-game.conversionTab.setTabVisible(true);
-game.captureTab.setTabVisible(true);
 
 //Create the objects that will go in the execution tab 
 game.executionHeader=new game.Background(0,0,584,126,"img/headers/execution.png");
@@ -276,6 +274,11 @@ game.statObjects.push(game.statHeader);
 game.statTab=new game.Tab(1150,137,113,108,"img/tab_buttons/stat_button.png",game.statObjects);
 game.statTab.setVisible(true);
 game.tabs.push(game.statTab);
+
+game.conversionTab.setTabVisible(true);
+game.captureTab.setTabVisible(false);
+game.executionTab.setTabVisible(false);
+game.statTab.setTabVisible(false);
 
 function button1Click(){
 	b1+=1;

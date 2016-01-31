@@ -237,10 +237,11 @@ game.ToolButton.prototype.onClick = function() {
 //An UpgradeButton has an effect on some game system
 //Typically, this will be increasing the effectiveness of a Tool
 //UpgradeButtons are smaller squares that have no text
-game.UpgradeButton=function(x,y,width,height,background,baseCostPP, baseCostCult) {
+game.UpgradeButton=function(x,y,width,height,background,costStats,toolStats) {
     Button.call(this,x,y,width,height,background);
-    this.costPP=baseCostPP;
-    this.costCult=baseCostCult;
+    this.costStats=costStats;
+    this.toolStats=toolStats;
+    this.disabled=false;
 }
 
 game.UpgradeButton.prototype=Object.create(game.Button.prototype);
@@ -249,7 +250,27 @@ game.UpgradeButton.prototype.constructor=game.UpgradeButton;
 //UpgradeButtons will have their applyUpgrade() methods coded in the game initialization
 //It will then destroy itself, as Upgrades can only be bought once
 game.UpgradeButton.prototype.onClick = function() {
-    this.applyUpgrade();
+    //this.applyUpgrade();
+    if(game.playerStats.prayerPoints.number>=Math.floor(this.toolStats.costPP.number) && game.playerStats.cultists.number>=Math.floor(this.toolStats.costCult.number)) {
+        this.toolStats.numTools.number+=1;
+        //Costs are stored as floats, but are used and displayed as ints
+        game.playerStats.prayerPoints.number-=Math.floor(this.toolStats.costPP.number);
+        game.playerStats.cultists.number-=Math.floor(this.toolStats.costCult.number);
+        this.toolStats.prodRateCult*=1.2;
+        this.toolStats.prodRatePris*=1.2;
+        this.toolStats.prodRateExec*=1.2;
+        //destroy this/make it invisible forever
+        this.setVisible(false);
+        this.disabled=true;
+    }
+}
+
+game.UpgradeButton.prototype.setVisible=function(visible) {
+    if(!this.disabled) {
+        this.visible=visible;
+    } else {
+        this.visible=false;
+    }
 }
 
 //a Sprite is a moving, animated object with no interactivity, that can be destroyed
