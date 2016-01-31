@@ -206,7 +206,7 @@ game.Button.prototype.setVisible=function(visible) {
 //Tools, when purchased, affect the rate of production
 //It has a Background(as per its superclass), Numbers that represent the cost
 game.ToolButton = function(x,y,width,height,bgString,title,toolStats, tabString, tab) {
-    var _background = "img/" + tabString + "_tools_icons/" +tabString + bgString + num.toString() + ".png";
+    var _background = "img/" + tabString + "_tool_icons/" + tabString + "_" + bgString + ".png";
     game.Button.call(this,x,y,width,height,_background);
     this.toolStats=toolStats;
     this.costPPText=new game.TextNumber(this.background,300,55,"0","bold 28pt lucida console ","white",6,"#5f3c0f",this.toolStats.costPP);
@@ -231,18 +231,16 @@ game.ToolButton.prototype.update=function(context){
     game.Button.prototype.update.call(this,context);
     if (this.disabled &&  game.playerStats.prayerPoints.number>this.toolStats.costPP.number && game.playerStats.cultists.number>this.toolStats.costCult.number){
         this.disabled=false;
-        else{
-            this.disabled=true;
-        } 
+
         if (this.tab.tabVisible){
             this.setVisible(true);
         }
     }
 }
 
-game.ToolButton.prototype.render=function(){
+game.ToolButton.prototype.render=function(context){
     this.negBackground.render(context);
-    game.Button.prototype.render.call(this);
+    game.Button.prototype.render.call(this, context);
 }
 
 //When clicked, a ToolButton will buy one more of that tool, provided the cost is appropriate

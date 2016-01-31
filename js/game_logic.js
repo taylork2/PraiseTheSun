@@ -181,13 +181,14 @@ game.backgrounds.push(game.conversionHeader);
 //game.buttons.push(buttonConversionLaptop);
 //game.conversionToolButtons.push(buttonConversionLaptop);
 
+game.conversionObjects=[];
 game.conversionObjects.push(game.conversionHeader);
 
 game.conversionTab=new game.Tab(680,137,113,108,"img/tab_buttons/conversion_button.png",game.conversionObjects);
 game.conversionTab.setVisible(true);
 game.tabs.push(game.conversionTab);
 
-var buttonConversionBook=new game.ToolButton(0,267,580,98,"book","BOOK",game.playerStats.booksStats,"conversion", conversionTab);
+var buttonConversionBook=new game.ToolButton(0,267,580,98,"book","BOOK",game.playerStats.booksStats,"conversion", game.conversionTab);
 buttonConversionBook.setVisible(true);
 game.buttons.push(buttonConversionBook);
 game.conversionToolButtons.push(buttonConversionBook);
@@ -208,7 +209,7 @@ panelLine=new game.Background(-73,481,648,17,"img/panel_line.png");
 panelLine.setVisible(true);
 game.backgrounds.push(panelLine);
 
-game.conversionObjects=[];
+
 for(var x=0;x<game.conversionToolButtons.length;x++) {
     game.conversionObjects.push(game.conversionToolButtons[x]);
 }
@@ -261,40 +262,40 @@ game.backgrounds.push(game.captureHeader);
 
 //These will be all the capture buttons
 //order of capture net, lasso, trapdoor, van, invasion, phaser, cloning 
-var buttonCaptureNet=new game.ToolButton(0,267,580,98,"img/capture_tool_icons/capture_net.png","",game.playerStats.netStats);
-buttonCaptureNet.setVisible(true);
-game.buttons.push(buttonCaptureNet);
-game.captureToolButtons.push(buttonCaptureNet);
-
-var buttonCaptureLasso=new game.ToolButton(0,384,580,98,"img/capture_tool_icons/capture_lasso.png","",game.playerStats.lassoStats);
-buttonCaptureLasso.setVisible(true);
-game.buttons.push(buttonCaptureLasso);
-game.captureToolButtons.push(buttonCaptureLasso);
-
-var buttonCaptureTrapdoor=new game.ToolButton(0,500,580,98,"img/capture_tool_icons/capture_trapdoor.png","",game.playerStats.trapdoorStats);
-buttonCaptureTrapdoor.setVisible(true);
-game.buttons.push(buttonCaptureTrapdoor);
-game.captureToolButtons.push(buttonCaptureTrapdoor);
-
-var buttonCaptureVan=new game.ToolButton(0,617,580,98,"img/capture_tool_icons/capture_van.png","",game.playerStats.vanStats);
-buttonCaptureVan.setVisible(true);
-game.buttons.push(buttonCaptureVan);
-game.captureToolButtons.push(buttonCaptureVan);
-
-var buttonCaptureInvasion=new game.ToolButton(0,734,580,98,"img/capture_tool_icons/capture_invasion.png","",game.playerStats.invasionStats);
-buttonCaptureInvasion.setVisible(true);
-game.buttons.push(buttonCaptureInvasion);
-game.captureToolButtons.push(buttonCaptureInvasion);
-
-var buttonCapturePhaser=new game.ToolButton(0,849,580,98,"img/capture_tool_icons/capture_phaser.png","",game.playerStats.phaserStats);
-buttonCapturePhaser.setVisible(true);
-game.buttons.push(buttonCapturePhaser);
-game.captureToolButtons.push(buttonCapturePhaser);
-
-var buttonCaptureCloning=new game.ToolButton(0,964,580,98,"img/capture_tool_icons/capture_cloning.png","",game.playerStats.cloningStats);
-buttonCaptureCloning.setVisible(true);
-game.buttons.push(buttonCaptureCloning);
-game.captureToolButtons.push(buttonCaptureCloning);
+//var buttonCaptureNet=new game.ToolButton(0,267,580,98,"img/capture_tool_icons/capture_net.png","",game.playerStats.netStats);
+//buttonCaptureNet.setVisible(true);
+//game.buttons.push(buttonCaptureNet);
+//game.captureToolButtons.push(buttonCaptureNet);
+//
+//var buttonCaptureLasso=new game.ToolButton(0,384,580,98,"img/capture_tool_icons/capture_lasso.png","",game.playerStats.lassoStats);
+//buttonCaptureLasso.setVisible(true);
+//game.buttons.push(buttonCaptureLasso);
+//game.captureToolButtons.push(buttonCaptureLasso);
+//
+//var buttonCaptureTrapdoor=new game.ToolButton(0,500,580,98,"img/capture_tool_icons/capture_trapdoor.png","",game.playerStats.trapdoorStats);
+//buttonCaptureTrapdoor.setVisible(true);
+//game.buttons.push(buttonCaptureTrapdoor);
+//game.captureToolButtons.push(buttonCaptureTrapdoor);
+//
+//var buttonCaptureVan=new game.ToolButton(0,617,580,98,"img/capture_tool_icons/capture_van.png","",game.playerStats.vanStats);
+//buttonCaptureVan.setVisible(true);
+//game.buttons.push(buttonCaptureVan);
+//game.captureToolButtons.push(buttonCaptureVan);
+//
+//var buttonCaptureInvasion=new game.ToolButton(0,734,580,98,"img/capture_tool_icons/capture_invasion.png","",game.playerStats.invasionStats);
+//buttonCaptureInvasion.setVisible(true);
+//game.buttons.push(buttonCaptureInvasion);
+//game.captureToolButtons.push(buttonCaptureInvasion);
+//
+//var buttonCapturePhaser=new game.ToolButton(0,849,580,98,"img/capture_tool_icons/capture_phaser.png","",game.playerStats.phaserStats);
+//buttonCapturePhaser.setVisible(true);
+//game.buttons.push(buttonCapturePhaser);
+//game.captureToolButtons.push(buttonCapturePhaser);
+//
+//var buttonCaptureCloning=new game.ToolButton(0,964,580,98,"img/capture_tool_icons/capture_cloning.png","",game.playerStats.cloningStats);
+//buttonCaptureCloning.setVisible(true);
+//game.buttons.push(buttonCaptureCloning);
+//game.captureToolButtons.push(buttonCaptureCloning);
 
 game.captureObjects=[];
 for(var x=0;x<game.captureToolButtons.length;x++) {
@@ -353,40 +354,40 @@ game.backgrounds.push(game.executionHeader);
 
 //These will be all the execution buttons
 //knife, cleavr, ax, blade, gui, saw, light
-var buttonExecutionKnife=new game.ToolButton(0,267,580,98,"img/execution_tool_icons/execution_knife.png","",game.playerStats.knifeStats);
-buttonExecutionKnife.setVisible(true);
-game.buttons.push(buttonExecutionKnife);
-game.executionToolButtons.push(buttonExecutionKnife);
-
-var buttonExecutionCleaver=new game.ToolButton(0,384,580,98,"img/execution_tool_icons/execution_cleaver.png","",game.playerStats.cleaversStats);
-buttonExecutionCleaver.setVisible(true);
-game.buttons.push(buttonExecutionCleaver);
-game.executionToolButtons.push(buttonExecutionCleaver);
-
-var buttonExecutionAxe=new game.ToolButton(0,500,580,98,"img/execution_tool_icons/execution_axe.png","",game.playerStats.axeStats);
-buttonExecutionAxe.setVisible(true);
-game.buttons.push(buttonExecutionAxe);
-game.executionToolButtons.push(buttonExecutionAxe);
-
-var buttonExecutionBlade=new game.ToolButton(0,617,580,98,"img/execution_tool_icons/execution_blade.png","",game.playerStats.bladeStats);
-buttonExecutionBlade.setVisible(true);
-game.buttons.push(buttonExecutionBlade);
-game.executionToolButtons.push(buttonExecutionBlade);
-
-var buttonExecutionGuillotine=new game.ToolButton(0,734,580,98,"img/execution_tool_icons/execution_guillotine.png","",game.playerStats.guillotineStats);
-buttonExecutionGuillotine.setVisible(true);
-game.buttons.push(buttonExecutionGuillotine);
-game.executionToolButtons.push(buttonExecutionGuillotine);
-
-var buttonExecutionSaw=new game.ToolButton(0,849,580,98,"img/execution_tool_icons/execution_saw.png","",game.playerStats.sawStats);
-buttonExecutionSaw.setVisible(true);
-game.buttons.push(buttonExecutionSaw);
-game.executionToolButtons.push(buttonExecutionSaw);
-
-var buttonExecutionLightsaber=new game.ToolButton(0,964,580,98,"img/execution_tool_icons/execution_lightsaber.png","",game.playerStats.lightsaberStats);
-buttonExecutionLightsaber.setVisible(true);
-game.buttons.push(buttonExecutionLightsaber);
-game.executionToolButtons.push(buttonExecutionLightsaber);
+//var buttonExecutionKnife=new game.ToolButton(0,267,580,98,"img/execution_tool_icons/execution_knife.png","",game.playerStats.knifeStats);
+//buttonExecutionKnife.setVisible(true);
+//game.buttons.push(buttonExecutionKnife);
+//game.executionToolButtons.push(buttonExecutionKnife);
+//
+//var buttonExecutionCleaver=new game.ToolButton(0,384,580,98,"img/execution_tool_icons/execution_cleaver.png","",game.playerStats.cleaversStats);
+//buttonExecutionCleaver.setVisible(true);
+//game.buttons.push(buttonExecutionCleaver);
+//game.executionToolButtons.push(buttonExecutionCleaver);
+//
+//var buttonExecutionAxe=new game.ToolButton(0,500,580,98,"img/execution_tool_icons/execution_axe.png","",game.playerStats.axeStats);
+//buttonExecutionAxe.setVisible(true);
+//game.buttons.push(buttonExecutionAxe);
+//game.executionToolButtons.push(buttonExecutionAxe);
+//
+//var buttonExecutionBlade=new game.ToolButton(0,617,580,98,"img/execution_tool_icons/execution_blade.png","",game.playerStats.bladeStats);
+//buttonExecutionBlade.setVisible(true);
+//game.buttons.push(buttonExecutionBlade);
+//game.executionToolButtons.push(buttonExecutionBlade);
+//
+//var buttonExecutionGuillotine=new game.ToolButton(0,734,580,98,"img/execution_tool_icons/execution_guillotine.png","",game.playerStats.guillotineStats);
+//buttonExecutionGuillotine.setVisible(true);
+//game.buttons.push(buttonExecutionGuillotine);
+//game.executionToolButtons.push(buttonExecutionGuillotine);
+//
+//var buttonExecutionSaw=new game.ToolButton(0,849,580,98,"img/execution_tool_icons/execution_saw.png","",game.playerStats.sawStats);
+//buttonExecutionSaw.setVisible(true);
+//game.buttons.push(buttonExecutionSaw);
+//game.executionToolButtons.push(buttonExecutionSaw);
+//
+//var buttonExecutionLightsaber=new game.ToolButton(0,964,580,98,"img/execution_tool_icons/execution_lightsaber.png","",game.playerStats.lightsaberStats);
+//buttonExecutionLightsaber.setVisible(true);
+//game.buttons.push(buttonExecutionLightsaber);
+//game.executionToolButtons.push(buttonExecutionLightsaber);
 
 game.executionObjects=[];
 for(var x=0;x<game.executionToolButtons.length;x++) {
