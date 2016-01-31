@@ -151,11 +151,11 @@ game.backgrounds.push(game.conversionHeader);
 //These are all the conversion buttons
 
 
-//var buttonConversionSoapbox=new game.ToolButton(0,384,580,98,"img/conversion_tool_icons/conversion_soapbox.png","SOAPBOX",game.playerStats.soapboxStats);
-//buttonConversionSoapbox.setVisible(true);
-//game.buttons.push(buttonConversionSoapbox);
-//game.conversionToolButtons.push(buttonConversionSoapbox);
-//
+var buttonConversionSoapbox=new game.ToolButton(0,384,580,98,"soapbox","SOAPBOX",game.playerStats.soapboxStats,"conversion", game.conversionTab);
+buttonConversionSoapbox.setVisible(true);
+game.buttons.push(buttonConversionSoapbox);
+game.conversionToolButtons.push(buttonConversionSoapbox);
+
 //var buttonConversionSpeaker=new game.ToolButton(0,500,580,98,"img/conversion_tool_icons/conversion_speaker.png","LOUDSPEAKER",game.playerStats.speakerStats);
 //buttonConversionSpeaker.setVisible(true);
 //game.buttons.push(buttonConversionSpeaker);
