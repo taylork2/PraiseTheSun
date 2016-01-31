@@ -1,7 +1,7 @@
 //PlayerStats is an array that holds all of the player's statistics
 game.playerStats=[];
 //Initialize all values
-var INITIAL_PRAYERPOINTS = 500;
+var INITIAL_PRAYERPOINTS = 50000;
 var INITIAL_CULTISTS = 500;
 var INITIAL_PRISONERS = 10000;
 

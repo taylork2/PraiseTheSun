@@ -536,23 +536,48 @@ game.a2.checkCondition=function(){
 }
 game.a3=new game.Achievement(800,1000,"img/achievements/axe1.png", "Axe1");
 game.a3.checkCondition=function(){
-    if(game.playerStats.axeStats.number > 10001){
+    if(game.playerStats.axeStats.numTools.number> 1){
         return true;
     }
 }
 game.a4=new game.Achievement(800,1000,"img/achievements/axe2.png", "Axe2");
 game.a4.checkCondition=function(){
-    if(game.playerStats.axeStats.number > 100001){
+    if(game.playerStats.axeStats.numTools.number > 100){
         return true;
     }
 }
-
+game.a5=new game.Achievement(800,1000,"img/achievements/axe3.png", "Axe3");
+game.a5.checkCondition=function(){
+    if(game.playerStats.axeStats.numTools.number > 1001){
+        return true;
+    }
+}
+game.a6=new game.Achievement(800,1000,"img/achievements/blade1.png", "Blade1");
+game.a6.checkCondition=function(){
+    if(game.playerStats.bladeStats.numTools.number > 1){
+        return true;
+    }
+}
+game.a7=new game.Achievement(800,1000,"img/achievements/blade2.png", "Blade2");
+game.a7.checkCondition=function(){
+    if(game.playerStats.bladeStats.numTools.number > 10){
+        return true;
+    }
+}
+game.a8=new game.Achievement(800,1000,"img/achievements/blade3.png", "Blade3");
+game.a8.checkCondition=function(){
+    if(game.playerStats.bladeStats.numTools.number > 100){
+        return true;
+    }
+}
 
 
 game.achievements.push(game.a1);
 game.achievements.push(game.a2);
 game.achievements.push(game.a3);
 game.achievements.push(game.a4);
+game.achievements.push(game.a5);
+game.achievements.push(game.a6);
 
 game.titleHeader=new game.Background(650,0,644,141,"img/logo.png");
 game.titleHeader.setVisible(true);
