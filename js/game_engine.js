@@ -283,6 +283,21 @@ game.Button.prototype.setVisible=function(visible) {
     this.background.setVisible(visible);
 }
 
+//Save button
+game.ButtonSave = function(x,y,width,height,imgSrc) {
+    game.Button.call(this,x,y,width,height,imgSrc);
+}
+
+game.ButtonSave.prototype=Object.create(game.Button.prototype);
+game.ButtonSave.prototype.constructor=game.ButtonSave;
+
+game.ButtonSave.prototype.onClick = function(){
+    for (var x=0; x<convNames.length;x++){
+        localStorage.setItem("playerstats", "hi")
+    }
+}
+                            
+                            
 //Now we're getting into the game logic
 //A ToolButton is a type of Button that represents a Tool
 //Tools, when purchased, affect the rate of production
@@ -843,7 +858,7 @@ game.playerStats.cloningStats];
     var capWidths=[55,63,54,85,50,40,44];
     var capHeights=[65,66,33,55,66,72,82];
 
-        var execStats=[game.playerStats.knifeStats,
+    var execStats=[game.playerStats.knifeStats,
 game.playerStats.cleaverStats,
 game.playerStats.axeStats,
 game.playerStats.bladeStats,

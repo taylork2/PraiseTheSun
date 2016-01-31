@@ -55,6 +55,32 @@ game.playerStats.camcorderUpgradeCosts=new game.CostStats(100000000,0);
 game.playerStats.computerUpgradeCosts=new game.CostStats(1000000000000,0);
 game.playerStats.laptopUpgradeCosts=new game.CostStats(100000000000000,0);
 
+var convNames=['book','soapbox','speaker','podium','camcorder','computer','laptop'];
+    var convStats=[game.playerStats.bookStats, game.playerStats.soapboxStats, game.playerStats.speakerStats,
+game.playerStats.podiumStats,
+game.playerStats.camcorderStats,
+game.playerStats.computerStats,
+game.playerStats.laptopStats];
+
+var capNames=['net','lasso','trapdoor','van','invasion','phaser','cloning'];
+var capStats=[game.playerStats.netStats,
+    game.playerStats.lassoStats,
+    game.playerStats.trapdoorStats,
+    game.playerStats.vanStats,
+    game.playerStats.invasionStats,
+    game.playerStats.phaserStats,
+    game.playerStats.cloningStats];
+
+var execNames=['knife','cleaver','axe','blade','guillotine','saw','lightsaber'];
+var execStats=[game.playerStats.knifeStats,
+    game.playerStats.cleaverStats,
+    game.playerStats.axeStats,
+    game.playerStats.bladeStats,
+    game.playerStats.guillotineStats,
+    game.playerStats.sawStats,
+    game.playerStats.lightsaberStats];
+
+
 game.numConvSprites=[0,0,0,0,0,0,0];
 game.numCapSprites=[0,0,0,0,0,0,0];
 game.numExecSprites=[0,0,0,0,0,0,0];

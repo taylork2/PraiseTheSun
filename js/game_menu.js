@@ -495,8 +495,11 @@ game.statPPRateNum=new game.TextNumber(game.masterBackground,995,875,"0","bold 2
 game.statTimeText=new game.Text(game.masterBackground,657,995,"Time Played: ","bold 24pt lucida console ","white",6,"#5f3c0f");
 game.statTimeNum=new game.TextNumber(game.masterBackground,995,995,"0","bold 24pt lucida console ","white",6,"#5f3c0f", game.playerStats.time);
 
+game.saveButton=new game.ButtonSave(0,300,50,50,"img/description.png");
+game.buttons.push(game.saveButton);
 
 game.statObjects=[];
+game.statObjects.push(game.saveButton);
 game.statObjects.push(game.statHeader);
 game.statObjects.push(game.statPPText);
 game.statObjects.push(game.statPPNum);
