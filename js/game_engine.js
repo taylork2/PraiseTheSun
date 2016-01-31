@@ -27,21 +27,21 @@ game.Background.prototype.render = function(context) {
     if(this.visible && this.img.imgReady) {
         context.drawImage(this.img,this.x,this.y,this.img.width,this.img.height);
     }
-    for(x=0;x<this.textArray.length;x++) {
+    for(var x=0;x<this.textArray.length;x++) {
         this.textArray[x].render(context);
     }
 }
 
 game.Background.prototype.setVisible=function(visible) {
     this.visible=visible;
-    for(x=0;x<this.textArray.length;x++) {
-        this.textArray[x].visible=visible;
+    for(var x=0;x<this.textArray.length;x++) {
+        this.textArray[x].setVisible(visible);
     }
 }
 
 game.Background.prototype.update=function(context){
 
-    for(x=0;x<this.textArray.length;x++) {
+    for(var x=0;x<this.textArray.length;x++) {
         this.textArray[x].update(context);
     }
 }
@@ -56,10 +56,10 @@ game.CostStats=function(costPP,costCult) {
     this.costCult=costCult;
 }
 
-game.ToolStats=function(costPP,costCult,prodRatePP,prodRateCult,prodRateExec,numTools) {
+game.ToolStats=function(costPP,costCult,prodRateCult,prodRatePris,prodRateExec,numTools) {
     this.costPP=costPP;
     this.costCult=costCult;
-    this.prodRatePP=prodRatePP;
+    this.prodRatePris=prodRatePris;
     this.prodRateCult=prodRateCult;
     this.prodRateExec=prodRateExec;
     this.numTools=numTools;
@@ -82,23 +82,28 @@ game.Text=function(background,x_offset,y_offset,text,font,fillStyle,lineWidth,st
 }
 
 game.Text.prototype.render = function(context) {
-    context.font=this.font;
-    context.textBaseline="top";
-    context.fillStyle=this.fillStyle;
-    context.strokeStyle=this.strokeStyle;
-    context.lineWidth=this.lineWidth;
-    
-    //to prevent ugly spike
-    context.lineJoin='round';
-    context.miterLimit=2;
-    
-    
-context.strokeText(this.text,this.background.x+this.x_offset,this.background.y+this.y_offset);           context.fillText(this.text,this.background.x+this.x_offset,this.background.y+this.y_offset);
-    
+    if(this.visible) {
+        context.font=this.font;
+        context.textBaseline="top";
+        context.fillStyle=this.fillStyle;
+        context.strokeStyle=this.strokeStyle;
+        context.lineWidth=this.lineWidth;
+
+        //to prevent ugly spike
+        context.lineJoin='round';
+        context.miterLimit=2;
+
+
+    context.strokeText(this.text,this.background.x+this.x_offset,this.background.y+this.y_offset);           context.fillText(this.text,this.background.x+this.x_offset,this.background.y+this.y_offset);
+    }
 }
 
 game.Text.prototype.update = function(context){
     
+}
+
+game.Text.prototype.setVisible = function(visible) {
+    this.visible=visible;
 }
 
 
@@ -107,9 +112,7 @@ game.Text.prototype.update = function(context){
 //Formatting for larger numbers e.g. 1 billion, 2.014 e24
 game.TextNumber=function(background,x_offset,y_offset,text,font,fillStyle,lineWidth,strokeStyle,trackedStat) {
                 game.Text.call(this,background,x_offset,y_offset,text,font,fillStyle,lineWidth,strokeStyle); //Numbers are a subclass of Text
-    
-        this.trackedStat=trackedStat;
-    console.log(this.trackedStat.number);
+    this.trackedStat=trackedStat;
 }
 
 game.TextNumber.prototype=Object.create(game.Text.prototype);
@@ -135,7 +138,7 @@ game.Button=function(x,y,width,height,imgSrc) {
 
 //These prototype methods will be inherited by all buttons
 game.Button.prototype.intersects=function(mouse) {
-    var t = 5; //tolerance
+    var t = 2; //tolerance
     var xIntersect = (mouse.x + t) > this.x && (mouse.x - t) < this.x + this.width;
     var yIntersect = (mouse.y + t) > this.y && (mouse.y - t) < this.y + this.height;
     return  xIntersect && yIntersect;
@@ -184,7 +187,7 @@ game.Button.prototype.move = function(x,y) {
 
 game.Button.prototype.setVisible=function(visible) {
     this.visible=visible;
-    this.background.visible=visible;
+    this.background.setVisible(visible);
 }
 
 //Now we're getting into the game logic
@@ -195,8 +198,11 @@ game.ToolButton = function(x,y,width,height,background,toolStats) {
     game.Button.call(this,x,y,width,height,background);
     this.toolStats=toolStats;
     this.costPPText=new game.TextNumber(this.background,300,55,"0","bold 28pt lucida console ","white",6,"#5f3c0f",this.toolStats.costPP);
+    this.costPPText.visible=this.visible;
     this.costCultText=new game.TextNumber(this.background,450,55,"0","bold 28pt lucida console ","white",6,"#5f3c0f",this.toolStats.costCult);
+    this.costCultText.visible=this.visible;
     this.numToolsText=new game.TextNumber(this.background,150,55,"0","bold 28pt lucida console ","white",6,"#5f3c0f",this.toolStats.numTools);
+    this.numToolsText.visible=this.visible;
 }
 
 game.ToolButton.prototype=Object.create(game.Button.prototype);
@@ -223,6 +229,9 @@ game.UpgradeButton=function(x,y,width,height,background,baseCostPP, baseCostCult
     this.costPP=baseCostPP;
     this.costCult=baseCostCult;
 }
+
+game.UpgradeButton.prototype=Object.create(game.Button.prototype);
+game.UpgradeButton.prototype.constructor=game.UpgradeButton;
 
 //UpgradeButtons will have their applyUpgrade() methods coded in the game initialization
 //It will then destroy itself, as Upgrades can only be bought once
@@ -264,9 +273,13 @@ game.Tab=function(x,y,width,height,background,gameObjects) {
     this.tabVisible=false;
 }
 
+
+game.Tab.prototype=Object.create(game.Button.prototype);
+game.Tab.prototype.constructor=game.Tab;
+
 game.Tab.prototype.onClick=function() {
     //needs to shut off all other tabs
-    for(x=0;x<game.tabs.length;x++) {
+    for(var x=0;x<game.tabs.length;x++) {
         //shut off tab
         game.tabs[x].setTabVisible(false);
     }
@@ -278,8 +291,8 @@ game.Tab.prototype.setTabVisible=function(visible){
     this.tabVisible=visible;
     
     //turn on this tab
-    for(x=0;x<this.gameObjects.length;x++) {
-        this.gameObjects[x].visible=tabVisible;
+    for(var x=0;x<this.gameObjects.length;x++) {
+        this.gameObjects[x].visible=this.tabVisible;
     }
 }
 
@@ -309,30 +322,30 @@ game.update=function() {
     game.context.clearRect(0, 0, game.canvas.width, game.canvas.height);
     
     //update all objects to reflect the new game state
-    for(x=0;x<game.buttons.length;x++) {
+    for(var x=0;x<game.buttons.length;x++) {
         game.buttons[x].update(game.context);
     }
 
-    for(x=0;x<game.backgrounds.length;x++) {
+    for(var x=0;x<game.backgrounds.length;x++) {
         game.backgrounds[x].update(game.context);
     }
     
     //update all stats
     //recalculate all the production rates
     var conversionRate=0;
-    for(x=0;x<game.conversionToolButtons.length;x++) {
+    for(var x=0;x<game.conversionToolButtons.length;x++) {
         var tempToolStats=game.conversionToolButtons[x].toolStats;
         conversionRate+=tempToolStats.prodRateCult.number*tempToolStats.numTools.number;
     }
     
     var captureRate=0;
-    for(x=0;x<game.captureToolButtons.length;x++) {
+    for(var x=0;x<game.captureToolButtons.length;x++) {
         var tempToolStats=game.captureToolButtons[x].toolStats;
         captureRate+=tempToolStats.prodRatePris.number*tempToolStats.numTools.number;
     }
     
     var executionRate=0;
-    for(x=0;x<game.executionToolButtons.length;x++) {
+    for(var x=0;x<game.executionToolButtons.length;x++) {
         var tempToolStats=game.executionToolButtons[x].toolStats;
         executionRate+=tempToolStats.prodRateExec.number*tempToolStats.numTools.number;
     }
@@ -354,16 +367,17 @@ game.update=function() {
     var sunMultiplier=1.5;//normally bonus
     if(realExecutionRate<0.75*Math.max(executionRate,captureRate)) {
         if(realExecutionRate>0.25*Math.max(executionRate,captureRate)) {
-            sunMultiplier=1-(0.75*Math.max(executionRate,captureRate)-realExecutionRate)/max(executionRate,captureRate);
+            sunMultiplier=1-(0.75*Math.max(executionRate,captureRate)-realExecutionRate)/Math.max(executionRate,captureRate);
         } else {
             sunMultiplier=0.5;
         }
     } 
     
     //apply cultist rate
+    
     game.playerStats.cultists.number+=game.playerStats.prodRateCult.number/60;
     //apply prisoner rate
-    if(game.playerStats.prisoners.number>=game.playerStats.prodRatePris.number/60) {
+    if(game.playerStats.prisoners.number>=-game.playerStats.prodRatePris.number/60) {
         game.playerStats.prisoners.number+=game.playerStats.prodRatePris.number/60;
     } else {
         game.playerStats.prisoners.number=0;
@@ -372,12 +386,16 @@ game.update=function() {
     game.playerStats.prayerPoints.number+=realExecutionRate/60*game.playerStats.ppMultiplier.number*sunMultiplier;    
     
     //render all objects in order
-    for(x=0;x<game.backgrounds.length;x++) {
+    for(var x=0;x<game.backgrounds.length;x++) {
         game.backgrounds[x].render(game.context);
     }
     
-    for(x=0;x<game.buttons.length;x++) {
+    for(var x=0;x<game.buttons.length;x++) {
         game.buttons[x].render(game.context);
+    }
+    
+    for(var x=0;x<game.tabs.length;x++) {
+        game.tabs[x].render(game.context);
     }
     
     // request new frame
