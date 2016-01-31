@@ -12,46 +12,50 @@ game.conversionTab.setVisible(true);
 game.tabs.push(game.conversionTab);
 
 //These are all the conversion buttons
-var buttonConversionBook=new game.ToolButton(0,267,580,98,"book","BOOK",game.playerStats.booksStats,"conversion", game.conversionTab, "This is a book");
+var buttonConversionBook=new game.ToolButton(0,267,580,98,"book","BOOK",game.playerStats.booksStats,"conversion", game.conversionTab, "50 Shades of Sunlight");
 buttonConversionBook.setVisible(true);
 game.buttons.push(buttonConversionBook);
 game.conversionToolButtons.push(buttonConversionBook);
 
-//var buttonConversionSoapbox=new game.ToolButton(0,384,580,98,"soapbox","SOAPBOX",game.playerStats.soapboxStats,"conversion", game.conversionTab);
-//buttonConversionSoapbox.setVisible(true);
-//game.buttons.push(buttonConversionSoapbox);
-//game.conversionToolButtons.push(buttonConversionSoapbox);
-//
-//var buttonConversionSpeaker=new game.ToolButton(0,500,580,98,"speaker","LOUDSPEAKER",game.playerStats.speakerStats,"conversion",game.conversionTab);
-//buttonConversionSpeaker.setVisible(true);
-//game.buttons.push(buttonConversionSpeaker);
-//game.conversionToolButtons.push(buttonConversionSpeaker);
-//
-//var buttonConversionPodium=new game.ToolButton(0,617,580,98,"podium","PODIUM",game.playerStats.podiumStats,"conversion",game.conversionTab);
-//buttonConversionPodium.setVisible(true);
-//game.buttons.push(buttonConversionPodium);
-//game.conversionToolButtons.push(buttonConversionPodium);
-//
-//var buttonConversionCamcorder=new game.ToolButton(0,734,580,98,"camcorder","CAMCORDER",game.playerStats.camcorderStats,"conversion",game.conversionTab);
-//buttonConversionCamcorder.setVisible(true);
-//game.buttons.push(buttonConversionCamcorder);
-//game.conversionToolButtons.push(buttonConversionCamcorder);
-//
-//var buttonConversionComputer=new game.ToolButton(0,849,580,98,"computer","COMPUTER",game.playerStats.computerStats,"conversion",game.conversionTab);
-//buttonConversionComputer.setVisible(true);
-//game.buttons.push(buttonConversionComputer);
-//game.conversionToolButtons.push(buttonConversionComputer);
-//
-//var buttonConversionLaptop=new game.ToolButton(0,964,580,98,"laptop","LAPTOP",game.playerStats.laptopStats,"conversion",game.conversionTab);
-//buttonConversionLaptop.setVisible(true);
-//game.buttons.push(buttonConversionLaptop);
-//game.conversionToolButtons.push(buttonConversionLaptop);
+var buttonConversionSoapbox=new game.ToolButton(0,384,580,98,"soapbox","SOAPBOX",game.playerStats.soapboxStats,"conversion", game.conversionTab,"Your own personal moral elevator.");
+buttonConversionSoapbox.setVisible(true);
+game.buttons.push(buttonConversionSoapbox);
+game.conversionToolButtons.push(buttonConversionSoapbox);
+
+var buttonConversionSpeaker=new game.ToolButton(0,500,580,98,"speaker","LOUDSPEAKER",game.playerStats.speakerStats,"conversion",game.conversionTab,"For the hard of hearing. Because they will be, after hearing you.");
+buttonConversionSpeaker.setVisible(true);
+game.buttons.push(buttonConversionSpeaker);
+game.conversionToolButtons.push(buttonConversionSpeaker);
+
+var buttonConversionPodium=new game.ToolButton(0,617,580,98,"podium","PODIUM",game.playerStats.podiumStats,"conversion",game.conversionTab,"You've bought a spot in your local election. Turns out it was pretty cheap.");
+buttonConversionPodium.setVisible(true);
+game.buttons.push(buttonConversionPodium);
+game.conversionToolButtons.push(buttonConversionPodium);
+
+var buttonConversionCamcorder=new game.ToolButton(0,734,580,98,"camcorder","CAMCORDER",game.playerStats.camcorderStats,"conversion",game.conversionTab,"Now you can show your face to all the people in the world who don't care about you.");
+buttonConversionCamcorder.setVisible(true);
+game.buttons.push(buttonConversionCamcorder);
+game.conversionToolButtons.push(buttonConversionCamcorder);
+
+var buttonConversionComputer=new game.ToolButton(0,849,580,98,"computer","COMPUTER",game.playerStats.computerStats,"conversion",game.conversionTab,"A behemoth of a machine, this quad-core Titan still doesn't help you win arguments on the Internet.");
+buttonConversionComputer.setVisible(true);
+game.buttons.push(buttonConversionComputer);
+game.conversionToolButtons.push(buttonConversionComputer);
+
+var buttonConversionLaptop=new game.ToolButton(0,964,580,98,"laptop","LAPTOP",game.playerStats.laptopStats,"conversion",game.conversionTab,"All the convenience of arguing with people who will never understand you, to go!");
+buttonConversionLaptop.setVisible(true);
+game.buttons.push(buttonConversionLaptop);
+game.conversionToolButtons.push(buttonConversionLaptop);
 
 for(var x=0;x<game.conversionToolButtons.length;x++) {
     game.conversionObjects.push(game.conversionToolButtons[x]);
 }
 
-var panelLine=new game.Background(-73,250,648,17,"img/panel_line.png");
+var panelLine=new game.Background(-73,131,648,17,"img/panel_line.png");
+panelLine.setVisible(true);
+game.backgrounds.push(panelLine);
+
+panelLine=new game.Background(-73,250,648,17,"img/panel_line.png");
 panelLine.setVisible(true);
 game.backgrounds.push(panelLine);
 
@@ -59,17 +63,33 @@ panelLine=new game.Background(-73,365,648,17,"img/panel_line.png");
 panelLine.setVisible(true);
 game.backgrounds.push(panelLine);
 
-panelLine=new game.Background(-73,481,648,17,"img/panel_line.png");
+panelLine=new game.Background(-73,482,648,17,"img/panel_line.png");
 panelLine.setVisible(true);
 game.backgrounds.push(panelLine);
 
-panelLine=new game.Background(-73,481,648,17,"img/panel_line.png");
+panelLine=new game.Background(-73,598,648,17,"img/panel_line.png");
+panelLine.setVisible(true);
+game.backgrounds.push(panelLine);
+
+panelLine=new game.Background(-73,715,648,17,"img/panel_line.png");
+panelLine.setVisible(true);
+game.backgrounds.push(panelLine);
+
+panelLine=new game.Background(-73,832,648,17,"img/panel_line.png");
+panelLine.setVisible(true);
+game.backgrounds.push(panelLine);
+
+panelLine=new game.Background(-73,946,648,17,"img/panel_line.png");
+panelLine.setVisible(true);
+game.backgrounds.push(panelLine);
+
+panelLine=new game.Background(-73,1062,648,17,"img/panel_line.png");
 panelLine.setVisible(true);
 game.backgrounds.push(panelLine);
 
 
 //These are all the upgrade buttons
-var buttonConversionUpgradeBook=new game.UpgradeButton(-1,150,85,98,"book",game.playerStats.bookUpgradeCosts,game.playerStats.booksStats, "conversion", 1, game.conversionTab, "Increases the production rate of books by 1.5");
+var buttonConversionUpgradeBook=new game.UpgradeButton(-1,150,85,98,"book",game.playerStats.bookUpgradeCosts,game.playerStats.booksStats, "conversion", 1, game.conversionTab, "Thick Spine, Increases the conversion rate from books by 1.5, For hammering home your ideas.");
 buttonConversionUpgradeBook.setVisible(true);
 game.buttons.push(buttonConversionUpgradeBook);
 game.conversionUpgradeButtons.push(buttonConversionUpgradeBook);
