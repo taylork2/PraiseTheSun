@@ -358,36 +358,36 @@ game.backgrounds.push(game.executionHeader);
 //These will be all the execution buttons
 //knife, cleavr, ax, blade, gui, saw, light
 
-//
-//var buttonExecutionCleaver=new game.ToolButton(0,384,580,98,"img/execution_tool_icons/execution_cleaver.png","",game.playerStats.cleaversStats);
-//buttonExecutionCleaver.setVisible(true);
-//game.buttons.push(buttonExecutionCleaver);
-//game.executionToolButtons.push(buttonExecutionCleaver);
-//
-//var buttonExecutionAxe=new game.ToolButton(0,500,580,98,"img/execution_tool_icons/execution_axe.png","",game.playerStats.axeStats);
-//buttonExecutionAxe.setVisible(true);
-//game.buttons.push(buttonExecutionAxe);
-//game.executionToolButtons.push(buttonExecutionAxe);
-//
-//var buttonExecutionBlade=new game.ToolButton(0,617,580,98,"img/execution_tool_icons/execution_blade.png","",game.playerStats.bladeStats);
-//buttonExecutionBlade.setVisible(true);
-//game.buttons.push(buttonExecutionBlade);
-//game.executionToolButtons.push(buttonExecutionBlade);
-//
-//var buttonExecutionGuillotine=new game.ToolButton(0,734,580,98,"img/execution_tool_icons/execution_guillotine.png","",game.playerStats.guillotineStats);
-//buttonExecutionGuillotine.setVisible(true);
-//game.buttons.push(buttonExecutionGuillotine);
-//game.executionToolButtons.push(buttonExecutionGuillotine);
-//
-//var buttonExecutionSaw=new game.ToolButton(0,849,580,98,"img/execution_tool_icons/execution_saw.png","",game.playerStats.sawStats);
-//buttonExecutionSaw.setVisible(true);
-//game.buttons.push(buttonExecutionSaw);
-//game.executionToolButtons.push(buttonExecutionSaw);
-//
-//var buttonExecutionLightsaber=new game.ToolButton(0,964,580,98,"img/execution_tool_icons/execution_lightsaber.png","",game.playerStats.lightsaberStats);
-//buttonExecutionLightsaber.setVisible(true);
-//game.buttons.push(buttonExecutionLightsaber);
-//game.executionToolButtons.push(buttonExecutionLightsaber);
+
+var buttonExecutionCleaver=new game.ToolButton(0,384,580,98,"cleaver","",game.playerStats.cleaversStats,"execution",game.executionTab);
+buttonExecutionCleaver.setVisible(true);
+game.buttons.push(buttonExecutionCleaver);
+game.executionToolButtons.push(buttonExecutionCleaver);
+
+var buttonExecutionAxe=new game.ToolButton(0,500,580,98,"axe","",game.playerStats.axeStats,"execution",game.executionTab);
+buttonExecutionAxe.setVisible(true);
+game.buttons.push(buttonExecutionAxe);
+game.executionToolButtons.push(buttonExecutionAxe);
+
+var buttonExecutionBlade=new game.ToolButton(0,617,580,98,"blade","",game.playerStats.bladeStats,"execution",game.executionTab);
+buttonExecutionBlade.setVisible(true);
+game.buttons.push(buttonExecutionBlade);
+game.executionToolButtons.push(buttonExecutionBlade);
+
+var buttonExecutionGuillotine=new game.ToolButton(0,734,580,98,"guillotine","",game.playerStats.guillotineStats,"execution",game.executionTab);
+buttonExecutionGuillotine.setVisible(true);
+game.buttons.push(buttonExecutionGuillotine);
+game.executionToolButtons.push(buttonExecutionGuillotine);
+
+var buttonExecutionSaw=new game.ToolButton(0,849,580,98,"saw","",game.playerStats.sawStats,"execution",game.executionTab);
+buttonExecutionSaw.setVisible(true);
+game.buttons.push(buttonExecutionSaw);
+game.executionToolButtons.push(buttonExecutionSaw);
+
+var buttonExecutionLightsaber=new game.ToolButton(0,964,580,98,"lightsaber","",game.playerStats.lightsaberStats,"execution",game.executionTab);
+buttonExecutionLightsaber.setVisible(true);
+game.buttons.push(buttonExecutionLightsaber);
+game.executionToolButtons.push(buttonExecutionLightsaber);
 
 game.executionObjects=[];
 game.executionObjects.push(game.executionHeader);
