@@ -151,6 +151,20 @@ game.backgrounds.push(game.conversionHeader);
 //These are all the conversion buttons
 
 
+
+
+game.conversionObjects=[];
+game.conversionObjects.push(game.conversionHeader);
+
+game.conversionTab=new game.Tab(680,137,113,108,"img/tab_buttons/conversion_button.png",game.conversionObjects);
+game.conversionTab.setVisible(true);
+game.tabs.push(game.conversionTab);
+
+var buttonConversionBook=new game.ToolButton(0,267,580,98,"book","BOOK",game.playerStats.booksStats,"conversion", game.conversionTab);
+buttonConversionBook.setVisible(true);
+game.buttons.push(buttonConversionBook);
+game.conversionToolButtons.push(buttonConversionBook);
+
 var buttonConversionSoapbox=new game.ToolButton(0,384,580,98,"soapbox","SOAPBOX",game.playerStats.soapboxStats,"conversion", game.conversionTab);
 buttonConversionSoapbox.setVisible(true);
 game.buttons.push(buttonConversionSoapbox);
@@ -180,18 +194,6 @@ var buttonConversionLaptop=new game.ToolButton(0,964,580,98,"laptop","LAPTOP",ga
 buttonConversionLaptop.setVisible(true);
 game.buttons.push(buttonConversionLaptop);
 game.conversionToolButtons.push(buttonConversionLaptop);
-
-game.conversionObjects=[];
-game.conversionObjects.push(game.conversionHeader);
-
-game.conversionTab=new game.Tab(680,137,113,108,"img/tab_buttons/conversion_button.png",game.conversionObjects);
-game.conversionTab.setVisible(true);
-game.tabs.push(game.conversionTab);
-
-var buttonConversionBook=new game.ToolButton(0,267,580,98,"book","BOOK",game.playerStats.booksStats,"conversion", game.conversionTab);
-buttonConversionBook.setVisible(true);
-game.buttons.push(buttonConversionBook);
-game.conversionToolButtons.push(buttonConversionBook);
 
 var panelLine=new game.Background(-73,250,648,17,"img/panel_line.png");
 panelLine.setVisible(true);
@@ -260,9 +262,20 @@ game.captureHeader=new game.Background(0,0,584,126,"img/headers/capture.png");
 game.captureHeader.setVisible(false);
 game.backgrounds.push(game.captureHeader);
 
+game.captureObjects=[];
+game.captureObjects.push(game.captureHeader);
+
+game.captureTab=new game.Tab(840,137,113,108,"img/tab_buttons/capture_button.png",game.captureObjects);
+game.captureTab.setVisible(true);
+game.tabs.push(game.captureTab);
+
 //These will be all the capture buttons
 //order of capture net, lasso, trapdoor, van, invasion, phaser, cloning 
 
+var buttonCaptureNet=new game.ToolButton(0,267,580,98,"net","",game.playerStats.netStats, "capture", game.captureTab);
+buttonCaptureNet.setVisible(true);
+game.buttons.push(buttonCaptureNet);
+game.captureToolButtons.push(buttonCaptureNet);
 
 var buttonCaptureLasso=new game.ToolButton(0,384,580,98,"lasso","",game.playerStats.lassoStats,"capture",game.captureTab);
 buttonCaptureLasso.setVisible(true);
@@ -293,18 +306,6 @@ var buttonCaptureCloning=new game.ToolButton(0,964,580,98,"cloning","",game.play
 buttonCaptureCloning.setVisible(true);
 game.buttons.push(buttonCaptureCloning);
 game.captureToolButtons.push(buttonCaptureCloning);
-
-game.captureObjects=[];
-game.captureObjects.push(game.captureHeader);
-
-game.captureTab=new game.Tab(840,137,113,108,"img/tab_buttons/capture_button.png",game.captureObjects);
-game.captureTab.setVisible(true);
-game.tabs.push(game.captureTab);
-
-var buttonCaptureNet=new game.ToolButton(0,267,580,98,"net","",game.playerStats.netStats, "capture", game.captureTab);
-buttonCaptureNet.setVisible(true);
-game.buttons.push(buttonCaptureNet);
-game.captureToolButtons.push(buttonCaptureNet);
 
 for(var x=0;x<game.captureToolButtons.length;x++) {
     game.captureObjects.push(game.captureToolButtons[x]);
