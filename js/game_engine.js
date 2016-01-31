@@ -157,7 +157,7 @@ game.Button.prototype.updateStats=function(context){
     //update whether the button has been clicked
     if (this.intersects(context.mouse)) {
         this.hovered = true;
-        if (context.mouse.clicked) {
+        if (context.mouse.down) {
             this.clicked = true;
         }
     } else {
@@ -172,7 +172,7 @@ game.Button.prototype.updateStats=function(context){
 game.Button.prototype.update = function(context) {
     var wasNotClicked = !this.clicked;
     this.updateStats(context);
-    
+
     //check if after updating, the button is now clicked
     if (this.visible && this.clicked && wasNotClicked) {
         this.onClick();
