@@ -806,13 +806,17 @@ game.update=function() {
     game.prisonersIcon.render(game.context);
     
     //spawn climbers
+    game.climberFrames+=1;
     game.climberCount+=realExecutionRate/60;
     if(game.climberCount>=1) {
-        game.climberCount-=1;
-        var newClimber=new game.SpriteClimber(1750+30*Math.random(),800+30*Math.random(),136,328,-50,-100,"climb_strip16.png",16,0.33,game.climberColors[Math.floor(game.climberColors.length*Math.random())]);
-        newClimber.setVisible(true);
-        game.sprites.splice(game.sprites.length-3,0,newClimber);
-    }
+        if(game.climberFrames>=game.maxClimberFrames) {
+            game.climberFrames-=game.maxClimberFrames;
+            game.climberCount-=1;
+            var newClimber=new game.SpriteClimber(1750+30*Math.random(),800+30*Math.random(),136,328,-50,-100,"climb_strip16.png",16,0.33,game.climberColors[Math.floor(game.climberColors.length*Math.random())]);
+            newClimber.setVisible(true);
+            game.sprites.splice(game.sprites.length-3,0,newClimber);
+        }
+    }   
     
     // request new frame
      requestAnimFrame(function() {

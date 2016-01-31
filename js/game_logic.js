@@ -106,6 +106,8 @@ game.lava.setVisible(true);
 
 //controls the spawning of climbers
 game.climberCount=0;
+game.climberFrames=0;
+game.maxClimberFrames=2;
 game.climberColors=["red","blue","gold"];
 
 //This master background is behind everything
@@ -138,9 +140,9 @@ game.prisonersIcon.setVisible(true);
 game.trackerPanel.setVisible(true);
 //game.backgrounds.unshift(game.trackerPanel);
 
-//game.lavaBackground=new game.Background(1369,840,104,400,"img/sprites/lava2.png");
-//game.lavaBackground.setVisible(true);
-//game.backgrounds.unshift(game.lavaBackground);
+game.guard=new game.Background(1850,840,75,140,"img/volcano_guard.png");
+game.guard.setVisible(true);
+game.backgrounds.unshift(game.guard);
 
 game.mountainBackground=new game.Background(1470,395,452,690,"img/volcano_mountain.png");
 game.mountainBackground.setVisible(true);
