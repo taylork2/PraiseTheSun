@@ -205,7 +205,7 @@ game.Button.prototype.setVisible=function(visible) {
 //A ToolButton is a type of Button that represents a Tool
 //Tools, when purchased, affect the rate of production
 //It has a Background(as per its superclass), Numbers that represent the cost
-game.ToolButton = function(x,y,width,height,background,toolStats) {
+game.ToolButton = function(x,y,width,height,background,title,toolStats) {
     game.Button.call(this,x,y,width,height,background);
     this.toolStats=toolStats;
     this.costPPText=new game.TextNumber(this.background,300,55,"0","bold 28pt lucida console ","white",6,"#5f3c0f",this.toolStats.costPP);
@@ -214,6 +214,8 @@ game.ToolButton = function(x,y,width,height,background,toolStats) {
     this.costCultText.visible=this.visible;
     this.numToolsText=new game.TextNumber(this.background,150,55,"0","bold 28pt lucida console ","white",6,"#5f3c0f",this.toolStats.numTools);
     this.numToolsText.visible=this.visible;
+    this.title=title;
+    this.titleText=new game.Text(this.background,150,5,this.title,"bold 30pt lucida console ","white",6,"#5f3c0f");
 }
 
 game.ToolButton.prototype=Object.create(game.Button.prototype);
@@ -412,12 +414,15 @@ game.update=function() {
     
     //update and render sprites last for performance
     
-    for(var x=0;x<game.sprites.length;x++) {
-        game.sprites[x].update();
+    //Iterate backwards through array, so indexes of remaining sprites don't change on delete
+    /*
+    var x=game.sprites.length-1;
+    while(x>=0) {
         if(game.sprites[x].destroy) {
-            
+            game.sprites.splice(x,1);
         }
-    }
+        x--;
+    }*/
     
     // request new frame
      requestAnimFrame(function() {
