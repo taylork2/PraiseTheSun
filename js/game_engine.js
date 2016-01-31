@@ -237,17 +237,19 @@ game.ToolButton.prototype.onClick = function() {
 //An UpgradeButton has an effect on some game system
 //Typically, this will be increasing the effectiveness of a Tool
 //UpgradeButtons are smaller squares that have no text
-game.UpgradeButton=function(x,y,width,height,background,costStats,toolStats, tab, num) {
-    var background = "img/" + tab + "_upgrades/upgrade_" + background + num.toString() + ".png";
-    console.log(background);
-    game.Button.call(this,x,y,width,height,background);
+game.UpgradeButton=function(x,y,width,height,bgString,costStats,toolStats, tabString, num, tab) {
+    var _background = "img/" + tabString + "_upgrades/upgrade_" + bgString + num.toString() + ".png";
+    game.Button.call(this,x,y,width,height,_background);
     console.log(this.background);
     this.costStats=costStats;
     this.toolStats=toolStats;
     this.disabled=false;
-    var negBgSrc=background.substring(0,background.length-4)+"_negative.png";
+    var negBgSrc=_background.substring(0,_background.length-4)+"_negative.png";
     this.negBackground=new game.Background(x,y,width,height,negBgSrc);
     this.negBackground.setVisible(true);
+    this.tabString=tabString;
+    this.bgString=bgString;
+    this.tab=tab;
     this.num=num;
 }
 
@@ -277,6 +279,22 @@ game.UpgradeButton.prototype.onClick = function() {
     }
 }
 
+game.UpgradeButton.prototype.update=function(context){
+    game.Button.prototype.update.call(this,context);
+    if (this.disabled &&  game.playerStats.prayerPoints.number>this.costStats.costPP.number && game.playerStats.cultists.number>this.costStats.costCult.number){
+        this.disabled=false;
+        if (this.num <3){
+            this.num++;
+        }
+        else{
+            this.disabled=true;
+        }
+        this.background.img.src="img/" + this.tabString + "_upgrades/upgrade_" + this.bgString + this.num.toString() + ".png";   this.negBackground.img.src=this.background.img.src.substring(0,this.background.img.src.length-4)+"_negative.png"
+        if (this.tab.tabVisible){
+            this.setVisible(true);
+        }
+    }
+}
 game.UpgradeButton.prototype.setVisible=function(visible) {
     if(!this.disabled) {
         this.visible=visible;
@@ -512,12 +530,6 @@ game.update=function() {
     
     for(var x=0;x<game.tabs.length;x++) {
         game.tabs[x].update(game.context);
-    }
-    
-    //update Upgrade buttons
-    if(game.playerStats.booksStats.numTools.number==1){
-        buttonConversionUpgradeBook.num=2;
-        buttonConversionUpgradeBook.setVisible(true);
     }
     
     //update all stats
