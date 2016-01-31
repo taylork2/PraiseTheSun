@@ -542,13 +542,13 @@ game.a3.checkCondition=function(){
 }
 game.a4=new game.Achievement(800,1000,"img/achievements/axe2.png", "Axe2");
 game.a4.checkCondition=function(){
-    if(game.playerStats.axeStats.numTools.number > 100){
+    if(game.playerStats.axeStats.numTools.number > 10){
         return true;
     }
 }
 game.a5=new game.Achievement(800,1000,"img/achievements/axe3.png", "Axe3");
 game.a5.checkCondition=function(){
-    if(game.playerStats.axeStats.numTools.number > 1001){
+    if(game.playerStats.axeStats.numTools.number > 100){
         return true;
     }
 }
@@ -570,27 +570,112 @@ game.a8.checkCondition=function(){
         return true;
     }
 }
-game.a9=new game.Achievement(800,1000,"img/achievements/cleaver1.png", "Cleaver1");
+game.a9=new game.Achievement(800,1000,"img/achievements/book1.png", "Book1");
 game.a9.checkCondition=function(){
+    if(game.playerStats.booksStats.numTools.number > 1){
+        return true;
+    }
+}
+game.a10=new game.Achievement(800,1000,"img/achievements/book2.png", "Book2");
+game.a10.checkCondition=function(){
+    if(game.playerStats.booksStats.numTools.number > 10){
+        return true;
+    }
+}
+game.a11=new game.Achievement(800,1000,"img/achievements/book3.png", "Book3");
+game.a11.checkCondition=function(){
+    if(game.playerStats.booksStats.numTools.number > 100){
+        return true;
+    }
+}
+game.a12=new game.Achievement(800,1000,"img/achievements/camcorder1.png", "Camcorder1");
+game.a12.checkCondition=function(){
+    if(game.playerStats.camcorderStats.numTools.number > 1){
+        return true;
+    }
+}
+game.a13=new game.Achievement(800,1000,"img/achievements/camcorder2.png", "Camcorder2");
+game.a13.checkCondition=function(){
+    if(game.playerStats.camcorderStats.numTools.number > 10){
+        return true;
+    }
+}
+game.a14=new game.Achievement(800,1000,"img/achievements/camcorder3.png", "Camcorder3");
+game.a14.checkCondition=function(){
+    if(game.playerStats.camcorderStats.numTools.number > 100){
+        return true;
+    }
+}
+game.a15=new game.Achievement(800,1000,"img/achievements/cleaver1.png", "Cleaver1");
+game.a15.checkCondition=function(){
     if(game.playerStats.cleaversStats.numTools.number > 1){
         return true;
     }
 }
-game.a10=new game.Achievement(800,1000,"img/achievements/cleaver2.png", "Cleaver2");
-game.a9.checkCondition=function(){
+game.a16=new game.Achievement(800,1000,"img/achievements/cleaver2.png", "Cleaver2");
+game.a16.checkCondition=function(){
     if(game.playerStats.cleaversStats.numTools.number > 10){
         return true;
     }
 }
-game.a11=new game.Achievement(800,1000,"img/achievements/cleaver3.png", "Cleaver3");
-game.a11.checkCondition=function(){
+game.a17=new game.Achievement(800,1000,"img/achievements/cleaver3.png", "Cleaver3");
+game.a17.checkCondition=function(){
     if(game.playerStats.cleaversStats.numTools.number > 100){
         return true;
     }
 }
-game.a12=new game.Achievement(800,1000,"img/achievements/clone1.png", "Clone1");
-game.a12.checkCondition=function(){
+game.a18=new game.Achievement(800,1000,"img/achievements/clone1.png", "Clone1");
+game.a18.checkCondition=function(){
     if(game.playerStats.cloningStats.numTools.number > 1){
+        return true;
+    }
+}
+game.a19=new game.Achievement(800,1000,"img/achievements/clone2.png", "Clone2");
+game.a19.checkCondition=function(){
+    if(game.playerStats.cloningStats.numTools.number > 10){
+        return true;
+    }
+}
+game.a20=new game.Achievement(800,1000,"img/achievements/clone3.png", "Clone3");
+game.a20.checkCondition=function(){
+    if(game.playerStats.cloningStats.numTools.number > 100){
+        return true;
+    }
+}
+game.a21=new game.Achievement(800,1000,"img/achievements/computer1.png", "Computer1");
+game.a21.checkCondition=function(){
+    if(game.playerStats.computerStats.numTools.number > 1){
+        return true;
+    }
+}
+game.a22=new game.Achievement(800,1000,"img/achievements/computer2.png", "Computer2");
+game.a22.checkCondition=function(){
+    if(game.playerStats.computerStats.numTools.number > 10){
+        return true;
+    }
+}
+game.a23=new game.Achievement(800,1000,"img/achievements/computer3.png", "Computer3");
+game.a23.checkCondition=function(){
+    if(game.playerStats.computerStats.numTools.number > 100){
+        return true;
+    }
+}
+
+game.a24=new game.Achievement(800,1000,"img/achievements/guillotine1.png", "Guillotine1");
+game.a24.checkCondition=function(){
+    if(game.playerStats.guillotineStats.numTools.number > 1){
+        return true;
+    }
+}
+game.a25=new game.Achievement(800,1000,"img/achievements/guillotine2.png", "Guillotine2");
+game.a25.checkCondition=function(){
+    if(game.playerStats.guillotineStats.numTools.number > 10){
+        return true;
+    }
+}
+game.a26=new game.Achievement(800,1000,"img/achievements/guillotine3.png", "Guillotine3");
+game.a26.checkCondition=function(){
+    if(game.playerStats.guillotineStats.numTools.number > 100){
         return true;
     }
 }
@@ -601,7 +686,26 @@ game.achievements.push(game.a3);
 game.achievements.push(game.a4);
 game.achievements.push(game.a5);
 game.achievements.push(game.a6);
-
+game.achievements.push(game.a7);
+game.achievements.push(game.a8);
+game.achievements.push(game.a9);
+game.achievements.push(game.a10);
+game.achievements.push(game.a11);
+game.achievements.push(game.a12);
+game.achievements.push(game.a13);
+game.achievements.push(game.a14);
+game.achievements.push(game.a15);
+game.achievements.push(game.a16);
+game.achievements.push(game.a17);
+game.achievements.push(game.a18);
+game.achievements.push(game.a19);
+game.achievements.push(game.a20);
+game.achievements.push(game.a21);
+game.achievements.push(game.a22);
+game.achievements.push(game.a23);
+game.achievements.push(game.a24);
+game.achievements.push(game.a25);
+game.achievements.push(game.a26);
 game.titleHeader=new game.Background(650,0,644,141,"img/logo.png");
 game.titleHeader.setVisible(true);
 game.backgrounds.push(game.titleHeader);
