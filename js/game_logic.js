@@ -263,36 +263,36 @@ game.backgrounds.push(game.captureHeader);
 //These will be all the capture buttons
 //order of capture net, lasso, trapdoor, van, invasion, phaser, cloning 
 
-//
-//var buttonCaptureLasso=new game.ToolButton(0,384,580,98,"img/capture_tool_icons/capture_lasso.png","",game.playerStats.lassoStats);
-//buttonCaptureLasso.setVisible(true);
-//game.buttons.push(buttonCaptureLasso);
-//game.captureToolButtons.push(buttonCaptureLasso);
-//
-//var buttonCaptureTrapdoor=new game.ToolButton(0,500,580,98,"img/capture_tool_icons/capture_trapdoor.png","",game.playerStats.trapdoorStats);
-//buttonCaptureTrapdoor.setVisible(true);
-//game.buttons.push(buttonCaptureTrapdoor);
-//game.captureToolButtons.push(buttonCaptureTrapdoor);
-//
-//var buttonCaptureVan=new game.ToolButton(0,617,580,98,"img/capture_tool_icons/capture_van.png","",game.playerStats.vanStats);
-//buttonCaptureVan.setVisible(true);
-//game.buttons.push(buttonCaptureVan);
-//game.captureToolButtons.push(buttonCaptureVan);
-//
-//var buttonCaptureInvasion=new game.ToolButton(0,734,580,98,"img/capture_tool_icons/capture_invasion.png","",game.playerStats.invasionStats);
-//buttonCaptureInvasion.setVisible(true);
-//game.buttons.push(buttonCaptureInvasion);
-//game.captureToolButtons.push(buttonCaptureInvasion);
-//
-//var buttonCapturePhaser=new game.ToolButton(0,849,580,98,"img/capture_tool_icons/capture_phaser.png","",game.playerStats.phaserStats);
-//buttonCapturePhaser.setVisible(true);
-//game.buttons.push(buttonCapturePhaser);
-//game.captureToolButtons.push(buttonCapturePhaser);
-//
-//var buttonCaptureCloning=new game.ToolButton(0,964,580,98,"img/capture_tool_icons/capture_cloning.png","",game.playerStats.cloningStats);
-//buttonCaptureCloning.setVisible(true);
-//game.buttons.push(buttonCaptureCloning);
-//game.captureToolButtons.push(buttonCaptureCloning);
+
+var buttonCaptureLasso=new game.ToolButton(0,384,580,98,"lasso","",game.playerStats.lassoStats,"capture",game.captureTab);
+buttonCaptureLasso.setVisible(true);
+game.buttons.push(buttonCaptureLasso);
+game.captureToolButtons.push(buttonCaptureLasso);
+
+var buttonCaptureTrapdoor=new game.ToolButton(0,500,580,98,"trapdoor","",game.playerStats.trapdoorStats,"capture",game.captureTab);
+buttonCaptureTrapdoor.setVisible(true);
+game.buttons.push(buttonCaptureTrapdoor);
+game.captureToolButtons.push(buttonCaptureTrapdoor);
+
+var buttonCaptureVan=new game.ToolButton(0,617,580,98,"van","",game.playerStats.vanStats,"capture",game.captureTab);
+buttonCaptureVan.setVisible(true);
+game.buttons.push(buttonCaptureVan);
+game.captureToolButtons.push(buttonCaptureVan);
+
+var buttonCaptureInvasion=new game.ToolButton(0,734,580,98,"invasion","",game.playerStats.invasionStats,"capture",game.captureTab);
+buttonCaptureInvasion.setVisible(true);
+game.buttons.push(buttonCaptureInvasion);
+game.captureToolButtons.push(buttonCaptureInvasion);
+
+var buttonCapturePhaser=new game.ToolButton(0,849,580,98,"phaser","",game.playerStats.phaserStats,"capture",game.captureTab);
+buttonCapturePhaser.setVisible(true);
+game.buttons.push(buttonCapturePhaser);
+game.captureToolButtons.push(buttonCapturePhaser);
+
+var buttonCaptureCloning=new game.ToolButton(0,964,580,98,"cloning","",game.playerStats.cloningStats,"capture",game.captureTab);
+buttonCaptureCloning.setVisible(true);
+game.buttons.push(buttonCaptureCloning);
+game.captureToolButtons.push(buttonCaptureCloning);
 
 game.captureObjects=[];
 game.captureObjects.push(game.captureHeader);
