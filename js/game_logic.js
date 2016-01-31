@@ -36,6 +36,7 @@ game.playerStats.guillotineStats=new game.ToolStats(10,1,0,0,1,0);
 game.playerStats.sawStats=new game.ToolStats(10,1,0,0,1,0);
 game.playerStats.lightsaberStats=new game.ToolStats(10,1,0,0,1,0);
 
+game.playerStats.bookUpgradeCosts=new game.CostStats(100,0);
 
 //These are the reference resolutions for all images
 //Images are drawn scaled based on these
@@ -55,6 +56,11 @@ game.buttons=[];
 game.conversionToolButtons=[];
 game.captureToolButtons=[];
 game.executionToolButtons=[];
+
+//This array holds 
+game.conversionUpgradeButtons=[];
+game.captureUpgradeButtons=[];
+game.executionUpgradeButtons=[];
 
 //This array holds all of the tabs
 game.tabs=[];
@@ -111,6 +117,13 @@ game.conversionHeader=new game.Background(0,0,584,126,"img/headers/conversion.pn
 game.conversionHeader.setVisible(true);
 game.backgrounds.push(game.conversionHeader);
 
+//These are all the upgrade buttons
+console.log(game.playerStats.bookUpgradeCosts);
+var buttonConversionUpgradeBook=new game.UpgradeButton(0,0,85,98,"img/conversion_upgrades/upgrade_book1.png",game.playerStats.bookUpgradeCosts,game.playerStats.booksStats);
+buttonConversionUpgradeBook.setVisible(true);
+game.buttons.push(buttonConversionUpgradeBook);
+game.conversionUpgradeButtons.push(buttonConversionUpgradeBook);
+
 //These are all the conversion buttons
 var buttonConversionBook=new game.ToolButton(0,267,580,98,"img/conversion_tool_icons/conversion_book.png","BOOK",game.playerStats.booksStats);
 buttonConversionBook.setVisible(true);
@@ -151,6 +164,10 @@ game.conversionObjects=[];
 for(var x=0;x<game.conversionToolButtons.length;x++) {
     game.conversionObjects.push(game.conversionToolButtons[x]);
 }
+for(var x=0;x<game.conversionUpgradeButtons.length;x++) {
+    game.conversionObjects.push(game.conversionUpgradeButtons[x]);
+}
+
 game.conversionObjects.push(game.conversionHeader);
 
 game.conversionTab=new game.Tab(680,137,113,108,"img/tab_buttons/conversion_button.png",game.conversionObjects);

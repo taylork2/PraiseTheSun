@@ -52,8 +52,8 @@ game.StatNumber=function(number){
 }
 
 game.CostStats=function(costPP,costCult) {
-    this.costPP=costPP;
-    this.costCult=costCult;
+    this.costPP=new game.StatNumber(costPP);
+    this.costCult=new game.StatNumber(costCult);
 }
 
 game.ToolStats=function(costPP,costCult,prodRateCult,prodRatePris,prodRateExec,numTools) {
@@ -238,7 +238,7 @@ game.ToolButton.prototype.onClick = function() {
 //Typically, this will be increasing the effectiveness of a Tool
 //UpgradeButtons are smaller squares that have no text
 game.UpgradeButton=function(x,y,width,height,background,costStats,toolStats) {
-    Button.call(this,x,y,width,height,background);
+    game.Button.call(this,x,y,width,height,background);
     this.costStats=costStats;
     this.toolStats=toolStats;
     this.disabled=false;
@@ -251,14 +251,13 @@ game.UpgradeButton.prototype.constructor=game.UpgradeButton;
 //It will then destroy itself, as Upgrades can only be bought once
 game.UpgradeButton.prototype.onClick = function() {
     //this.applyUpgrade();
-    if(game.playerStats.prayerPoints.number>=Math.floor(this.toolStats.costPP.number) && game.playerStats.cultists.number>=Math.floor(this.toolStats.costCult.number)) {
-        this.toolStats.numTools.number+=1;
+    if(game.playerStats.prayerPoints.number>=Math.floor(this.costStats.costPP.number) && game.playerStats.cultists.number>=Math.floor(this.costStats.costCult.number)) {
         //Costs are stored as floats, but are used and displayed as ints
-        game.playerStats.prayerPoints.number-=Math.floor(this.toolStats.costPP.number);
-        game.playerStats.cultists.number-=Math.floor(this.toolStats.costCult.number);
-        this.toolStats.prodRateCult*=1.2;
-        this.toolStats.prodRatePris*=1.2;
-        this.toolStats.prodRateExec*=1.2;
+        game.playerStats.prayerPoints.number-=Math.floor(this.costStats.costPP.number);
+        game.playerStats.cultists.number-=Math.floor(this.costStats.costCult.number);
+        this.toolStats.prodRateCult.number*=1.2;
+        this.toolStats.prodRatePris.number*=1.2;
+        this.toolStats.prodRateExec.number*=1.2;
         //destroy this/make it invisible forever
         this.setVisible(false);
         this.disabled=true;
@@ -268,8 +267,10 @@ game.UpgradeButton.prototype.onClick = function() {
 game.UpgradeButton.prototype.setVisible=function(visible) {
     if(!this.disabled) {
         this.visible=visible;
+        this.background.setVisible(visible);
     } else {
         this.visible=false;
+        this.background.setVisible(false);
     }
 }
 
