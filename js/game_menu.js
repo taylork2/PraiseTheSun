@@ -4,8 +4,18 @@ game.conversionHeader=new game.Background(0,0,584,126,"img/headers/conversion.pn
 game.conversionHeader.setVisible(true);
 game.backgrounds.push(game.conversionHeader);
 
-//These are all the conversion buttons
+game.conversionObjects=[];
+game.conversionObjects.push(game.conversionHeader);
 
+game.conversionTab=new game.Tab(680,137,113,108,"img/tab_buttons/conversion_button.png",game.conversionObjects);
+game.conversionTab.setVisible(true);
+game.tabs.push(game.conversionTab);
+
+//These are all the conversion buttons
+var buttonConversionBook=new game.ToolButton(0,267,580,98,"book","BOOK",game.playerStats.booksStats,"conversion", game.conversionTab);
+buttonConversionBook.setVisible(true);
+game.buttons.push(buttonConversionBook);
+game.conversionToolButtons.push(buttonConversionBook);
 
 var buttonConversionSoapbox=new game.ToolButton(0,384,580,98,"soapbox","SOAPBOX",game.playerStats.soapboxStats,"conversion", game.conversionTab);
 buttonConversionSoapbox.setVisible(true);
@@ -37,17 +47,9 @@ buttonConversionLaptop.setVisible(true);
 game.buttons.push(buttonConversionLaptop);
 game.conversionToolButtons.push(buttonConversionLaptop);
 
-game.conversionObjects=[];
-game.conversionObjects.push(game.conversionHeader);
-
-game.conversionTab=new game.Tab(680,137,113,108,"img/tab_buttons/conversion_button.png",game.conversionObjects);
-game.conversionTab.setVisible(true);
-game.tabs.push(game.conversionTab);
-
-var buttonConversionBook=new game.ToolButton(0,267,580,98,"book","BOOK",game.playerStats.booksStats,"conversion", game.conversionTab);
-buttonConversionBook.setVisible(true);
-game.buttons.push(buttonConversionBook);
-game.conversionToolButtons.push(buttonConversionBook);
+for(var x=0;x<game.conversionToolButtons.length;x++) {
+    game.conversionObjects.push(game.conversionToolButtons[x]);
+}
 
 var panelLine=new game.Background(-73,250,648,17,"img/panel_line.png");
 panelLine.setVisible(true);
@@ -64,11 +66,6 @@ game.backgrounds.push(panelLine);
 panelLine=new game.Background(-73,481,648,17,"img/panel_line.png");
 panelLine.setVisible(true);
 game.backgrounds.push(panelLine);
-
-
-for(var x=0;x<game.conversionToolButtons.length;x++) {
-    game.conversionObjects.push(game.conversionToolButtons[x]);
-}
 
 
 //These are all the upgrade buttons
@@ -116,9 +113,18 @@ game.captureHeader=new game.Background(0,0,584,126,"img/headers/capture.png");
 game.captureHeader.setVisible(false);
 game.backgrounds.push(game.captureHeader);
 
-//These will be all the capture buttons
-//order of capture net, lasso, trapdoor, van, invasion, phaser, cloning 
+game.captureObjects=[];
+game.captureObjects.push(game.captureHeader);
 
+game.captureTab=new game.Tab(840,137,113,108,"img/tab_buttons/capture_button.png",game.captureObjects);
+game.captureTab.setVisible(true);
+game.tabs.push(game.captureTab);
+
+//These will be all the capture buttons
+var buttonCaptureNet=new game.ToolButton(0,267,580,98,"net","",game.playerStats.netStats, "capture", game.captureTab);
+buttonCaptureNet.setVisible(true);
+game.buttons.push(buttonCaptureNet);
+game.captureToolButtons.push(buttonCaptureNet);
 
 var buttonCaptureLasso=new game.ToolButton(0,384,580,98,"lasso","",game.playerStats.lassoStats,"capture",game.captureTab);
 buttonCaptureLasso.setVisible(true);
@@ -149,18 +155,6 @@ var buttonCaptureCloning=new game.ToolButton(0,964,580,98,"cloning","",game.play
 buttonCaptureCloning.setVisible(true);
 game.buttons.push(buttonCaptureCloning);
 game.captureToolButtons.push(buttonCaptureCloning);
-
-game.captureObjects=[];
-game.captureObjects.push(game.captureHeader);
-
-game.captureTab=new game.Tab(840,137,113,108,"img/tab_buttons/capture_button.png",game.captureObjects);
-game.captureTab.setVisible(true);
-game.tabs.push(game.captureTab);
-
-var buttonCaptureNet=new game.ToolButton(0,267,580,98,"net","",game.playerStats.netStats, "capture", game.captureTab);
-buttonCaptureNet.setVisible(true);
-game.buttons.push(buttonCaptureNet);
-game.captureToolButtons.push(buttonCaptureNet);
 
 for(var x=0;x<game.captureToolButtons.length;x++) {
     game.captureObjects.push(game.captureToolButtons[x]);
@@ -211,55 +205,12 @@ game.executionHeader=new game.Background(0,0,584,126,"img/headers/execution.png"
 game.executionHeader.setVisible(true);
 game.backgrounds.push(game.executionHeader);
 
-//These will be all the execution buttons
-//knife, cleavr, ax, blade, gui, saw, light
-
-
-var buttonExecutionCleaver=new game.ToolButton(0,384,580,98,"cleaver","",game.playerStats.cleaversStats,"execution",game.executionTab);
-buttonExecutionCleaver.setVisible(true);
-game.buttons.push(buttonExecutionCleaver);
-game.executionToolButtons.push(buttonExecutionCleaver);
-
-var buttonExecutionAxe=new game.ToolButton(0,500,580,98,"axe","",game.playerStats.axeStats,"execution",game.executionTab);
-buttonExecutionAxe.setVisible(true);
-game.buttons.push(buttonExecutionAxe);
-game.executionToolButtons.push(buttonExecutionAxe);
-
-var buttonExecutionBlade=new game.ToolButton(0,617,580,98,"blade","",game.playerStats.bladeStats,"execution",game.executionTab);
-buttonExecutionBlade.setVisible(true);
-game.buttons.push(buttonExecutionBlade);
-game.executionToolButtons.push(buttonExecutionBlade);
-
-var buttonExecutionGuillotine=new game.ToolButton(0,734,580,98,"guillotine","",game.playerStats.guillotineStats,"execution",game.executionTab);
-buttonExecutionGuillotine.setVisible(true);
-game.buttons.push(buttonExecutionGuillotine);
-game.executionToolButtons.push(buttonExecutionGuillotine);
-
-var buttonExecutionSaw=new game.ToolButton(0,849,580,98,"saw","",game.playerStats.sawStats,"execution",game.executionTab);
-buttonExecutionSaw.setVisible(true);
-game.buttons.push(buttonExecutionSaw);
-game.executionToolButtons.push(buttonExecutionSaw);
-
-var buttonExecutionLightsaber=new game.ToolButton(0,964,580,98,"lightsaber","",game.playerStats.lightsaberStats,"execution",game.executionTab);
-buttonExecutionLightsaber.setVisible(true);
-game.buttons.push(buttonExecutionLightsaber);
-game.executionToolButtons.push(buttonExecutionLightsaber);
-
 game.executionObjects=[];
 game.executionObjects.push(game.executionHeader);
 
 game.executionTab=new game.Tab(999,137,113,108,"img/tab_buttons/execution_button.png",game.executionObjects);
 game.executionTab.setVisible(true);
 game.tabs.push(game.executionTab);
-
-var buttonExecutionKnife=new game.ToolButton(0,267,580,98,"knife","",game.playerStats.knifeStats, "execution", game.executionTab);
-buttonExecutionKnife.setVisible(true);
-game.buttons.push(buttonExecutionKnife);
-game.executionToolButtons.push(buttonExecutionKnife);
-
-for(var x=0;x<game.executionToolButtons.length;x++) {
-    game.executionObjects.push(game.executionToolButtons[x]);
-}
 
 //These are all the execution upgrade buttons
 var buttonExecutionUpgradeKnife=new game.UpgradeButton(-1,150,85,98,"knife",game.playerStats.bookUpgradeCosts,game.playerStats.booksStats, "execution", 1, game.executionTab);
@@ -297,6 +248,46 @@ buttonExecutionUpgradeLightsaber.setVisible(true);
 game.buttons.push(buttonExecutionUpgradeLightsaber);
 game.executionUpgradeButtons.push(buttonExecutionUpgradeLightsaber);
 
+//These will be all the execution buttons
+//knife, cleavr, ax, blade, gui, saw, light
+var buttonExecutionKnife=new game.ToolButton(0,267,580,98,"knife","",game.playerStats.knifeStats, "execution", game.executionTab);
+buttonExecutionKnife.setVisible(true);
+game.buttons.push(buttonExecutionKnife);
+game.executionToolButtons.push(buttonExecutionKnife);
+
+var buttonExecutionCleaver=new game.ToolButton(0,384,580,98,"cleaver","",game.playerStats.cleaversStats,"execution",game.executionTab);
+buttonExecutionCleaver.setVisible(true);
+game.buttons.push(buttonExecutionCleaver);
+game.executionToolButtons.push(buttonExecutionCleaver);
+
+var buttonExecutionAxe=new game.ToolButton(0,500,580,98,"axe","",game.playerStats.axeStats,"execution",game.executionTab);
+buttonExecutionAxe.setVisible(true);
+game.buttons.push(buttonExecutionAxe);
+game.executionToolButtons.push(buttonExecutionAxe);
+
+var buttonExecutionBlade=new game.ToolButton(0,617,580,98,"blade","",game.playerStats.bladeStats,"execution",game.executionTab);
+buttonExecutionBlade.setVisible(true);
+game.buttons.push(buttonExecutionBlade);
+game.executionToolButtons.push(buttonExecutionBlade);
+
+var buttonExecutionGuillotine=new game.ToolButton(0,734,580,98,"guillotine","",game.playerStats.guillotineStats,"execution",game.executionTab);
+buttonExecutionGuillotine.setVisible(true);
+game.buttons.push(buttonExecutionGuillotine);
+game.executionToolButtons.push(buttonExecutionGuillotine);
+
+var buttonExecutionSaw=new game.ToolButton(0,849,580,98,"saw","",game.playerStats.sawStats,"execution",game.executionTab);
+buttonExecutionSaw.setVisible(true);
+game.buttons.push(buttonExecutionSaw);
+game.executionToolButtons.push(buttonExecutionSaw);
+
+var buttonExecutionLightsaber=new game.ToolButton(0,964,580,98,"lightsaber","",game.playerStats.lightsaberStats,"execution",game.executionTab);
+buttonExecutionLightsaber.setVisible(true);
+game.buttons.push(buttonExecutionLightsaber);
+game.executionToolButtons.push(buttonExecutionLightsaber);
+
+for(var x=0;x<game.executionToolButtons.length;x++) {
+    game.executionObjects.push(game.executionToolButtons[x]);
+}
 for(var x=0;x<game.executionUpgradeButtons.length;x++) {
     game.executionObjects.push(game.executionUpgradeButtons[x]);
 }

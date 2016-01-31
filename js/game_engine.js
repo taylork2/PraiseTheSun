@@ -228,12 +228,16 @@ game.ToolButton.prototype=Object.create(game.Button.prototype);
 game.ToolButton.prototype.constructor=game.ToolButton;
 
 game.ToolButton.prototype.update=function(context){
+    if (this.tab.tabVisible){
+        this.negBackground.setVisible(true);
+    }
     game.Button.prototype.update.call(this,context);
     if (this.disabled &&  game.playerStats.prayerPoints.number>this.toolStats.costPP.number && game.playerStats.cultists.number>this.toolStats.costCult.number){
         this.disabled=false;
 
         if (this.tab.tabVisible){
             this.setVisible(true);
+            this.negBackground.setVisible(false);
         }
     }
 }
