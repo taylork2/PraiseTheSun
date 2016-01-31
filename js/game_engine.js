@@ -132,6 +132,32 @@ game.TextNumber.prototype.update = function(context){
     }
 }
 
+game.Overlay=function(button, x_offset, y_offset){
+    this.button=button;
+    console.log(this.button.description);
+    this.x_offset=x_offset;
+    this.y_offset=y_offset;
+    this.background = new game.Background(this.button.x+x_offset, this.button.y+y_offset, 500, 500, "img/description.png");
+    this.description=new game.Text(this.background,150,5,this.button.description,"bold 30pt lucida console ","white",6,"#5f3c0f");
+    this.costCult=new game.TextNumber(this.background,300,55,"0","bold 28pt lucida console ","white",6,"#5f3c0f",this.button.toolStats.costCult);
+    this.costPP=new game.TextNumber(this.background,350,75,"0","bold 28pt lucida console ","white",6,"#5f3c0f",this.button.toolStats.costPP);
+    game.overlays.push(this);
+    
+}
+
+game.Overlay.prototype.render=function(context){
+    this.background.render(context);
+}
+
+game.Overlay.prototype.setVisible=function(visible){
+    this.background.setVisible(visible);
+}
+
+game.Overlay.prototype.update=function(){
+    this.background.update();
+}
+
+
 //a Button is a rectangular canvas element that can be clicked
 //Buttons are invisible, but are coupled with background elements that move with them
 game.Button=function(x,y,width,height,imgSrc) {
@@ -206,7 +232,7 @@ game.Button.prototype.setVisible=function(visible) {
 //Tools, when purchased, affect the rate of production
 //It has a Background(as per its superclass)
 //toolStats holds the cost and rate of production of the tool, as well as the number
-game.ToolButton = function(x,y,width,height,bgString,title,toolStats, tabString, tab) {
+game.ToolButton = function(x,y,width,height,bgString,title,toolStats, tabString, tab, description) {
     var _background = "img/" + tabString + "_tool_icons/" + tabString + "_" + bgString + ".png";
     this.textArray=[];
     game.Button.call(this,x,y,width,height,_background);
@@ -224,6 +250,7 @@ game.ToolButton = function(x,y,width,height,bgString,title,toolStats, tabString,
     this.tab=tab;
     this.negBgSrc=_background.substring(0,_background.length-4)+"_negative.png";
     this.negBackground=new game.Background(this.x,this.y,this.width,this.height,this.negBgSrc);
+    this.description=description;
 }
 
 game.ToolButton.prototype=Object.create(game.Button.prototype);
@@ -282,7 +309,7 @@ game.ToolButton.prototype.setVisible=function(visible) {
 //An UpgradeButton has an effect on some game system
 //Typically, this will be increasing the effectiveness of a Tool
 //UpgradeButtons are smaller squares that have no text
-game.UpgradeButton=function(x,y,width,height,bgString,costStats,toolStats, tabString, num, tab) {
+game.UpgradeButton=function(x,y,width,height,bgString,costStats,toolStats, tabString, num, tab, description) {
     var _background = "img/" + tabString + "_upgrades/upgrade_" + bgString + num.toString() + ".png";
     game.Button.call(this,x,y,width,height,_background);
     console.log(this.background);
@@ -296,6 +323,7 @@ game.UpgradeButton=function(x,y,width,height,bgString,costStats,toolStats, tabSt
     this.bgString=bgString;
     this.tab=tab;
     this.num=num;
+    this.overlay = new game.Overlay(this, 34, 45);
 }
 
 game.UpgradeButton.prototype=Object.create(game.Button.prototype);
@@ -325,6 +353,13 @@ game.UpgradeButton.prototype.onClick = function() {
 }
 
 game.UpgradeButton.prototype.update=function(context){
+    if(this.hovered && this.visible){
+        this.overlay.setVisible(true);
+    }
+    else{
+        this.overlay.setVisible(false);
+    }
+    
     game.Button.prototype.update.call(this,context);
     if (this.disabled &&  game.playerStats.prayerPoints.number>this.costStats.costPP.number && game.playerStats.cultists.number>this.costStats.costCult.number){
         this.disabled=false;
@@ -691,6 +726,10 @@ game.update=function() {
         game.sprites[x].render(game.context);
     }
     
+    for (var x=0; x<game.overlays.length; x++){
+        game.overlays[x].render(game.context);
+    }
+    
     //spawn climbers
     game.climberCount+=realExecutionRate/60;
     if(game.climberCount>=1) {
@@ -705,36 +744,3 @@ game.update=function() {
       game.update(game.context);
     });
 }
-
-/*function drawRectangle(myRectangle, context) {
-    context.beginPath();
-    context.rect(myRectangle.x, myRectangle.y, myRectangle.width, myRectangle.height);
-    context.fillStyle = '#8ED6FF';
-    context.fill();
-    context.lineWidth = myRectangle.borderWidth;
-    context.strokeStyle = 'black';
-    context.stroke();
-}
-
-function animate(myRectangle, canvas, context, startTime) {
-    // update
-    var time = (new Date()).getTime() - startTime;
-
-    var linearSpeed = 100;
-    // pixels / second
-    var newX = linearSpeed * time / 1000;
-
-    if(newX < canvas.width - myRectangle.width - myRectangle.borderWidth / 2) {
-      myRectangle.x = newX;
-    }
-
-    // clear
-    context.clearRect(0, 0, canvas.width, canvas.height);
-
-    drawRectangle(myRectangle, context);
-
-    // request new frame
-    requestAnimFrame(function() {
-      animate(myRectangle, canvas, context, startTime);
-    });
-}*/
