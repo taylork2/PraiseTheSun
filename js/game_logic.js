@@ -102,6 +102,8 @@ game.sprites=[];
 //This array holds all of the overlays, so they will be drawn last on top of everything
 game.overlays=[];
 
+//This array holds all of the achievements
+
 game.cloud=new game.SpriteCloud(1330,230,400,300,0,0,"img/cloudkun.png",30,1);
 game.cloud.setVisible(true);
 game.sprites.push(game.cloud);

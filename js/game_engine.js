@@ -638,6 +638,50 @@ game.Tab.prototype.setTabVisible=function(visible){
     }
 }
 
+//An Achievement is a popup that has a trigger method checkCondition()
+//Each update, checkCondition is checked
+//if it is met, the Achievement pops up, then destroys itself
+game.Achievement=function(x,y,width,height,imgSrc,text) {
+    this.x=x;
+    this.y=y;
+    this.ySpeed=-20;
+    this.width=width;
+    this.height=height;
+    this.background=new game.Background(x,y,width,height,"img/description.png");
+    this.achievementIcon=new game.Background(x,y,30,30,imgSrc);
+    this.text=text;
+    this.textObject=new game.Text(this.background,100,0,this.text,"bold 28pt lucida console ","white",6,"#5f3c0f")
+    this.active=false;
+    this.activeFrames=0;
+    this.maxActiveFrames=240;
+    this.destroy=false;
+}
+
+game.Achievement.prototype.update=function() {
+    this.background.update();
+    this.achievementIcon.update();
+    this.active=this.checkCondition();
+    if(this.active) {
+        this.activeFrames++;
+        if(this.activeFrames>=this.maxActiveFrames) {
+            this.destroy=true;
+        }
+        this.y+=this.ySpeed/60;
+    }
+}
+
+game.Achievement.prototype.setVisible=function(visible) {
+    this.background.setVisible(visible);
+    this.achievementIcon.setVisible(visible);
+}
+
+game.Achievement.prototype.render=function(context) {
+    if(this.active) {
+        this.background.render(context);
+        this.achievementIcon.render(context);
+    }
+}
+
 window.requestAnimFrame = (function(callback) {
     return window.requestAnimationFrame     || 
         window.webkitRequestAnimationFrame  || 
