@@ -16,6 +16,7 @@ game.playerStats.totalPrayerPoints=new game.StatNumber(INITIAL_PRAYERPOINTS);
 game.playerStats.totalCultists=new game.StatNumber(INITIAL_CULTISTS);
 game.playerStats.totalExecuted =new game.StatNumber(0);
 game.playerStats.statFollowerRate=new game.StatNumber(0);
+game.playerStats.time=new game.StatNumber(0);
 
 game.playerStats.ppMultiplier=new game.StatNumber(4);
 game.playerStats.costPPMultiplier=new game.StatNumber(1.1);

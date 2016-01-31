@@ -880,6 +880,8 @@ game.update=function() {
         }
     }   
     
+    game.playerStats.time = game.startTime-(new Date()).getTime();
+    
     // request new frame
      requestAnimFrame(function() {
       game.update(game.context);

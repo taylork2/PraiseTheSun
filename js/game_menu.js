@@ -486,8 +486,14 @@ game.statExecutedNum=new game.TextNumber(game.masterBackground,990,533,"0","bold
 game.statExecutionRateText=new game.Text(game.masterBackground,657,647,"Execution Rate: ","bold 24pt lucida console ","white",6,"#5f3c0f");
 game.statExecutionRateNum=new game.TextNumber(game.masterBackground,990,647,"0","bold 24pt lucida console ","white",6,"#5f3c0f", game.playerStats.prodRateExec);
 
-game.statFollowerRateText=new game.Text(game.masterBackground,657,755,"Follower Rate: ","bold 24pt lucida console ","white",6,"#5f3c0f");
-game.statFollowerRateNum=new game.TextNumber(game.masterBackground,990,755,"0","bold 24pt lucida console ","white",6,"#5f3c0f", game.playerStats.prodRateCult);
+game.statFollowerRateText=new game.Text(game.masterBackground,657,755,"Conversion Rate: ","bold 24pt lucida console ","white",6,"#5f3c0f");
+game.statFollowerRateNum=new game.TextNumber(game.masterBackground,995,755,"0","bold 24pt lucida console ","white",6,"#5f3c0f", game.playerStats.prodRateCult);
+
+game.statPPRateText=new game.Text(game.masterBackground,657,875,"Coin Rate: ","bold 24pt lucida console ","white",6,"#5f3c0f");
+game.statPPRateNum=new game.TextNumber(game.masterBackground,995,875,"0","bold 24pt lucida console ","white",6,"#5f3c0f", game.playerStats.prodRateCult);
+
+game.statTimeText=new game.Text(game.masterBackground,657,995,"Time Played: ","bold 24pt lucida console ","white",6,"#5f3c0f");
+game.statTimeNum=new game.TextNumber(game.masterBackground,995,995,"0","bold 24pt lucida console ","white",6,"#5f3c0f", game.playerStats.time);
 
 
 game.statObjects=[];
@@ -502,6 +508,10 @@ game.statObjects.push(game.statExecutionRateText);
 game.statObjects.push(game.statExecutionRateNum);
 game.statObjects.push(game.statFollowerRateText);
 game.statObjects.push(game.statFollowerRateNum);
+game.statObjects.push(game.statPPRateText);
+game.statObjects.push(game.statPPRateNum);
+game.statObjects.push(game.statTimeText);
+game.statObjects.push(game.statTimeNum);
 
 game.statTab=new game.Tab(1150,137,113,108,"img/tab_buttons/stat_button.png",game.statObjects);
 game.statTab.setVisible(true);
