@@ -479,6 +479,9 @@ game.statCultistsNum=new game.TextNumber(game.masterBackground,960,420,"0","bold
 game.statExecutedText=new game.Text(game.masterBackground,657,533,"Total Executed: ","bold 24pt lucida console ","white",6,"#5f3c0f");
 game.statExecutedNum=new game.TextNumber(game.masterBackground,990,533,"0","bold 24pt lucida console ","white",6,"#5f3c0f", game.playerStats.totalExecuted);
 
+game.statExecutionRateText=new game.Text(game.masterBackground,657,647,"Execution Rate: ","bold 24pt lucida console ","white",6,"#5f3c0f");
+game.statExecutionRateNum=new game.TextNumber(game.masterBackground,990,647,"0","bold 24pt lucida console ","white",6,"#5f3c0f", game.playerStats.statExecutionRate);
+
 
 game.statObjects=[];
 game.statObjects.push(game.statHeader);
@@ -488,6 +491,8 @@ game.statObjects.push(game.statCultistsText);
 game.statObjects.push(game.statCultistsNum);
 game.statObjects.push(game.statExecutedText);
 game.statObjects.push(game.statExecutedNum);
+game.statObjects.push(game.statExecutionRateText);
+game.statObjects.push(game.statExecutionRateNum);
 
 game.statTab=new game.Tab(1150,137,113,108,"img/tab_buttons/stat_button.png",game.statObjects);
 game.statTab.setVisible(true);
