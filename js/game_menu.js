@@ -173,7 +173,7 @@ buttonConversionUpgradeSoapbox.setVisible(true);
 game.buttons.push(buttonConversionUpgradeSoapbox);
 game.conversionUpgradeButtons.push(buttonConversionUpgradeSoapbox);
 
-var buttonConversionUpgradeSpeaker=new game.UpgradeButton(165,150,85,98,"speaker",game.playerStats.speakerUpgradeCosts,game.playerStats.speakerStats, "conversion", 1, game.conversionTab,"upgrade");
+var buttonConversionUpgradeSpeaker=new game.UpgradeButton(165,150,85,98,"speaker",game.playerStats.speakerUpgradeCosts,game.playerStats.speakerStats, "conversion", 1, game.conversionTab,"Increases the conversion rate of speaker by 1.5");
 buttonConversionUpgradeSpeaker.setVisible(true);
 game.buttons.push(buttonConversionUpgradeSpeaker);
 game.conversionUpgradeButtons.push(buttonConversionUpgradeSpeaker);
