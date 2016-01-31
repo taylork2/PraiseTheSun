@@ -602,15 +602,6 @@ game.achievements.push(game.a4);
 game.achievements.push(game.a5);
 game.achievements.push(game.a6);
 
-phaser~Phaser;
-podium~Podium;
-saw~Saw;
-soapbox~Soapbox;
-speaker~Speaker;
-trapdoor~Trapdoor;
-van~Van;
-
-
 game.titleHeader=new game.Background(650,0,644,141,"img/logo.png");
 game.titleHeader.setVisible(true);
 game.backgrounds.push(game.titleHeader);
