@@ -462,6 +462,10 @@ game.executionPanels.push(panelExecutionLightsaber);
 for(var x=0;x<game.executionPanels.length;x++) {
     game.executionObjects.push(game.executionPanels[x]);
 }
+
+for(var x=0;x<game.executionToolButtons.length;x++) {
+    game.executionObjects.push(game.executionToolButtons[x]);
+}
 for(var x=0;x<game.executionUpgradeButtons.length;x++) {
     game.executionObjects.push(game.executionUpgradeButtons[x]);
 }
