@@ -92,10 +92,10 @@ game.Text.prototype.render = function(context) {
         //to prevent ugly spike
         context.lineJoin='round';
         context.miterLimit=2;
-
+        
     context.strokeText(this.text,this.background.x+this.x_offset,this.background.y+this.y_offset);           context.fillText(this.text,this.background.x+this.x_offset,this.background.y+this.y_offset);
     }
-}
+}  
 
 game.Text.prototype.update = function(context){
     
@@ -105,6 +105,54 @@ game.Text.prototype.setVisible = function(visible) {
     this.visible=visible;
 }
 
+//TextWrap for description paragraphs because canvas doesnt do this 
+game.TextWrap=function(background,x_offset,y_offset,text,font,fillStyle,lineWidth,strokeStyle, maxWidth, lineHeight){
+    game.Text.call(this, background,x_offset,y_offset,text,font,fillStyle,lineWidth,strokeStyle);
+    this.maxWidth=maxWidth;
+    this.lineHeight=lineHeight;
+    
+}  
+game.TextWrap.prototype=Object.create(game.Text.prototype);
+game.TextWrap.prototype.constructor=game.TextWrap;
+
+      
+game.TextWrap.prototype.render=function(context) {
+    if(this.visible) {
+        context.font=this.font;
+        context.textBaseline="top";
+        context.fillStyle=this.fillStyle;
+        context.strokeStyle=this.strokeStyle;
+        context.lineWidth=this.lineWidth;
+
+        //to prevent ugly spike
+        context.lineJoin='round';
+        context.miterLimit=2;
+
+        var bgy=this.background.y;
+        
+        var words = this.text.split(' ');
+        var line = '';
+        for(var n = 0; n < words.length; n++) {
+            var testLine = line + words[n] + ' ';
+            var metrics = context.measureText(testLine);
+            var testWidth = metrics.width;
+            if (testWidth > this.maxWidth && n > 0) {
+                context.strokeText(line, this.background.x+this.x_offset, bgy+this.y_offset);
+                context.fillText(line, this.background.x+this.x_offset, bgy+this.y_offset);
+
+                line = words[n] + ' ';
+                bgy += this.lineHeight;
+            }
+            else {
+                line = testLine;
+            }
+        }
+        context.strokeText(line,this.background.x+this.x_offset, bgy+this.y_offset);
+        context.fillText(line,this.background.x+this.x_offset, bgy+this.y_offset);
+    }
+ 
+}
+    
 
 //Numbers are text objects that display numbers
 //They dynamically update the text within to match an internal counter
@@ -134,13 +182,12 @@ game.TextNumber.prototype.update = function(context){
 
 game.Overlay=function(button, x_offset, y_offset){
     this.button=button;
-    console.log(this.button.description);
     this.x_offset=x_offset;
     this.y_offset=y_offset;
     this.background = new game.Background(this.button.x+x_offset, this.button.y+y_offset, 500, 500, "img/description.png");
-    this.description=new game.Text(this.background,150,5,this.button.description,"bold 30pt lucida console ","white",6,"#5f3c0f");
-    this.costCult=new game.TextNumber(this.background,300,55,"0","bold 28pt lucida console ","white",6,"#5f3c0f",this.button.toolStats.costCult);
-    this.costPP=new game.TextNumber(this.background,350,75,"0","bold 28pt lucida console ","white",6,"#5f3c0f",this.button.toolStats.costPP);
+    this.description=new game.TextWrap(this.background,25,55,this.button.description,"bold 20pt lucida console ","white",3,"#5f3c0f",470,28);
+    this.costCult=new game.TextNumber(this.background,15,15,"0","bold 28pt lucida console ","white",6,"#5f3c0f",this.button.toolStats.costCult);
+    this.costPP=new game.TextNumber(this.background,65,15,"0","bold 28pt lucida console ","white",6,"#5f3c0f",this.button.toolStats.costPP);
     game.overlays.push(this);
     
 }
@@ -251,12 +298,18 @@ game.ToolButton = function(x,y,width,height,bgString,title,toolStats, tabString,
     this.negBgSrc=_background.substring(0,_background.length-4)+"_negative.png";
     this.negBackground=new game.Background(this.x,this.y,this.width,this.height,this.negBgSrc);
     this.description=description;
+    this.overlay=new game.Overlay(this,580,0);
 }
 
 game.ToolButton.prototype=Object.create(game.Button.prototype);
 game.ToolButton.prototype.constructor=game.ToolButton;
 
 game.ToolButton.prototype.update=function(context){
+    if(this.hovered && this.visible){
+        this.overlay.setVisible(true);}
+    else{
+        this.overlay.setVisible(false);
+    }
     if (this.tab.tabVisible){
         this.negBackground.setVisible(true);
     } else {
@@ -310,9 +363,9 @@ game.ToolButton.prototype.setVisible=function(visible) {
 //Typically, this will be increasing the effectiveness of a Tool
 //UpgradeButtons are smaller squares that have no text
 game.UpgradeButton=function(x,y,width,height,bgString,costStats,toolStats, tabString, num, tab, description) {
+    this.description=description;
     var _background = "img/" + tabString + "_upgrades/upgrade_" + bgString + num.toString() + ".png";
     game.Button.call(this,x,y,width,height,_background);
-    console.log(this.background);
     this.costStats=costStats;
     this.toolStats=toolStats;
     this.disabled=false;

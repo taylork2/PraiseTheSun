@@ -126,7 +126,7 @@ buttonConversionUpgradeBook.setVisible(true);
 game.buttons.push(buttonConversionUpgradeBook);
 game.conversionUpgradeButtons.push(buttonConversionUpgradeBook);
 
-var buttonConversionUpgradeSoapbox=new game.UpgradeButton(82,150,85,98,"soapbox",game.playerStats.soapboxUpgradeCosts,game.playerStats.soapboxStats, "conversion", 1, game.conversionTab);
+var buttonConversionUpgradeSoapbox=new game.UpgradeButton(82,150,85,98,"soapbox",game.playerStats.soapboxUpgradeCosts,game.playerStats.soapboxStats, "conversion", 1, game.conversionTab, "labh");
 buttonConversionUpgradeSoapbox.setVisible(true);
 game.buttons.push(buttonConversionUpgradeSoapbox);
 game.conversionUpgradeButtons.push(buttonConversionUpgradeSoapbox);
@@ -136,22 +136,22 @@ game.conversionUpgradeButtons.push(buttonConversionUpgradeSoapbox);
 //game.buttons.push(buttonConversionUpgradeSpeaker);
 //game.conversionUpgradeButtons.push(buttonConversionUpgradeSpeaker);
 
-var buttonConversionUpgradePodium=new game.UpgradeButton(247,150,85,98,"podium",game.playerStats.podiumUpgradeCosts,game.playerStats.podiumStats, "conversion", 1, game.conversionTab);
+var buttonConversionUpgradePodium=new game.UpgradeButton(247,150,85,98,"podium",game.playerStats.podiumUpgradeCosts,game.playerStats.podiumStats, "conversion", 1, game.conversionTab, "hello my name is taylor and and something labh");
 buttonConversionUpgradePodium.setVisible(true);
 game.buttons.push(buttonConversionUpgradePodium);
 game.conversionUpgradeButtons.push(buttonConversionUpgradePodium);
 
-var buttonConversionUpgradeCamcorder=new game.UpgradeButton(329,150,85,98,"camcorder",game.playerStats.camcorderUpgradeCosts,game.playerStats.camcorderStats, "conversion", 1, game.conversionTab);
+var buttonConversionUpgradeCamcorder=new game.UpgradeButton(329,150,85,98,"camcorder",game.playerStats.camcorderUpgradeCosts,game.playerStats.camcorderStats, "conversion", 1, game.conversionTab, "labh");
 buttonConversionUpgradeCamcorder.setVisible(true);
 game.buttons.push(buttonConversionUpgradeCamcorder);
 game.conversionUpgradeButtons.push(buttonConversionUpgradeCamcorder);
 
-var buttonConversionUpgradeComputer=new game.UpgradeButton(410,150,85,98,"computer",game.playerStats.computerUpgradeCosts,game.playerStats.computerStats, "conversion", 1, game.conversionTab);
+var buttonConversionUpgradeComputer=new game.UpgradeButton(410,150,85,98,"computer",game.playerStats.computerUpgradeCosts,game.playerStats.computerStats, "conversion", 1, game.conversionTab, "labh");
 buttonConversionUpgradeComputer.setVisible(true);
 game.buttons.push(buttonConversionUpgradeComputer);
 game.conversionUpgradeButtons.push(buttonConversionUpgradeComputer);
 
-var buttonConversionUpgradeLaptop=new game.UpgradeButton(494,150,85,98,"laptop",game.playerStats.laptopUpgradeCosts,game.playerStats.laptopStats, "conversion", 1, game.conversionTab);
+var buttonConversionUpgradeLaptop=new game.UpgradeButton(494,150,85,98,"laptop",game.playerStats.laptopUpgradeCosts,game.playerStats.laptopStats, "conversion", 1, game.conversionTab, "labh");
 buttonConversionUpgradeLaptop.setVisible(true);
 game.buttons.push(buttonConversionUpgradeLaptop);
 game.conversionUpgradeButtons.push(buttonConversionUpgradeLaptop);
@@ -213,37 +213,37 @@ for(var x=0;x<game.captureToolButtons.length;x++) {
 }
 
 //These are all the capture upgrade buttons
-var buttonCaptureUpgradeNet=new game.UpgradeButton(-1,150,85,98,"net",game.playerStats.bookUpgradeCosts,game.playerStats.booksStats, "capture", 1, game.captureTab);
+var buttonCaptureUpgradeNet=new game.UpgradeButton(-1,150,85,98,"net",game.playerStats.bookUpgradeCosts,game.playerStats.booksStats, "capture", 1, game.captureTab, "labh");
 buttonCaptureUpgradeNet.setVisible(true);
 game.buttons.push(buttonCaptureUpgradeNet);
 game.captureUpgradeButtons.push(buttonCaptureUpgradeNet);
 
-var buttonCaptureUpgradeLasso=new game.UpgradeButton(82,150,85,98,"lasso",game.playerStats.soapboxUpgradeCosts,game.playerStats.soapboxStats, "capture", 1, game.captureTab);
+var buttonCaptureUpgradeLasso=new game.UpgradeButton(82,150,85,98,"lasso",game.playerStats.soapboxUpgradeCosts,game.playerStats.soapboxStats, "capture", 1, game.captureTab, "labh");
 buttonCaptureUpgradeLasso.setVisible(true);
 game.buttons.push(buttonCaptureUpgradeLasso);
 game.captureUpgradeButtons.push(buttonCaptureUpgradeLasso);
 
-var buttonCaptureUpgradeTrapdoor=new game.UpgradeButton(165,150,85,98,"trapdoor",game.playerStats.speakerUpgradeCosts,game.playerStats.speakerStats, "capture", 1, game.captureTab);
+var buttonCaptureUpgradeTrapdoor=new game.UpgradeButton(165,150,85,98,"trapdoor",game.playerStats.speakerUpgradeCosts,game.playerStats.speakerStats, "capture", 1, game.captureTab, "labh");
 buttonCaptureUpgradeTrapdoor.setVisible(true);
 game.buttons.push(buttonCaptureUpgradeTrapdoor);
 game.captureUpgradeButtons.push(buttonCaptureUpgradeTrapdoor);
 
-var buttonCaptureUpgradeVan=new game.UpgradeButton(247,150,85,98,"van",game.playerStats.podiumUpgradeCosts,game.playerStats.podiumStats, "capture", 1, game.captureTab);
+var buttonCaptureUpgradeVan=new game.UpgradeButton(247,150,85,98,"van",game.playerStats.podiumUpgradeCosts,game.playerStats.podiumStats, "capture", 1, game.captureTab, "labh");
 buttonCaptureUpgradeVan.setVisible(true);
 game.buttons.push(buttonCaptureUpgradeVan);
 game.captureUpgradeButtons.push(buttonCaptureUpgradeVan);
 
-var buttonCaptureUpgradeInvasion=new game.UpgradeButton(329,150,85,98,"invasion",game.playerStats.camcorderUpgradeCosts,game.playerStats.camcorderStats, "capture", 1, game.captureTab);
+var buttonCaptureUpgradeInvasion=new game.UpgradeButton(329,150,85,98,"invasion",game.playerStats.camcorderUpgradeCosts,game.playerStats.camcorderStats, "capture", 1, game.captureTab, "labh");
 buttonCaptureUpgradeInvasion.setVisible(true);
 game.buttons.push(buttonCaptureUpgradeInvasion);
 game.captureUpgradeButtons.push(buttonCaptureUpgradeInvasion);
 
-var buttonCaptureUpgradePhaser=new game.UpgradeButton(410,150,85,98,"phaser",game.playerStats.computerUpgradeCosts,game.playerStats.computerStats, "capture", 1, game.captureTab);
+var buttonCaptureUpgradePhaser=new game.UpgradeButton(410,150,85,98,"phaser",game.playerStats.computerUpgradeCosts,game.playerStats.computerStats, "capture", 1, game.captureTab, "labh");
 buttonCaptureUpgradePhaser.setVisible(true);
 game.buttons.push(buttonCaptureUpgradePhaser);
 game.captureUpgradeButtons.push(buttonCaptureUpgradePhaser);
 
-var buttonCaptureUpgradeCloning=new game.UpgradeButton(494,150,85,98,"cloning",game.playerStats.laptopUpgradeCosts,game.playerStats.laptopStats, "capture", 1, game.captureTab);
+var buttonCaptureUpgradeCloning=new game.UpgradeButton(494,150,85,98,"cloning",game.playerStats.laptopUpgradeCosts,game.playerStats.laptopStats, "capture", 1, game.captureTab, "labh");
 buttonCaptureUpgradeCloning.setVisible(true);
 game.buttons.push(buttonCaptureUpgradeCloning);
 game.captureUpgradeButtons.push(buttonCaptureUpgradeCloning);
@@ -265,37 +265,37 @@ game.executionTab.setVisible(true);
 game.tabs.push(game.executionTab);
 
 //These are all the execution upgrade buttons
-var buttonExecutionUpgradeKnife=new game.UpgradeButton(-1,150,85,98,"knife",game.playerStats.bookUpgradeCosts,game.playerStats.booksStats, "execution", 1, game.executionTab);
+var buttonExecutionUpgradeKnife=new game.UpgradeButton(-1,150,85,98,"knife",game.playerStats.bookUpgradeCosts,game.playerStats.booksStats, "execution", 1, game.executionTab, "labh");
 buttonExecutionUpgradeKnife.setVisible(true);
 game.buttons.push(buttonExecutionUpgradeKnife);
 game.executionUpgradeButtons.push(buttonExecutionUpgradeKnife);
 
-var buttonExecutionUpgradeCleaver=new game.UpgradeButton(82,150,85,98,"cleaver",game.playerStats.soapboxUpgradeCosts,game.playerStats.soapboxStats, "execution", 1, game.executionTab);
+var buttonExecutionUpgradeCleaver=new game.UpgradeButton(82,150,85,98,"cleaver",game.playerStats.soapboxUpgradeCosts,game.playerStats.soapboxStats, "execution", 1, game.executionTab, "labh");
 buttonExecutionUpgradeCleaver.setVisible(true);
 game.buttons.push(buttonExecutionUpgradeCleaver);
 game.executionUpgradeButtons.push(buttonExecutionUpgradeCleaver);
 
-var buttonExecutionUpgradeAxe=new game.UpgradeButton(165,150,85,98,"axe",game.playerStats.speakerUpgradeCosts,game.playerStats.speakerStats, "execution", 1, game.executionTab);
+var buttonExecutionUpgradeAxe=new game.UpgradeButton(165,150,85,98,"axe",game.playerStats.speakerUpgradeCosts,game.playerStats.speakerStats, "execution", 1, game.executionTab, "labh");
 buttonExecutionUpgradeAxe.setVisible(true);
 game.buttons.push(buttonExecutionUpgradeAxe);
 game.executionUpgradeButtons.push(buttonExecutionUpgradeAxe);
 
-var buttonExecutionUpgradeBlade=new game.UpgradeButton(247,150,85,98,"blade",game.playerStats.podiumUpgradeCosts,game.playerStats.podiumStats, "execution", 1, game.executionTab);
+var buttonExecutionUpgradeBlade=new game.UpgradeButton(247,150,85,98,"blade",game.playerStats.podiumUpgradeCosts,game.playerStats.podiumStats, "execution", 1, game.executionTab, "labh");
 buttonExecutionUpgradeBlade.setVisible(true);
 game.buttons.push(buttonExecutionUpgradeBlade);
 game.executionUpgradeButtons.push(buttonExecutionUpgradeBlade);
 
-var buttonExecutionUpgradeGuillotine=new game.UpgradeButton(329,150,85,98,"guillotine",game.playerStats.camcorderUpgradeCosts,game.playerStats.camcorderStats, "execution", 1, game.executionTab);
+var buttonExecutionUpgradeGuillotine=new game.UpgradeButton(329,150,85,98,"guillotine",game.playerStats.camcorderUpgradeCosts,game.playerStats.camcorderStats, "execution", 1, game.executionTab, "labh");
 buttonExecutionUpgradeGuillotine.setVisible(true);
 game.buttons.push(buttonExecutionUpgradeGuillotine);
 game.executionUpgradeButtons.push(buttonExecutionUpgradeGuillotine);
 
-var buttonExecutionUpgradeSaw=new game.UpgradeButton(410,150,85,98,"saw",game.playerStats.computerUpgradeCosts,game.playerStats.computerStats, "execution", 1, game.executionTab);
+var buttonExecutionUpgradeSaw=new game.UpgradeButton(410,150,85,98,"saw",game.playerStats.computerUpgradeCosts,game.playerStats.computerStats, "execution", 1, game.executionTab, "labh");
 buttonExecutionUpgradeSaw.setVisible(true);
 game.buttons.push(buttonExecutionUpgradeSaw);
 game.executionUpgradeButtons.push(buttonExecutionUpgradeSaw);
 
-var buttonExecutionUpgradeLightsaber=new game.UpgradeButton(494,150,85,98,"lightsaber",game.playerStats.laptopUpgradeCosts,game.playerStats.laptopStats, "execution", 1, game.executionTab);
+var buttonExecutionUpgradeLightsaber=new game.UpgradeButton(494,150,85,98,"lightsaber",game.playerStats.laptopUpgradeCosts,game.playerStats.laptopStats, "execution", 1, game.executionTab, "labh");
 buttonExecutionUpgradeLightsaber.setVisible(true);
 game.buttons.push(buttonExecutionUpgradeLightsaber);
 game.executionUpgradeButtons.push(buttonExecutionUpgradeLightsaber);
