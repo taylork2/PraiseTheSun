@@ -156,30 +156,30 @@ buttonConversionSoapbox.setVisible(true);
 game.buttons.push(buttonConversionSoapbox);
 game.conversionToolButtons.push(buttonConversionSoapbox);
 
-//var buttonConversionSpeaker=new game.ToolButton(0,500,580,98,"img/conversion_tool_icons/conversion_speaker.png","LOUDSPEAKER",game.playerStats.speakerStats);
-//buttonConversionSpeaker.setVisible(true);
-//game.buttons.push(buttonConversionSpeaker);
-//game.conversionToolButtons.push(buttonConversionSpeaker);
-//
-//var buttonConversionPodium=new game.ToolButton(0,617,580,98,"img/conversion_tool_icons/conversion_podium.png","PODIUM",game.playerStats.podiumStats);
-//buttonConversionPodium.setVisible(true);
-//game.buttons.push(buttonConversionPodium);
-//game.conversionToolButtons.push(buttonConversionPodium);
-//
-//var buttonConversionCamcorder=new game.ToolButton(0,734,580,98,"img/conversion_tool_icons/conversion_camcorder.png","CAMCORDER",game.playerStats.camcorderStats);
-//buttonConversionCamcorder.setVisible(true);
-//game.buttons.push(buttonConversionCamcorder);
-//game.conversionToolButtons.push(buttonConversionCamcorder);
-//
-//var buttonConversionComputer=new game.ToolButton(0,849,580,98,"img/conversion_tool_icons/conversion_computer.png","COMPUTER",game.playerStats.computerStats);
-//buttonConversionComputer.setVisible(true);
-//game.buttons.push(buttonConversionComputer);
-//game.conversionToolButtons.push(buttonConversionComputer);
-//
-//var buttonConversionLaptop=new game.ToolButton(0,964,580,98,"img/conversion_tool_icons/conversion_laptop.png","LAPTOP",game.playerStats.laptopStats);
-//buttonConversionLaptop.setVisible(true);
-//game.buttons.push(buttonConversionLaptop);
-//game.conversionToolButtons.push(buttonConversionLaptop);
+var buttonConversionSpeaker=new game.ToolButton(0,500,580,98,"speaker","LOUDSPEAKER",game.playerStats.speakerStats,"conversion",game.conversionTab);
+buttonConversionSpeaker.setVisible(true);
+game.buttons.push(buttonConversionSpeaker);
+game.conversionToolButtons.push(buttonConversionSpeaker);
+
+var buttonConversionPodium=new game.ToolButton(0,617,580,98,"podium","PODIUM",game.playerStats.podiumStats,"conversion",game.conversionTab);
+buttonConversionPodium.setVisible(true);
+game.buttons.push(buttonConversionPodium);
+game.conversionToolButtons.push(buttonConversionPodium);
+
+var buttonConversionCamcorder=new game.ToolButton(0,734,580,98,"camcorder","CAMCORDER",game.playerStats.camcorderStats,"conversion",game.conversionTab);
+buttonConversionCamcorder.setVisible(true);
+game.buttons.push(buttonConversionCamcorder);
+game.conversionToolButtons.push(buttonConversionCamcorder);
+
+var buttonConversionComputer=new game.ToolButton(0,849,580,98,"computer","COMPUTER",game.playerStats.computerStats,"conversion",game.conversionTab);
+buttonConversionComputer.setVisible(true);
+game.buttons.push(buttonConversionComputer);
+game.conversionToolButtons.push(buttonConversionComputer);
+
+var buttonConversionLaptop=new game.ToolButton(0,964,580,98,"laptop","LAPTOP",game.playerStats.laptopStats,"conversion",game.conversionTab);
+buttonConversionLaptop.setVisible(true);
+game.buttons.push(buttonConversionLaptop);
+game.conversionToolButtons.push(buttonConversionLaptop);
 
 game.conversionObjects=[];
 game.conversionObjects.push(game.conversionHeader);
