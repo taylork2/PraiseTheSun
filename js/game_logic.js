@@ -98,9 +98,11 @@ game.cloud.setVisible(true);
 game.sprites.push(game.cloud);
 
 //In retrospect, bobbing up and down is more useful than it seemed at first
-game.lava=new game.SpriteCloud(1370,740,100,110,0,0,"img/sprites/lava.png",125,5);
+game.lava=new game.SpriteCloud(1369,740,104,110,0,0,"img/sprites/lava.png",125,5);
 game.lava.setVisible(true);
 game.sprites.push(game.lava);
+
+
 
 //controls the spawning of climbers
 game.climberCount=0;
@@ -135,6 +137,10 @@ game.backgrounds.push(game.prisonersIcon);
 //unshift to put panel behind tracker icons
 game.trackerPanel.setVisible(true);
 game.backgrounds.unshift(game.trackerPanel);
+
+game.lavaBackground=new game.Background(1369,840,104,400,"img/sprites/lava2.png");
+game.lavaBackground.setVisible(true);
+game.backgrounds.unshift(game.lavaBackground);
 
 game.mountainBackground=new game.Background(1470,395,452,690,"img/volcano_mountain.png");
 game.mountainBackground.setVisible(true);

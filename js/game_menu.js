@@ -173,11 +173,11 @@ game.captureTab.setVisible(true);
 game.tabs.push(game.captureTab);
 
 //These will be all the capture buttons
-//var buttonCaptureNet=new game.ToolButton(0,267,580,98,"net","",game.playerStats.netStats, "capture", game.captureTab);
-//buttonCaptureNet.setVisible(true);
-//game.buttons.push(buttonCaptureNet);
-//game.captureToolButtons.push(buttonCaptureNet);
-//
+var buttonCaptureNet=new game.ToolButton(0,267,580,98,"net","",game.playerStats.netStats, "capture", game.captureTab,"Bag them and tag them (and decapitate them)");
+buttonCaptureNet.setVisible(true);
+game.buttons.push(buttonCaptureNet);
+game.captureToolButtons.push(buttonCaptureNet);
+
 //var buttonCaptureLasso=new game.ToolButton(0,384,580,98,"lasso","",game.playerStats.lassoStats,"capture",game.captureTab);
 //buttonCaptureLasso.setVisible(true);
 //game.buttons.push(buttonCaptureLasso);
@@ -302,11 +302,11 @@ game.executionUpgradeButtons.push(buttonExecutionUpgradeLightsaber);
 
 //These will be all the execution buttons
 //knife, cleavr, ax, blade, gui, saw, light
-//var buttonExecutionKnife=new game.ToolButton(0,267,580,98,"knife","",game.playerStats.knifeStats, "execution", game.executionTab);
-//buttonExecutionKnife.setVisible(true);
-//game.buttons.push(buttonExecutionKnife);
-//game.executionToolButtons.push(buttonExecutionKnife);
-//
+var buttonExecutionKnife=new game.ToolButton(0,267,580,98,"knife","",game.playerStats.knifeStats, "execution", game.executionTab,"stab stab stabby stab");
+buttonExecutionKnife.setVisible(true);
+game.buttons.push(buttonExecutionKnife);
+game.executionToolButtons.push(buttonExecutionKnife);
+
 //var buttonExecutionCleaver=new game.ToolButton(0,384,580,98,"cleaver","",game.playerStats.cleaversStats,"execution",game.executionTab);
 //buttonExecutionCleaver.setVisible(true);
 //game.buttons.push(buttonExecutionCleaver);
