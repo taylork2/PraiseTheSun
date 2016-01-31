@@ -87,6 +87,38 @@ panelLine=new game.Background(-73,1062,648,17,"img/panel_line.png");
 panelLine.setVisible(true);
 game.backgrounds.push(panelLine);
 
+panelLine=new game.Background(646,250,649,17,"img/panel_line.png");
+panelLine.setVisible(true);
+game.backgrounds.push(panelLine);
+
+panelLine=new game.Background(646,365,649,17,"img/panel_line.png");
+panelLine.setVisible(true);
+game.backgrounds.push(panelLine);
+
+panelLine=new game.Background(646,482,649,17,"img/panel_line.png");
+panelLine.setVisible(true);
+game.backgrounds.push(panelLine);
+
+panelLine=new game.Background(646,598,649,17,"img/panel_line.png");
+panelLine.setVisible(true);
+game.backgrounds.push(panelLine);
+
+panelLine=new game.Background(646,715,649,17,"img/panel_line.png");
+panelLine.setVisible(true);
+game.backgrounds.push(panelLine);
+
+panelLine=new game.Background(646,832,649,17,"img/panel_line.png");
+panelLine.setVisible(true);
+game.backgrounds.push(panelLine);
+
+panelLine=new game.Background(646,946,648,17,"img/panel_line.png");
+panelLine.setVisible(true);
+game.backgrounds.push(panelLine);
+
+panelLine=new game.Background(646,1062,648,17,"img/panel_line.png");
+panelLine.setVisible(true);
+game.backgrounds.push(panelLine);
+
 
 //These are all the upgrade buttons
 var buttonConversionUpgradeBook=new game.UpgradeButton(-1,150,85,98,"book",game.playerStats.bookUpgradeCosts,game.playerStats.booksStats, "conversion", 1, game.conversionTab, "Thick Spine, Increases the conversion rate from books by 1.5, For hammering home your ideas.");
