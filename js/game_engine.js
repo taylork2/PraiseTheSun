@@ -316,7 +316,7 @@ game.ToolButton.prototype.constructor=game.ToolButton;
 
 game.ToolButton.prototype.update=function(context){
     this.overlay.update();
-    if(this.hovered && this.visible){
+    if(this.hovered && this.tab.tabVisible){
         this.overlay.setVisible(true);}
     else{
         this.overlay.setVisible(false);
@@ -419,7 +419,7 @@ game.UpgradeButton.prototype.onClick = function() {
 
 game.UpgradeButton.prototype.update=function(context){
     this.overlay.update();
-    if(this.hovered && this.visible){
+    if(this.hovered && this.tab.tabVisible){
         this.overlay.setVisible(true);
     } else{
         this.overlay.setVisible(false);
