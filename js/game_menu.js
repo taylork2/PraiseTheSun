@@ -359,7 +359,7 @@ buttonExecutionAxe.setVisible(true);
 game.buttons.push(buttonExecutionAxe);
 game.executionToolButtons.push(buttonExecutionAxe);
 
-var buttonExecutionBlade=new game.ToolButton(0,617,580,98,"blade","",game.playerStats.bladeStats,"execution",game.executionTab,"Pens suck");
+var buttonExecutionBlade=new game.ToolButton(0,617,580,98,"blade","",game.playerStats.bladeStats,"execution",game.executionTab,"Do NOT try to use this blade as a top");
 buttonExecutionBlade.setVisible(true);
 game.buttons.push(buttonExecutionBlade);
 game.executionToolButtons.push(buttonExecutionBlade);

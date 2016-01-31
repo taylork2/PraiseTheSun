@@ -98,9 +98,9 @@ game.cloud.setVisible(true);
 game.sprites.push(game.cloud);
 
 //In retrospect, bobbing up and down is more useful than it seemed at first
-game.lava=new game.SpriteCloud(1369,740,104,110,0,0,"img/sprites/lava.png",125,5);
+game.lava=new game.SpriteCloud(1369,740,104,337,0,0,"img/lava/volcano_lava.png",125,5);
 game.lava.setVisible(true);
-game.sprites.push(game.lava);
+//game.sprites.push(game.lava);
 
 
 
@@ -119,28 +119,28 @@ game.prayerPointsText=new game.TextNumber(game.trackerPanel,70,45,"0","bold 24pt
 //Create the icon for prayerPoints
 game.prayerPointsIcon=new game.Background(1400,977,37,37,"img/coin.png");
 game.prayerPointsIcon.setVisible(true);
-game.backgrounds.push(game.prayerPointsIcon);
+//game.backgrounds.push(game.prayerPointsIcon);
 
 //Create the text number tracker for cultists
 game.cultistsText=new game.TextNumber(game.trackerPanel,240,45,"0","bold 24pt lucida console ","white",6,"#5f3c0f",game.playerStats.cultists);
 //Create the icon for cultists
 game.cultistsIcon=new game.Background(1566,977,37,37,"img/happy.png");
 game.cultistsIcon.setVisible(true);
-game.backgrounds.push(game.cultistsIcon);
+//game.backgrounds.push(game.cultistsIcon);
 
 //Create the text number tracker for prisoners
 game.prisonersText=new game.TextNumber(game.trackerPanel,402,45,"0","bold 24pt lucida console ","white",6,"#5f3c0f",game.playerStats.prisoners);
 //Create the icon for prisoners
 game.prisonersIcon=new game.Background(1729,977,37,37,"img/anger.png");
 game.prisonersIcon.setVisible(true);
-game.backgrounds.push(game.prisonersIcon);
+//game.backgrounds.push(game.prisonersIcon);
 //unshift to put panel behind tracker icons
 game.trackerPanel.setVisible(true);
-game.backgrounds.unshift(game.trackerPanel);
+//game.backgrounds.unshift(game.trackerPanel);
 
-game.lavaBackground=new game.Background(1369,840,104,400,"img/sprites/lava2.png");
-game.lavaBackground.setVisible(true);
-game.backgrounds.unshift(game.lavaBackground);
+//game.lavaBackground=new game.Background(1369,840,104,400,"img/sprites/lava2.png");
+//game.lavaBackground.setVisible(true);
+//game.backgrounds.unshift(game.lavaBackground);
 
 game.mountainBackground=new game.Background(1470,395,452,690,"img/volcano_mountain.png");
 game.mountainBackground.setVisible(true);

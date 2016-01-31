@@ -794,6 +794,17 @@ game.update=function() {
         game.overlays[x].render(game.context);
     }
     
+    //update and render lava
+    game.lava.update();
+    game.lava.render(game.context);
+    
+    //update and render stat tracker panel
+    game.trackerPanel.update();
+    game.trackerPanel.render(game.context);
+    game.cultistsIcon.render(game.context);
+    game.prayerPointsIcon.render(game.context);
+    game.prisonersIcon.render(game.context);
+    
     //spawn climbers
     game.climberCount+=realExecutionRate/60;
     if(game.climberCount>=1) {
