@@ -140,51 +140,54 @@ game.conversionHeader.setVisible(true);
 game.backgrounds.push(game.conversionHeader);
 
 //These are all the conversion buttons
-var buttonConversionBook=new game.ToolButton(0,267,580,98,"img/conversion_tool_icons/conversion_book.png","BOOK",game.playerStats.booksStats);
-buttonConversionBook.setVisible(true);
-game.buttons.push(buttonConversionBook);
-game.conversionToolButtons.push(buttonConversionBook);
 
-var buttonConversionSoapbox=new game.ToolButton(0,384,580,98,"img/conversion_tool_icons/conversion_soapbox.png","SOAPBOX",game.playerStats.soapboxStats);
-buttonConversionSoapbox.setVisible(true);
-game.buttons.push(buttonConversionSoapbox);
-game.conversionToolButtons.push(buttonConversionSoapbox);
 
-var buttonConversionSpeaker=new game.ToolButton(0,500,580,98,"img/conversion_tool_icons/conversion_speaker.png","LOUDSPEAKER",game.playerStats.speakerStats);
-buttonConversionSpeaker.setVisible(true);
-game.buttons.push(buttonConversionSpeaker);
-game.conversionToolButtons.push(buttonConversionSpeaker);
-
-var buttonConversionPodium=new game.ToolButton(0,617,580,98,"img/conversion_tool_icons/conversion_podium.png","PODIUM",game.playerStats.podiumStats);
-buttonConversionPodium.setVisible(true);
-game.buttons.push(buttonConversionPodium);
-game.conversionToolButtons.push(buttonConversionPodium);
-
-var buttonConversionCamcorder=new game.ToolButton(0,734,580,98,"img/conversion_tool_icons/conversion_camcorder.png","CAMCORDER",game.playerStats.camcorderStats);
-buttonConversionCamcorder.setVisible(true);
-game.buttons.push(buttonConversionCamcorder);
-game.conversionToolButtons.push(buttonConversionCamcorder);
-
-var buttonConversionComputer=new game.ToolButton(0,849,580,98,"img/conversion_tool_icons/conversion_computer.png","COMPUTER",game.playerStats.computerStats);
-buttonConversionComputer.setVisible(true);
-game.buttons.push(buttonConversionComputer);
-game.conversionToolButtons.push(buttonConversionComputer);
-
-var buttonConversionLaptop=new game.ToolButton(0,964,580,98,"img/conversion_tool_icons/conversion_laptop.png","LAPTOP",game.playerStats.laptopStats);
-buttonConversionLaptop.setVisible(true);
-game.buttons.push(buttonConversionLaptop);
-game.conversionToolButtons.push(buttonConversionLaptop);
-
-game.conversionObjects=[];
-for(var x=0;x<game.conversionToolButtons.length;x++) {
-    game.conversionObjects.push(game.conversionToolButtons[x]);
-}
+//var buttonConversionSoapbox=new game.ToolButton(0,384,580,98,"img/conversion_tool_icons/conversion_soapbox.png","SOAPBOX",game.playerStats.soapboxStats);
+//buttonConversionSoapbox.setVisible(true);
+//game.buttons.push(buttonConversionSoapbox);
+//game.conversionToolButtons.push(buttonConversionSoapbox);
+//
+//var buttonConversionSpeaker=new game.ToolButton(0,500,580,98,"img/conversion_tool_icons/conversion_speaker.png","LOUDSPEAKER",game.playerStats.speakerStats);
+//buttonConversionSpeaker.setVisible(true);
+//game.buttons.push(buttonConversionSpeaker);
+//game.conversionToolButtons.push(buttonConversionSpeaker);
+//
+//var buttonConversionPodium=new game.ToolButton(0,617,580,98,"img/conversion_tool_icons/conversion_podium.png","PODIUM",game.playerStats.podiumStats);
+//buttonConversionPodium.setVisible(true);
+//game.buttons.push(buttonConversionPodium);
+//game.conversionToolButtons.push(buttonConversionPodium);
+//
+//var buttonConversionCamcorder=new game.ToolButton(0,734,580,98,"img/conversion_tool_icons/conversion_camcorder.png","CAMCORDER",game.playerStats.camcorderStats);
+//buttonConversionCamcorder.setVisible(true);
+//game.buttons.push(buttonConversionCamcorder);
+//game.conversionToolButtons.push(buttonConversionCamcorder);
+//
+//var buttonConversionComputer=new game.ToolButton(0,849,580,98,"img/conversion_tool_icons/conversion_computer.png","COMPUTER",game.playerStats.computerStats);
+//buttonConversionComputer.setVisible(true);
+//game.buttons.push(buttonConversionComputer);
+//game.conversionToolButtons.push(buttonConversionComputer);
+//
+//var buttonConversionLaptop=new game.ToolButton(0,964,580,98,"img/conversion_tool_icons/conversion_laptop.png","LAPTOP",game.playerStats.laptopStats);
+//buttonConversionLaptop.setVisible(true);
+//game.buttons.push(buttonConversionLaptop);
+//game.conversionToolButtons.push(buttonConversionLaptop);
 
 game.conversionObjects.push(game.conversionHeader);
 
 game.conversionTab=new game.Tab(680,137,113,108,"img/tab_buttons/conversion_button.png",game.conversionObjects);
 game.conversionTab.setVisible(true);
 game.tabs.push(game.conversionTab);
+
+var buttonConversionBook=new game.ToolButton(0,267,580,98,"book","BOOK",game.playerStats.booksStats,"conversion", conversionTab);
+buttonConversionBook.setVisible(true);
+game.buttons.push(buttonConversionBook);
+game.conversionToolButtons.push(buttonConversionBook);
+
+game.conversionObjects=[];
+for(var x=0;x<game.conversionToolButtons.length;x++) {
+    game.conversionObjects.push(game.conversionToolButtons[x]);
+}
+
 
 //These are all the upgrade buttons
 var buttonConversionUpgradeBook=new game.UpgradeButton(-1,150,85,98,"book",game.playerStats.bookUpgradeCosts,game.playerStats.booksStats, "conversion", 1, game.conversionTab);

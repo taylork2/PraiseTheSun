@@ -205,8 +205,9 @@ game.Button.prototype.setVisible=function(visible) {
 //A ToolButton is a type of Button that represents a Tool
 //Tools, when purchased, affect the rate of production
 //It has a Background(as per its superclass), Numbers that represent the cost
-game.ToolButton = function(x,y,width,height,background,title,toolStats) {
-    game.Button.call(this,x,y,width,height,background);
+game.ToolButton = function(x,y,width,height,bgString,title,toolStats, tabString, tab) {
+    var _background = "img/" + tabString + "_tools_icons/" +tabString + bgString + num.toString() + ".png";
+    game.Button.call(this,x,y,width,height,_background);
     this.toolStats=toolStats;
     this.costPPText=new game.TextNumber(this.background,300,55,"0","bold 28pt lucida console ","white",6,"#5f3c0f",this.toolStats.costPP);
     this.costPPText.visible=this.visible;
@@ -216,10 +217,33 @@ game.ToolButton = function(x,y,width,height,background,title,toolStats) {
     this.numToolsText.visible=this.visible;
     this.title=title;
     this.titleText=new game.Text(this.background,150,5,this.title,"bold 30pt lucida console ","white",6,"#5f3c0f");
+    this.bgString=bgString;
+    this.tabString=tabString;
+    this.tab=tab;
+    var negBgSrc=_background.substring(0,_background.length-4)+"_negative.png";
+    this.negBackground=new game.Background(x,y,width,height,negBgSrc);
 }
 
 game.ToolButton.prototype=Object.create(game.Button.prototype);
 game.ToolButton.prototype.constructor=game.ToolButton;
+
+game.ToolButton.prototype.update=function(context){
+    game.Button.prototype.update.call(this,context);
+    if (this.disabled &&  game.playerStats.prayerPoints.number>this.toolStats.costPP.number && game.playerStats.cultists.number>this.toolStats.costCult.number){
+        this.disabled=false;
+        else{
+            this.disabled=true;
+        } 
+        if (this.tab.tabVisible){
+            this.setVisible(true);
+        }
+    }
+}
+
+game.ToolButton.prototype.render=function(){
+    this.negBackground.render(context);
+    game.Button.prototype.render.call(this);
+}
 
 //When clicked, a ToolButton will buy one more of that tool, provided the cost is appropriate
 game.ToolButton.prototype.onClick = function() {
@@ -289,7 +313,8 @@ game.UpgradeButton.prototype.update=function(context){
         else{
             this.disabled=true;
         }
-        this.background.img.src="img/" + this.tabString + "_upgrades/upgrade_" + this.bgString + this.num.toString() + ".png";   this.negBackground.img.src=this.background.img.src.substring(0,this.background.img.src.length-4)+"_negative.png"
+        this.background.img.src="img/" + this.tabString + "_upgrades/upgrade_" + this.bgString + this.num.toString() + ".png";   
+        this.negBackground.img.src=this.background.img.src.substring(0,this.background.img.src.length-4)+"_negative.png";
         if (this.tab.tabVisible){
             this.setVisible(true);
         }
