@@ -386,10 +386,10 @@ game.update=function() {
     } 
     
     //apply cultist rate
-    
     game.playerStats.cultists.number+=game.playerStats.prodRateCult.number/60;
+    
     //apply prisoner rate
-    if(game.playerStats.prisoners.number>=-game.playerStats.prodRatePris.number/60) {
+    if(game.playerStats.prisoners.number>-game.playerStats.prodRatePris.number/60) {
         game.playerStats.prisoners.number+=game.playerStats.prodRatePris.number/60;
     } else {
         game.playerStats.prisoners.number=0;
@@ -408,6 +408,15 @@ game.update=function() {
     
     for(var x=0;x<game.tabs.length;x++) {
         game.tabs[x].render(game.context);
+    }
+    
+    //update and render sprites last for performance
+    
+    for(var x=0;x<game.sprites.length;x++) {
+        game.sprites[x].update();
+        if(game.sprites[x].destroy) {
+            
+        }
     }
     
     // request new frame
