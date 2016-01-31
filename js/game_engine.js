@@ -736,7 +736,9 @@ game.update=function() {
         
     //apply cultist rate
     game.playerStats.cultists.number+=game.playerStats.prodRateCult.number/60;
-    game.playerStats.totalCultists.number+=game.playerStats.prodRateCult.number/60;
+    if (game.playerStats.cultists.number>game.playerStats.totalCultists.number){
+        game.playerStats.totalCultists.number=game.playerStats.cultists.number;
+    }
     
     //apply prisoner rate
     game.playerStats.prisoners.number+=game.playerStats.prodRatePris.number/60;
