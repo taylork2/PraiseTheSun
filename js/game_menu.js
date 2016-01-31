@@ -522,13 +522,37 @@ game.captureTab.setTabVisible(false);
 game.executionTab.setTabVisible(false);
 game.statTab.setTabVisible(false);
 
-game.a1=new game.Achievement(0,0,150,38,"img/achievements/angry1.png", "Anger");
-game.a1.setVisible(true);
-game.achievements.push(game.a1);
-
-for (var x=0; x<game.achievements.length; x++){
-    game.backgrounds.push(game.achievements[x]);
+game.a1=new game.Achievement(800,1000,"img/achievements/angry1.png", "Angry1");
+game.a1.checkCondition=function(){
+    if(game.playerStats.prisoners.number > 10001){
+        return true;
+    }
 }
+game.a2=new game.Achievement(800,1000,"img/achievements/angry2.png", "Angry2");
+game.a2.checkCondition=function(){
+    if(game.playerStats.prisoners.number > 100001){
+        return true;
+    }
+}
+game.a3=new game.Achievement(800,1000,"img/achievements/axe1.png", "Axe1");
+game.a3.checkCondition=function(){
+    if(game.playerStats.axeStats.number > 10001){
+        return true;
+    }
+}
+game.a4=new game.Achievement(800,1000,"img/achievements/axe2.png", "Axe2");
+game.a4.checkCondition=function(){
+    if(game.playerStats.axeStats.number > 100001){
+        return true;
+    }
+}
+
+
+
+game.achievements.push(game.a1);
+game.achievements.push(game.a2);
+game.achievements.push(game.a3);
+game.achievements.push(game.a4);
 
 game.titleHeader=new game.Background(650,0,644,141,"img/logo.png");
 game.titleHeader.setVisible(true);

@@ -3,7 +3,7 @@ game.playerStats=[];
 //Initialize all values
 var INITIAL_PRAYERPOINTS = 500;
 var INITIAL_CULTISTS = 500;
-var INITIAL_PRISONERS = 500;
+var INITIAL_PRISONERS = 10000;
 
 game.playerStats.prayerPoints=new game.StatNumber(INITIAL_PRAYERPOINTS);
 game.playerStats.cultists=new game.StatNumber(INITIAL_CULTISTS);

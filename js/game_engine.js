@@ -641,17 +641,17 @@ game.Tab.prototype.setTabVisible=function(visible){
 //An Achievement is a popup that has a trigger method checkCondition()
 //Each update, checkCondition is checked
 //if it is met, the Achievement pops up, then destroys itself
-game.Achievement=function(x,y,width,height,imgSrc,text) {
+game.Achievement=function(x,y,imgSrc,text) {
     this.x=x;
     this.y=y;
     this.ySpeed=-20;
     this.minY=900;
-    this.width=width;
-    this.height=height;
-    this.background=new game.Background(x,y,width,height,"img/description.png");
-    this.achievementIcon=new game.Background(x,y,30,30,imgSrc);
+    this.width=300;
+    this.height=60;
+    this.background=new game.Background(x,y,this.width,this.height,"img/description.png");
+    this.achievementIcon=new game.Background(x+5,y+5,50,50,imgSrc);
     this.text=text;
-    this.textObject=new game.Text(this.background,100,0,this.text,"bold 28pt lucida console ","white",6,"#5f3c0f")
+    this.textObject=new game.Text(this.background,60,10,this.text,"bold 20pt lucida console ","white",6,"#5f3c0f")
     this.active=false;
     this.activeFrames=0;
     this.maxActiveFrames=240;
@@ -688,10 +688,6 @@ game.Achievement.prototype.render=function(context) {
     }
 }
 
-game.Achievement.prototype.checkCondition=function(){
-    this.active = false;
-    return true;
-}
 
 window.requestAnimFrame = (function(callback) {
     return window.requestAnimationFrame     || 
