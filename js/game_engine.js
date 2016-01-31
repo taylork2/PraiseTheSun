@@ -231,12 +231,18 @@ game.ToolButton.prototype.constructor=game.ToolButton;
 game.ToolButton.prototype.update=function(context){
     if (this.tab.tabVisible){
         this.negBackground.setVisible(true);
+    } else {
+        this.negBackground.setVisible(false);
     }
     game.Button.prototype.update.call(this,context);
-    if (game.playerStats.prayerPoints.number>this.toolStats.costPP.number || game.playerStats.cultists.number>this.toolStats.costCult.number){
-        if (this.tab.tabVisible){
+    
+    if(this.tab.tabVisible) {
+        if (game.playerStats.prayerPoints.number>this.toolStats.costPP.number && game.playerStats.cultists.number>this.toolStats.costCult.number){
             this.setVisible(true);
             this.negBackground.setVisible(false);
+        } else {
+            this.setVisible(false);
+            this.negBackground.setVisible(true);
         }
     }
 }
