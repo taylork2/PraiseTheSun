@@ -30,21 +30,21 @@ game.playerStats.camcorderStats=new game.ToolStats(100000,1,1000,0,0,0);
 game.playerStats.computerStats=new game.ToolStats(1000000,1,10000,0,0,0);
 game.playerStats.laptopStats=new game.ToolStats(10000000,1,100000,0,0,0);
 
-game.playerStats.netStats=new game.ToolStats(10,1,0,1,0,0);
-game.playerStats.lassoStats=new game.ToolStats(100,1,0,10,0,0);
-game.playerStats.trapdoorStats=new game.ToolStats(1000,1,0,100,0,0);
-game.playerStats.vanStats=new game.ToolStats(10000,1,0,1000,0,0);
-game.playerStats.invasionStats=new game.ToolStats(100000,1,0,10000,0,0);
-game.playerStats.phaserStats=new game.ToolStats(1000000,1,0,100000,0,0);
-game.playerStats.cloningStats=new game.ToolStats(10000000,1,0,1000000,0,0);
+game.playerStats.netStats=new game.ToolStats(10,10,0,1,0,0);
+game.playerStats.lassoStats=new game.ToolStats(100,100,0,10,0,0);
+game.playerStats.trapdoorStats=new game.ToolStats(1000,1000,0,100,0,0);
+game.playerStats.vanStats=new game.ToolStats(10000,10000,0,1000,0,0);
+game.playerStats.invasionStats=new game.ToolStats(100000,100000,0,10000,0,0);
+game.playerStats.phaserStats=new game.ToolStats(1000000,1000000,0,100000,0,0);
+game.playerStats.cloningStats=new game.ToolStats(10000000,10000000,0,1000000,0,0);
 
-game.playerStats.knifeStats=new game.ToolStats(10,1,0,0,1,0);
-game.playerStats.cleaverStats=new game.ToolStats(100,1,0,0,10,0);
-game.playerStats.axeStats=new game.ToolStats(1000,1,0,0,100,0);
-game.playerStats.bladeStats=new game.ToolStats(10000,1,0,0,1000,0);
-game.playerStats.guillotineStats=new game.ToolStats(100000,1,0,0,10000,0);
-game.playerStats.sawStats=new game.ToolStats(1000000,1,0,0,100000,0);
-game.playerStats.lightsaberStats=new game.ToolStats(10000000,1,0,0,1000000,0);
+game.playerStats.knifeStats=new game.ToolStats(5,5,0,0,1,0);
+game.playerStats.cleaverStats=new game.ToolStats(50,50,0,0,8,0);
+game.playerStats.axeStats=new game.ToolStats(500,500,0,0,64,0);
+game.playerStats.bladeStats=new game.ToolStats(5000,5000,0,0,512,0);
+game.playerStats.guillotineStats=new game.ToolStats(50000,50000,0,0,2048,0);
+game.playerStats.sawStats=new game.ToolStats(500000,500000,0,0,16384,0);
+game.playerStats.lightsaberStats=new game.ToolStats(5000000,5000000,0,0,131072,0);
 
 //These are the upgrade stats
 game.playerStats.bookUpgradeCosts=new game.CostStats(100,0);
