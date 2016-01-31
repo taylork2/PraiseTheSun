@@ -254,6 +254,48 @@ for(var x=0;x<game.captureToolButtons.length;x++) {
     game.captureObjects.push(game.captureToolButtons[x]);
 }
 
+
+game.capturePanels=[];
+//These will be all the capture panels
+var panelCaptureNet=new game.Background(647,267,647,100,"img/capture_panels/panel_capture_net.png");
+panelCaptureNet.setVisible(true);
+game.backgrounds.push(panelCaptureNet);
+game.capturePanels.push(panelCaptureNet);
+
+var panelCaptureLasso=new game.Background(647,384,647,100,"img/capture_panels/panel_capture_lasso.png");
+panelCaptureLasso.setVisible(true);
+game.backgrounds.push(panelCaptureLasso);
+game.capturePanels.push(panelCaptureLasso);
+
+var panelCaptureTrapdoor=new game.Background(647,500,647,100,"img/capture_panels/panel_capture_trapdoor.png");
+panelCaptureTrapdoor.setVisible(true);
+game.backgrounds.push(panelCaptureTrapdoor);
+game.capturePanels.push(panelCaptureTrapdoor);
+
+var panelCaptureVan=new game.Background(647,617,647,100,"img/capture_panels/panel_capture_van.png");
+panelCaptureVan.setVisible(true);
+game.backgrounds.push(panelCaptureVan);
+game.capturePanels.push(panelCaptureVan);
+
+var panelCaptureInvasion=new game.Background(647,734,647,100,"img/capture_panels/panel_capture_invasion.png");
+panelCaptureInvasion.setVisible(true);
+game.backgrounds.push(panelCaptureInvasion);
+game.capturePanels.push(panelCaptureInvasion);
+
+var panelCapturePhaser=new game.Background(647,849,647,100,"img/capture_panels/panel_capture_phaser.png");
+panelCapturePhaser.setVisible(true);
+game.backgrounds.push(panelCapturePhaser);
+game.capturePanels.push(panelCapturePhaser);
+
+var panelCaptureCloning=new game.Background(647,964,647,100,"img/capture_panels/panel_capture_cloning.png");
+panelCaptureCloning.setVisible(true);
+game.backgrounds.push(panelCaptureCloning);
+game.capturePanels.push(panelCaptureCloning);
+
+for(var x=0;x<game.capturePanels.length;x++) {
+    game.captureObjects.push(game.capturePanels[x]);
+}
+
 //These are all the capture upgrade buttons
 var buttonCaptureUpgradeNet=new game.UpgradeButton(-1,150,85,98,"net",game.playerStats.bookUpgradeCosts,game.playerStats.booksStats, "capture", 1, game.captureTab, "labh");
 buttonCaptureUpgradeNet.setVisible(true);
@@ -379,14 +421,52 @@ buttonExecutionLightsaber.setVisible(true);
 game.buttons.push(buttonExecutionLightsaber);
 game.executionToolButtons.push(buttonExecutionLightsaber);
 
-for(var x=0;x<game.executionToolButtons.length;x++) {
-    game.executionObjects.push(game.executionToolButtons[x]);
+game.executionPanels=[];
+
+//These will be all the execution panels
+var panelExecutionKnife=new game.Background(647,267,647,100,"img/execution_panels/panel_execution_knife.png");
+panelExecutionKnife.setVisible(true);
+game.buttons.push(panelExecutionKnife);
+game.executionPanels.push(panelExecutionKnife);
+
+var panelExecutionCleaver=new game.Background(647,384,647,100,"img/execution_panels/panel_execution_cleaver.png");
+panelExecutionCleaver.setVisible(true);
+game.buttons.push(panelExecutionCleaver);
+game.executionPanels.push(panelExecutionCleaver);
+
+var panelExecutionAxe=new game.Background(647,500,647,100,"img/execution_panels/panel_execution_axe.png");
+panelExecutionAxe.setVisible(true);
+game.buttons.push(panelExecutionAxe);
+game.executionPanels.push(panelExecutionAxe);
+
+var panelExecutionBlade=new game.Background(647,617,647,100,"img/execution_panels/panel_execution_blade.png");
+panelExecutionBlade.setVisible(true);
+game.buttons.push(panelExecutionBlade);
+game.executionPanels.push(panelExecutionBlade);
+
+var panelExecutionGuillotine=new game.Background(647,734,647,100,"img/execution_panels/panel_execution_guillotine.png");
+panelExecutionGuillotine.setVisible(true);
+game.buttons.push(panelExecutionGuillotine);
+game.executionPanels.push(panelExecutionGuillotine);
+
+var panelExecutionSaw=new game.Background(647,849,647,100,"img/execution_panels/panel_execution_saw.png");
+panelExecutionSaw.setVisible(true);
+game.buttons.push(panelExecutionSaw);
+game.executionPanels.push(panelExecutionSaw);
+
+var panelExecutionLightsaber=new game.Background(647,964,647,100,"img/execution_panels/panel_execution_lightsaber.png");
+panelExecutionLightsaber.setVisible(true);
+game.buttons.push(panelExecutionLightsaber);
+game.executionPanels.push(panelExecutionLightsaber);
+
+for(var x=0;x<game.executionPanels.length;x++) {
+    game.executionObjects.push(game.executionPanels[x]);
 }
 for(var x=0;x<game.executionUpgradeButtons.length;x++) {
     game.executionObjects.push(game.executionUpgradeButtons[x]);
 }
 //Create the objects that will go in the stat tab
-game.statHeader=new game.Background(0,0,584,126,"img/headers/execution.png");
+game.statHeader=new game.Background(0,0,584,126,"img/headers/stat.png");
 game.statHeader.setVisible(true);
 game.backgrounds.push(game.statHeader);
 

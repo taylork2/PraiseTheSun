@@ -754,6 +754,11 @@ game.update=function() {
         game.backgrounds[x].render(game.context);
     }
     
+    //render dynamic sprites(backgrounds since they are static) on panels
+    //conversion
+    //capture
+    //execution
+    
     for(var x=0;x<game.buttons.length;x++) {
         game.buttons[x].render(game.context);
     }
