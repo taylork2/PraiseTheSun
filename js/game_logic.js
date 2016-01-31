@@ -13,37 +13,37 @@ game.playerStats.costPPMultiplier=new game.StatNumber(1.1);
 game.playerStats.costCultMultiplier=new game.StatNumber(1.1);
 
 game.playerStats.booksStats=new game.ToolStats(10,1,1,0,0,0);
-game.playerStats.soapboxStats=new game.ToolStats(10,1,1,0,0,0);
-game.playerStats.speakerStats=new game.ToolStats(10,1,1,0,0,0);
-game.playerStats.podiumStats=new game.ToolStats(10,1,1,0,0,0);
-game.playerStats.camcorderStats=new game.ToolStats(10,1,1,0,0,0);
-game.playerStats.computerStats=new game.ToolStats(10,1,1,0,0,0);
-game.playerStats.laptopStats=new game.ToolStats(10,1,1,0,0,0);
+game.playerStats.soapboxStats=new game.ToolStats(100,1,10,0,0,0);
+game.playerStats.speakerStats=new game.ToolStats(1000,1,100,0,0,0);
+game.playerStats.podiumStats=new game.ToolStats(10000,1,1000,0,0,0);
+game.playerStats.camcorderStats=new game.ToolStats(100000,1,10000,0,0,0);
+game.playerStats.computerStats=new game.ToolStats(1000000,1,100000,0,0,0);
+game.playerStats.laptopStats=new game.ToolStats(10000000,1,1000000,0,0,0);
 
 game.playerStats.netStats=new game.ToolStats(10,1,0,1,0,0);
-game.playerStats.lassoStats=new game.ToolStats(10,1,0,1,0,0);
-game.playerStats.trapdoorStats=new game.ToolStats(10,1,0,1,0,0);
-game.playerStats.vanStats=new game.ToolStats(10,1,0,1,0,0);
-game.playerStats.invasionStats=new game.ToolStats(10,1,0,1,0,0);
-game.playerStats.phaserStats=new game.ToolStats(10,1,0,1,0,0);
-game.playerStats.cloningStats=new game.ToolStats(10,1,0,1,0,0);
+game.playerStats.lassoStats=new game.ToolStats(100,1,0,10,0,0);
+game.playerStats.trapdoorStats=new game.ToolStats(1000,1,0,100,0,0);
+game.playerStats.vanStats=new game.ToolStats(10000,1,0,1000,0,0);
+game.playerStats.invasionStats=new game.ToolStats(100000,1,0,10000,0,0);
+game.playerStats.phaserStats=new game.ToolStats(1000000,1,0,100000,0,0);
+game.playerStats.cloningStats=new game.ToolStats(10000000,1,0,1000000,0,0);
 
 game.playerStats.knifeStats=new game.ToolStats(10,1,0,0,1,0);
-game.playerStats.cleaversStats=new game.ToolStats(10,1,0,0,1,0);
-game.playerStats.axeStats=new game.ToolStats(10,1,0,0,1,0);
-game.playerStats.bladeStats=new game.ToolStats(10,1,0,0,1,0);
-game.playerStats.guillotineStats=new game.ToolStats(10,1,0,0,1,0);
-game.playerStats.sawStats=new game.ToolStats(10,1,0,0,1,0);
-game.playerStats.lightsaberStats=new game.ToolStats(10,1,0,0,1,0);
+game.playerStats.cleaversStats=new game.ToolStats(100,1,0,0,10,0);
+game.playerStats.axeStats=new game.ToolStats(100,1,0,0,100,0);
+game.playerStats.bladeStats=new game.ToolStats(1000,1,0,0,1000,0);
+game.playerStats.guillotineStats=new game.ToolStats(10000,1,0,0,10000,0);
+game.playerStats.sawStats=new game.ToolStats(100000,1,0,0,100000,0);
+game.playerStats.lightsaberStats=new game.ToolStats(1000000,1,0,0,1000000,0);
 
 //These are the upgrade stats
 game.playerStats.bookUpgradeCosts=new game.CostStats(100,0);
-game.playerStats.soapboxUpgradeCosts=new game.CostStats(100,0);
-game.playerStats.speakerUpgradeCosts=new game.CostStats(100,0);
-game.playerStats.podiumUpgradeCosts=new game.CostStats(100,0);
-game.playerStats.camcorderUpgradeCosts=new game.CostStats(100,0);
-game.playerStats.computerUpgradeCosts=new game.CostStats(100,0);
-game.playerStats.laptopUpgradeCosts=new game.CostStats(100,0);
+game.playerStats.soapboxUpgradeCosts=new game.CostStats(10000,0);
+game.playerStats.speakerUpgradeCosts=new game.CostStats(1000000,0);
+game.playerStats.podiumUpgradeCosts=new game.CostStats(1000000,0);
+game.playerStats.camcorderUpgradeCosts=new game.CostStats(100000000,0);
+game.playerStats.computerUpgradeCosts=new game.CostStats(1000000000000,0);
+game.playerStats.laptopUpgradeCosts=new game.CostStats(100000000000000,0);
 
 //Controls the mood of the sun
 game.sun=[];
