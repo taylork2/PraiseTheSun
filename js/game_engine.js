@@ -769,7 +769,7 @@ game.update=function() {
     game.playerStats.prodRatePris.number=captureRate-executionRate;
     //if there are not enough prisoners, cannot execute them
     var realExecutionRate=0;
-    if(game.playerStats.prisoners.number>0||game.playerStats.prodRatePris>0) {
+    if(game.playerStats.prisoners.number>0||game.playerStats.prodRatePris.number>0) {
         realExecutionRate=executionRate;
     } else {
         realExecutionRate=captureRate;
