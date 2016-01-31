@@ -820,9 +820,16 @@ game.update=function() {
     }
     
     //render dynamic sprites(backgrounds since they are static) on panels
-    //conversion
-    //capture
-    //execution
+    var yLocs=[267,384,500,617,734,849,964];
+    var convNames=['book','soapbox','speaker','podium','camcorder','computer','laptop'];
+    var capNames=['net','lasso','trapdoor','van','invasion','phaser','cloning'];
+    var execNames=['knife','cleaver','axe','blade','guillotine','saw','lightsaber'];
+    if(game.conversionTab.tabVisible) {
+        for(var x=0;
+    } else if(game.conversionTab.tabVisible) {
+    } else if(game.executionTab.tabVisible) {
+    }
+    
     
     for(var x=0;x<game.buttons.length;x++) {
         game.buttons[x].render(game.context);
