@@ -188,18 +188,27 @@ game.Overlay=function(button, width, height, x_offset, y_offset){
     this.y_offset=y_offset;
     this.background = new game.Background(this.button.x+x_offset, this.button.y+y_offset, this.width, this.height, "img/description.png");
     this.description=new game.TextWrap(this.background,25,55,this.button.description,"bold 20pt lucida console ","white",3,"#5f3c0f",470,28);
-    this.costCult=new game.TextNumber(this.background,25,15,"0","bold 28pt lucida console ","white",6,"#5f3c0f",this.button.toolStats.costCult);
-    this.costPP=new game.TextNumber(this.background,85,15,"0","bold 28pt lucida console ","white",6,"#5f3c0f",this.button.toolStats.costPP);
+    this.coin = new game.Background(this.button.x+x_offset+20, this.button.y+y_offset+12, 37, 37, "img/coin.png");
+    this.costPP=new game.TextNumber(this.background,65,15,"0","bold 28pt lucida console ","white",6,"#5f3c0f",this.button.toolStats.costPP);
+    
+    this.happy = new game.Background(this.button.x+x_offset+150, this.button.y+y_offset+12, 37, 37, "img/happy.png");
+    this.costCult=new game.TextNumber(this.background,195,15,"0","bold 28pt lucida console ","white",6,"#5f3c0f",this.button.toolStats.costCult);
+    
+    
     game.overlays.push(this);
     
 }
 
 game.Overlay.prototype.render=function(context){
     this.background.render(context);
+    this.coin.render(context);
+    this.happy.render(context);
 }
 
 game.Overlay.prototype.setVisible=function(visible){
     this.background.setVisible(visible);
+    this.coin.setVisible(visible);
+    this.happy.setVisible(visible);
 }
 
 game.Overlay.prototype.update=function(){
