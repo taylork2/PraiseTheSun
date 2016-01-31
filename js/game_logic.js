@@ -125,40 +125,40 @@ game.conversionHeader.setVisible(true);
 game.backgrounds.push(game.conversionHeader);
 
 //These are all the upgrade buttons
-var buttonConversionUpgradeBook=new game.UpgradeButton(-1,150,85,98,"img/conversion_upgrades/upgrade_book1.png",game.playerStats.bookUpgradeCosts,game.playerStats.booksStats);
+var buttonConversionUpgradeBook=new game.UpgradeButton(-1,150,85,98,"img/conversion_upgrades/upgrade_book1.png",game.playerStats.bookUpgradeCosts,game.playerStats.booksStats, "img/conversion_upgrades/upgrade_book1_negative.png");
 buttonConversionUpgradeBook.setVisible(true);
 game.buttons.push(buttonConversionUpgradeBook);
 game.conversionUpgradeButtons.push(buttonConversionUpgradeBook);
 
-var buttonConversionUpgradeSoapbox=new game.UpgradeButton(82,150,85,98,"img/conversion_upgrades/upgrade_soapbox1.png",game.playerStats.soapboxUpgradeCosts,game.playerStats.soapboxStats);
-buttonConversionUpgradeSoapbox.setVisible(true);
-game.buttons.push(buttonConversionUpgradeSoapbox);
-game.conversionUpgradeButtons.push(buttonConversionUpgradeSoapbox);
-
-var buttonConversionUpgradeSpeaker=new game.UpgradeButton(165,150,85,98,"img/conversion_upgrades/upgrade_speaker1_negative.png",game.playerStats.speakerUpgradeCosts,game.playerStats.speakerStats);
-buttonConversionUpgradeSpeaker.setVisible(true);
-game.buttons.push(buttonConversionUpgradeSpeaker);
-game.conversionUpgradeButtons.push(buttonConversionUpgradeSpeaker);
-
-var buttonConversionUpgradePodium=new game.UpgradeButton(247,150,85,98,"img/conversion_upgrades/upgrade_podium1.png",game.playerStats.podiumUpgradeCosts,game.playerStats.podiumStats);
-buttonConversionUpgradePodium.setVisible(true);
-game.buttons.push(buttonConversionUpgradePodium);
-game.conversionUpgradeButtons.push(buttonConversionUpgradePodium);
-
-var buttonConversionUpgradeCamcorder=new game.UpgradeButton(329,150,85,98,"img/conversion_upgrades/upgrade_camcorder1.png",game.playerStats.camcorderUpgradeCosts,game.playerStats.camcorderStats);
-buttonConversionUpgradeCamcorder.setVisible(true);
-game.buttons.push(buttonConversionUpgradeCamcorder);
-game.conversionUpgradeButtons.push(buttonConversionUpgradeCamcorder);
-
-var buttonConversionUpgradeComputer=new game.UpgradeButton(410,150,85,98,"img/conversion_upgrades/upgrade_computer1.png",game.playerStats.computerUpgradeCosts,game.playerStats.computerStats);
-buttonConversionUpgradeComputer.setVisible(true);
-game.buttons.push(buttonConversionUpgradeComputer);
-game.conversionUpgradeButtons.push(buttonConversionUpgradeComputer);
-
-var buttonConversionUpgradeLaptop=new game.UpgradeButton(494,150,85,98,"img/conversion_upgrades/upgrade_laptop1.png",game.playerStats.laptopUpgradeCosts,game.playerStats.laptopStats);
-buttonConversionUpgradeLaptop.setVisible(true);
-game.buttons.push(buttonConversionUpgradeLaptop);
-game.conversionUpgradeButtons.push(buttonConversionUpgradeLaptop);
+//var buttonConversionUpgradeSoapbox=new game.UpgradeButton(82,150,85,98,"img/conversion_upgrades/upgrade_soapbox1.png",game.playerStats.soapboxUpgradeCosts,game.playerStats.soapboxStats);
+//buttonConversionUpgradeSoapbox.setVisible(true);
+//game.buttons.push(buttonConversionUpgradeSoapbox);
+//game.conversionUpgradeButtons.push(buttonConversionUpgradeSoapbox);
+//
+//var buttonConversionUpgradeSpeaker=new game.UpgradeButton(165,150,85,98,"img/conversion_upgrades/upgrade_speaker1_negative.png",game.playerStats.speakerUpgradeCosts,game.playerStats.speakerStats);
+//buttonConversionUpgradeSpeaker.setVisible(true);
+//game.buttons.push(buttonConversionUpgradeSpeaker);
+//game.conversionUpgradeButtons.push(buttonConversionUpgradeSpeaker);
+//
+//var buttonConversionUpgradePodium=new game.UpgradeButton(247,150,85,98,"img/conversion_upgrades/upgrade_podium1.png",game.playerStats.podiumUpgradeCosts,game.playerStats.podiumStats);
+//buttonConversionUpgradePodium.setVisible(true);
+//game.buttons.push(buttonConversionUpgradePodium);
+//game.conversionUpgradeButtons.push(buttonConversionUpgradePodium);
+//
+//var buttonConversionUpgradeCamcorder=new game.UpgradeButton(329,150,85,98,"img/conversion_upgrades/upgrade_camcorder1.png",game.playerStats.camcorderUpgradeCosts,game.playerStats.camcorderStats);
+//buttonConversionUpgradeCamcorder.setVisible(true);
+//game.buttons.push(buttonConversionUpgradeCamcorder);
+//game.conversionUpgradeButtons.push(buttonConversionUpgradeCamcorder);
+//
+//var buttonConversionUpgradeComputer=new game.UpgradeButton(410,150,85,98,"img/conversion_upgrades/upgrade_computer1.png",game.playerStats.computerUpgradeCosts,game.playerStats.computerStats);
+//buttonConversionUpgradeComputer.setVisible(true);
+//game.buttons.push(buttonConversionUpgradeComputer);
+//game.conversionUpgradeButtons.push(buttonConversionUpgradeComputer);
+//
+//var buttonConversionUpgradeLaptop=new game.UpgradeButton(494,150,85,98,"img/conversion_upgrades/upgrade_laptop1.png",game.playerStats.laptopUpgradeCosts,game.playerStats.laptopStats);
+//buttonConversionUpgradeLaptop.setVisible(true);
+//game.buttons.push(buttonConversionUpgradeLaptop);
+//game.conversionUpgradeButtons.push(buttonConversionUpgradeLaptop);
 
 //These are all the conversion buttons
 var buttonConversionBook=new game.ToolButton(0,267,580,98,"img/conversion_tool_icons/conversion_book.png","BOOK",game.playerStats.booksStats);

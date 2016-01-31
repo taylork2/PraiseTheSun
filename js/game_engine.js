@@ -237,15 +237,22 @@ game.ToolButton.prototype.onClick = function() {
 //An UpgradeButton has an effect on some game system
 //Typically, this will be increasing the effectiveness of a Tool
 //UpgradeButtons are smaller squares that have no text
-game.UpgradeButton=function(x,y,width,height,background,costStats,toolStats) {
+game.UpgradeButton=function(x,y,width,height,background,costStats,toolStats,negBackground) {
     game.Button.call(this,x,y,width,height,background);
     this.costStats=costStats;
     this.toolStats=toolStats;
     this.disabled=false;
+    this.negBackground=new game.Background(x,y,width,height,negBackground);
+    this.negBackground.setVisible(true);
 }
 
 game.UpgradeButton.prototype=Object.create(game.Button.prototype);
 game.UpgradeButton.prototype.constructor=game.UpgradeButton;
+
+game.UpgradeButton.prototype.render=function(context){
+    this.negBackground.render(context);
+    game.Button.prototype.render.call(this,context);
+}
 
 //UpgradeButtons will have their applyUpgrade() methods coded in the game initialization
 //It will then destroy itself, as Upgrades can only be bought once
@@ -260,6 +267,7 @@ game.UpgradeButton.prototype.onClick = function() {
         this.toolStats.prodRateExec.number*=1.2;
         //destroy this/make it invisible forever
         this.setVisible(false);
+        this.negBackground.setVisible(true);
         this.disabled=true;
     }
 }
@@ -268,11 +276,15 @@ game.UpgradeButton.prototype.setVisible=function(visible) {
     if(!this.disabled) {
         this.visible=visible;
         this.background.setVisible(visible);
+        this.negBackground.setVisible(visible);
     } else {
         this.visible=false;
         this.background.setVisible(false);
+        this.negBackground.setVisible(visible);
     }
 }
+
+    
 
 //a Sprite is a moving, animated object with no interactivity, that can be destroyed
 game.Sprite=function(x,y,width,height,xspeed,yspeed,imgSrc) {
