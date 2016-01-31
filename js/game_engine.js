@@ -189,12 +189,10 @@ game.Overlay=function(button, width, height, x_offset, y_offset){
     this.background = new game.Background(this.button.x+x_offset, this.button.y+y_offset, this.width, this.height, "img/description.png");
     this.description=new game.TextWrap(this.background,25,55,this.button.description,"bold 18pt lucida console ","white",3,"#5f3c0f",470,28);
     this.coin = new game.Background(this.button.x+x_offset+20, this.button.y+y_offset+12, 37, 37, "img/coin.png");
-    this.costPP=new game.TextNumber(this.background,65,15,"0","bold 28pt lucida console ","white",6,"#5f3c0f",this.button.toolStats.costPP);
+    this.costPP=new game.TextNumber(this.background,65,15,"0","bold 28pt lucida console ","white",6,"#5f3c0f",this.button.costStats.costPP);
     
-    this.happy = new game.Background(this.button.x+x_offset+150, this.button.y+y_offset+12, 37, 37, "img/happy.png");
-    this.costCult=new game.TextNumber(this.background,195,15,"0","bold 28pt lucida console ","white",6,"#5f3c0f",this.button.toolStats.costCult);
-    
-    
+    this.happy = new game.Background(this.button.x+x_offset+170, this.button.y+y_offset+12, 37, 37, "img/happy.png");
+    this.costCult=new game.TextNumber(this.background,215,15,"0","bold 28pt lucida console ","white",6,"#5f3c0f",this.button.costStats.costCult);
     game.overlays.push(this);
     
 }
@@ -295,6 +293,7 @@ game.ToolButton = function(x,y,width,height,bgString,title,toolStats, tabString,
     this.textArray=[];
     game.Button.call(this,x,y,width,height,_background);
     this.toolStats=toolStats;
+    this.costStats=this.toolStats;
     this.costPPText=new game.TextNumber(this,300,55,"0","bold 28pt lucida console ","white",6,"#5f3c0f",this.toolStats.costPP);
     this.costPPText.visible=this.visible;
     this.costCultText=new game.TextNumber(this,450,55,"0","bold 28pt lucida console ","white",6,"#5f3c0f",this.toolStats.costCult);
@@ -316,6 +315,7 @@ game.ToolButton.prototype=Object.create(game.Button.prototype);
 game.ToolButton.prototype.constructor=game.ToolButton;
 
 game.ToolButton.prototype.update=function(context){
+    this.overlay.update();
     if(this.hovered && this.visible){
         this.overlay.setVisible(true);}
     else{
@@ -406,9 +406,10 @@ game.UpgradeButton.prototype.onClick = function() {
         //Costs are stored as floats, but are used and displayed as ints
         game.playerStats.prayerPoints.number-=Math.floor(this.costStats.costPP.number);
         game.playerStats.cultists.number-=Math.floor(this.costStats.costCult.number);
-        this.toolStats.prodRateCult.number*=1.2;
-        this.toolStats.prodRatePris.number*=1.2;
-        this.toolStats.prodRateExec.number*=1.2;
+        this.toolStats.prodRateCult.number*=1.5;
+        this.toolStats.prodRatePris.number*=1.5;
+        this.toolStats.prodRateExec.number*=1.5;
+        this.costStats.costPP.number*=100;
         //destroy this/make it invisible forever
         this.setVisible(false);
         this.negBackground.setVisible(true);
@@ -417,10 +418,10 @@ game.UpgradeButton.prototype.onClick = function() {
 }
 
 game.UpgradeButton.prototype.update=function(context){
+    this.overlay.update();
     if(this.hovered && this.visible){
         this.overlay.setVisible(true);
-    }
-    else{
+    } else{
         this.overlay.setVisible(false);
     }
     
