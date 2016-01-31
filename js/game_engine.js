@@ -187,19 +187,26 @@ game.Overlay=function(button, width, height, x_offset, y_offset){
     this.x_offset=x_offset;
     this.y_offset=y_offset;
     this.background = new game.Background(this.button.x+x_offset, this.button.y+y_offset, this.width, this.height, "img/description.png");
-    this.description=new game.TextWrap(this.background,25,55,this.button.description,"bold 20pt lucida console ","white",3,"#5f3c0f",470,28);
-    this.costCult=new game.TextNumber(this.background,25,15,"0","bold 28pt lucida console ","white",6,"#5f3c0f",this.button.toolStats.costCult);
-    this.costPP=new game.TextNumber(this.background,85,15,"0","bold 28pt lucida console ","white",6,"#5f3c0f",this.button.toolStats.costPP);
+    this.description=new game.TextWrap(this.background,25,55,this.button.description,"bold 18pt lucida console ","white",3,"#5f3c0f",470,28);
+    this.coin = new game.Background(this.button.x+x_offset+20, this.button.y+y_offset+12, 37, 37, "img/coin.png");
+    this.costPP=new game.TextNumber(this.background,65,15,"0","bold 28pt lucida console ","white",6,"#5f3c0f",this.button.costStats.costPP);
+    
+    this.happy = new game.Background(this.button.x+x_offset+170, this.button.y+y_offset+12, 37, 37, "img/happy.png");
+    this.costCult=new game.TextNumber(this.background,215,15,"0","bold 28pt lucida console ","white",6,"#5f3c0f",this.button.costStats.costCult);
     game.overlays.push(this);
     
 }
 
 game.Overlay.prototype.render=function(context){
     this.background.render(context);
+    this.coin.render(context);
+    this.happy.render(context);
 }
 
 game.Overlay.prototype.setVisible=function(visible){
     this.background.setVisible(visible);
+    this.coin.setVisible(visible);
+    this.happy.setVisible(visible);
 }
 
 game.Overlay.prototype.update=function(){
@@ -286,6 +293,7 @@ game.ToolButton = function(x,y,width,height,bgString,title,toolStats, tabString,
     this.textArray=[];
     game.Button.call(this,x,y,width,height,_background);
     this.toolStats=toolStats;
+    this.costStats=this.toolStats;
     this.costPPText=new game.TextNumber(this,300,55,"0","bold 28pt lucida console ","white",6,"#5f3c0f",this.toolStats.costPP);
     this.costPPText.visible=this.visible;
     this.costCultText=new game.TextNumber(this,450,55,"0","bold 28pt lucida console ","white",6,"#5f3c0f",this.toolStats.costCult);
@@ -307,7 +315,8 @@ game.ToolButton.prototype=Object.create(game.Button.prototype);
 game.ToolButton.prototype.constructor=game.ToolButton;
 
 game.ToolButton.prototype.update=function(context){
-    if(this.hovered && this.visible){
+    this.overlay.update();
+    if(this.hovered && this.tab.tabVisible){
         this.overlay.setVisible(true);}
     else{
         this.overlay.setVisible(false);
@@ -397,9 +406,10 @@ game.UpgradeButton.prototype.onClick = function() {
         //Costs are stored as floats, but are used and displayed as ints
         game.playerStats.prayerPoints.number-=Math.floor(this.costStats.costPP.number);
         game.playerStats.cultists.number-=Math.floor(this.costStats.costCult.number);
-        this.toolStats.prodRateCult.number*=1.2;
-        this.toolStats.prodRatePris.number*=1.2;
-        this.toolStats.prodRateExec.number*=1.2;
+        this.toolStats.prodRateCult.number*=1.5;
+        this.toolStats.prodRatePris.number*=1.5;
+        this.toolStats.prodRateExec.number*=1.5;
+        this.costStats.costPP.number*=100;
         //destroy this/make it invisible forever
         this.setVisible(false);
         this.negBackground.setVisible(true);
@@ -408,10 +418,10 @@ game.UpgradeButton.prototype.onClick = function() {
 }
 
 game.UpgradeButton.prototype.update=function(context){
-    if(this.hovered && this.visible){
+    this.overlay.update();
+    if(this.hovered && this.tab.tabVisible){
         this.overlay.setVisible(true);
-    }
-    else{
+    } else{
         this.overlay.setVisible(false);
     }
     
@@ -513,7 +523,6 @@ game.SpriteClimber.prototype.update=function() {
     }
     if(this.y<300) {
         this.destroy=true;
-        console.log("destroy");
     }
 }
 
@@ -630,6 +639,57 @@ game.Tab.prototype.setTabVisible=function(visible){
     }
 }
 
+//An Achievement is a popup that has a trigger method checkCondition()
+//Each update, checkCondition is checked
+//if it is met, the Achievement pops up, then destroys itself
+game.Achievement=function(x,y,imgSrc,text) {
+    this.x=x;
+    this.y=y;
+    this.ySpeed=-20;
+    this.minY=900;
+    this.width=300;
+    this.height=60;
+    this.background=new game.Background(x,y,this.width,this.height,"img/description.png");
+    this.achievementIcon=new game.Background(x+5,y+5,50,50,imgSrc);
+    this.text=text;
+    this.textObject=new game.Text(this.background,60,10,this.text,"bold 20pt lucida console ","white",6,"#5f3c0f")
+    this.active=false;
+    this.activeFrames=0;
+    this.maxActiveFrames=240;
+    this.destroy=false;
+}
+
+game.Achievement.prototype.update=function() {
+    this.background.update();
+    this.achievementIcon.update();
+    this.active=this.checkCondition();
+    if(this.active) {
+        this.setVisible(true);
+        this.activeFrames++;
+        if(this.activeFrames>=this.maxActiveFrames) {
+            this.destroy=true;
+        }
+        if(this.y>this.minY) {
+            this.y+=this.ySpeed/60;
+        }
+    } else {
+        this.setVisible(false);
+    }
+}
+
+game.Achievement.prototype.setVisible=function(visible) {
+    this.background.setVisible(visible);
+    this.achievementIcon.setVisible(visible);
+}
+
+game.Achievement.prototype.render=function(context) {
+    if(this.active) {
+        this.background.render(context);
+        this.achievementIcon.render(context);
+    }
+}
+
+
 window.requestAnimFrame = (function(callback) {
     return window.requestAnimationFrame     || 
         window.webkitRequestAnimationFrame  || 
@@ -700,6 +760,7 @@ game.update=function() {
         realExecutionRate=captureRate;
     }
     
+    game.playerStats.totalExecuted.number+=realExecutionRate/60;
     game.playerStats.prodRatePris.number=captureRate-realExecutionRate;
     
     //check sun happiness
@@ -728,6 +789,9 @@ game.update=function() {
         
     //apply cultist rate
     game.playerStats.cultists.number+=game.playerStats.prodRateCult.number/60;
+    if (game.playerStats.cultists.number>game.playerStats.totalCultists.number){
+        game.playerStats.totalCultists.number=game.playerStats.cultists.number;
+    }
     
     //apply prisoner rate
     game.playerStats.prisoners.number+=game.playerStats.prodRatePris.number/60;
@@ -736,12 +800,95 @@ game.update=function() {
     }
     
     //apply PP rate
-    game.playerStats.prayerPoints.number+=realExecutionRate/60*game.playerStats.ppMultiplier.number*sunMultiplier;    
+   game.playerStats.totalPrayerPoints.number+=realExecutionRate/60*game.playerStats.ppMultiplier.number*sunMultiplier;  game.playerStats.prayerPoints.number+=realExecutionRate/60*game.playerStats.ppMultiplier.number*sunMultiplier;    
+    
+    //check all achievements
+    for(var x=0;x<game.achievements.length;x++) {
+        game.achievements[x].update();
+    }
+    //check all achievements for destroy
+    var y=game.achievements.length-1;
+    while(y>=0) {
+        if(game.achievements[y].destroy) {
+            game.achievements[y].setVisible(false);
+            game.achievements.splice(y,1);
+        }
+        y--;
+    }
     
     //render all objects in order
     for(var x=0;x<game.backgrounds.length;x++) {
         game.backgrounds[x].render(game.context);
     }
+    
+    //render dynamic sprites(backgrounds since they are static) on panels
+    var yLocs=[267,384,500,617,734,849,964];
+    var convNames=['book','soapbox','speaker','podium','camcorder','computer','laptop'];
+    var convStats=[game.playerStats.bookStats,game.playerStats.soapboxStats,game.playerStats.speakerStats,
+game.playerStats.podiumStats,
+game.playerStats.camcorderStats,
+game.playerStats.computerStats,
+game.playerStats.laptopStats];
+    var convWidths=[29,50,51,43,47,75,60];
+    var convHeights=[53,82,78,50,69,67,63];
+    
+    var capNames=['net','lasso','trapdoor','van','invasion','phaser','cloning'];
+    var capStats=[game.playerStats.netStats,
+game.playerStats.lassoStats,
+game.playerStats.trapdoorStats,
+game.playerStats.vanStats,
+game.playerStats.invasionStats,
+game.playerStats.phaserStats,
+game.playerStats.cloningStats];
+    var capWidths=[55,63,54,85,50,40,44];
+    var capHeights=[65,66,33,55,66,72,82];
+
+        var execStats=[game.playerStats.knifeStats,
+game.playerStats.cleaverStats,
+game.playerStats.axeStats,
+game.playerStats.bladeStats,
+game.playerStats.guillotineStats,
+game.playerStats.sawStats,
+game.playerStats.lightsaberStats];
+    var execNames=['knife','cleaver','axe','blade','guillotine','saw','lightsaber'];
+    var execWidths=[63,69,93,108,107,57,54];
+    var execHeights=[70,73,73,108,99,73,74];
+    
+    if(game.conversionTab.tabVisible) {
+        for(var x=0;x<yLocs.length;x++) {
+            var numIter=Math.min(15,convStats[x].numTools.number);
+            for(var y=game.numConvSprites[x];y<numIter;y++) {
+                var tempSprite=new game.Sprite(646+y*41,yLocs[x]+20*(y%2),convWidths[x],convHeights[x],0,0,"img/conversion_panel_icons/panel_"+convNames[x]+"_person"+(y%3+1)+".png");
+                tempSprite.setVisible(true);
+                this.sprites.unshift(tempSprite);
+                this.conversionObjects.push(tempSprite);
+                game.numConvSprites[x]+=1;
+            }
+        }
+    } else if(game.captureTab.tabVisible) {
+        for(var x=0;x<yLocs.length;x++) {
+            var numIter=Math.min(15,capStats[x].numTools.number);
+            for(var y=game.numCapSprites[x];y<numIter;y++) {
+                var tempSprite=new game.Sprite(646+y*41,yLocs[x]+20*(y%2),capWidths[x],capHeights[x],0,0,"img/capture_panel_icons/panel_capture_"+capNames[x]+"_person"+(y%3+1)+".png");
+                tempSprite.setVisible(true);
+                this.sprites.unshift(tempSprite);
+                this.captureObjects.push(tempSprite);
+                game.numCapSprites[x]+=1;
+            }
+        }
+    } else if(game.executionTab.tabVisible) {
+        for(var x=0;x<yLocs.length;x++) {
+            var numIter=Math.min(15,execStats[x].numTools.number);
+            for(var y=game.numExecSprites[x];y<numIter;y++) {
+                var tempSprite=new game.Sprite(646+y*41,yLocs[x]+20*(y%2),execWidths[x],execHeights[x],0,0,"img/execution_panel_icons/panel_execution_"+execNames[x]+"_person"+(y%3+1)+".png");
+                tempSprite.setVisible(true);
+                this.sprites.unshift(tempSprite);
+                this.executionObjects.push(tempSprite);
+                game.numExecSprites[x]+=1;
+            }
+        }
+    }
+    
     
     for(var x=0;x<game.buttons.length;x++) {
         game.buttons[x].render(game.context);
@@ -756,7 +903,6 @@ game.update=function() {
     game.context.drawImage(game.sun.img,game.sun.x,game.sun.y,game.sun.img.width,game.sun.img.height);
     
     //update and render sprites last for performance
-    
     for(var x=0;x<game.sprites.length;x++) {
         game.sprites[x].update();
     }
@@ -781,18 +927,40 @@ game.update=function() {
         game.sprites[x].render(game.context);
     }
     
+    //render all achievements(if active)
+    for(var x=0;x<game.achievements.length;x++) {
+        game.achievements[x].render(this.context);
+    }
+    
     for (var x=0; x<game.overlays.length; x++){
         game.overlays[x].render(game.context);
     }
     
+    //update and render lava
+    game.lava.update();
+    game.lava.render(game.context);
+    
+    //update and render stat tracker panel
+    game.trackerPanel.update();
+    game.trackerPanel.render(game.context);
+    game.cultistsIcon.render(game.context);
+    game.prayerPointsIcon.render(game.context);
+    game.prisonersIcon.render(game.context);
+    
     //spawn climbers
+    game.climberFrames+=1;
     game.climberCount+=realExecutionRate/60;
     if(game.climberCount>=1) {
-        game.climberCount-=1;
-        var newClimber=new game.SpriteClimber(1750+30*Math.random(),800+30*Math.random(),136,328,-50,-100,"climb_strip16.png",16,0.33,game.climberColors[Math.floor(game.climberColors.length*Math.random())]);
-        newClimber.setVisible(true);
-        game.sprites.splice(game.sprites.length-3,0,newClimber);
-    }
+        if(game.climberFrames>=game.maxClimberFrames) {
+            game.climberFrames-=game.maxClimberFrames;
+            game.climberCount-=1;
+            var newClimber=new game.SpriteClimber(1750+30*Math.random(),800+30*Math.random(),136,328,-50,-100,"climb_strip16.png",16,0.33,game.climberColors[Math.floor(game.climberColors.length*Math.random())]);
+            newClimber.setVisible(true);
+            game.sprites.splice(game.sprites.length-3,0,newClimber);
+        }
+    }   
+    
+    game.playerStats.time = game.startTime-(new Date()).getTime();
     
     // request new frame
      requestAnimFrame(function() {

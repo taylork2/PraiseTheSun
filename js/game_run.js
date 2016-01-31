@@ -34,19 +34,9 @@ game.canvas.addEventListener("mouseup", function(e) {
     game.context.mouse.clicked = false;
 });
 
-var myRectangle = {
-x: 0,
-y: 75,
-width: 100,
-height: 50,
-borderWidth: 5
-};
-
-//drawRectangle(myRectangle, context);
-
 // wait one second before starting animation
 setTimeout(function() {
-    var startTime = (new Date()).getTime();
+    game.startTime = (new Date()).getTime();
     //animate(myRectangle, canvas, context, startTime);
     
     //This function is the main tick for the game
