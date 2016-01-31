@@ -262,10 +262,7 @@ game.backgrounds.push(game.captureHeader);
 
 //These will be all the capture buttons
 //order of capture net, lasso, trapdoor, van, invasion, phaser, cloning 
-//var buttonCaptureNet=new game.ToolButton(0,267,580,98,"img/capture_tool_icons/capture_net.png","",game.playerStats.netStats);
-//buttonCaptureNet.setVisible(true);
-//game.buttons.push(buttonCaptureNet);
-//game.captureToolButtons.push(buttonCaptureNet);
+
 //
 //var buttonCaptureLasso=new game.ToolButton(0,384,580,98,"img/capture_tool_icons/capture_lasso.png","",game.playerStats.lassoStats);
 //buttonCaptureLasso.setVisible(true);
@@ -298,14 +295,20 @@ game.backgrounds.push(game.captureHeader);
 //game.captureToolButtons.push(buttonCaptureCloning);
 
 game.captureObjects=[];
-for(var x=0;x<game.captureToolButtons.length;x++) {
-    game.captureObjects.push(game.captureToolButtons[x]);
-}
 game.captureObjects.push(game.captureHeader);
 
 game.captureTab=new game.Tab(840,137,113,108,"img/tab_buttons/capture_button.png",game.captureObjects);
 game.captureTab.setVisible(true);
 game.tabs.push(game.captureTab);
+
+var buttonCaptureNet=new game.ToolButton(0,267,580,98,"net","",game.playerStats.netStats, "capture", game.captureTab);
+buttonCaptureNet.setVisible(true);
+game.buttons.push(buttonCaptureNet);
+game.captureToolButtons.push(buttonCaptureNet);
+
+for(var x=0;x<game.captureToolButtons.length;x++) {
+    game.captureObjects.push(game.captureToolButtons[x]);
+}
 
 //These are all the capture upgrade buttons
 var buttonCaptureUpgradeNet=new game.UpgradeButton(-1,150,85,98,"net",game.playerStats.bookUpgradeCosts,game.playerStats.booksStats, "capture", 1, game.captureTab);
@@ -354,10 +357,7 @@ game.backgrounds.push(game.executionHeader);
 
 //These will be all the execution buttons
 //knife, cleavr, ax, blade, gui, saw, light
-//var buttonExecutionKnife=new game.ToolButton(0,267,580,98,"img/execution_tool_icons/execution_knife.png","",game.playerStats.knifeStats);
-//buttonExecutionKnife.setVisible(true);
-//game.buttons.push(buttonExecutionKnife);
-//game.executionToolButtons.push(buttonExecutionKnife);
+
 //
 //var buttonExecutionCleaver=new game.ToolButton(0,384,580,98,"img/execution_tool_icons/execution_cleaver.png","",game.playerStats.cleaversStats);
 //buttonExecutionCleaver.setVisible(true);
@@ -390,14 +390,20 @@ game.backgrounds.push(game.executionHeader);
 //game.executionToolButtons.push(buttonExecutionLightsaber);
 
 game.executionObjects=[];
-for(var x=0;x<game.executionToolButtons.length;x++) {
-    game.executionObjects.push(game.executionToolButtons[x]);
-}
 game.executionObjects.push(game.executionHeader);
 
 game.executionTab=new game.Tab(999,137,113,108,"img/tab_buttons/execution_button.png",game.executionObjects);
 game.executionTab.setVisible(true);
 game.tabs.push(game.executionTab);
+
+var buttonExecutionKnife=new game.ToolButton(0,267,580,98,"knife","",game.playerStats.knifeStats, "execution", game.executionTab);
+buttonExecutionKnife.setVisible(true);
+game.buttons.push(buttonExecutionKnife);
+game.executionToolButtons.push(buttonExecutionKnife);
+
+for(var x=0;x<game.executionToolButtons.length;x++) {
+    game.executionObjects.push(game.executionToolButtons[x]);
+}
 
 //These are all the execution upgrade buttons
 var buttonExecutionUpgradeKnife=new game.UpgradeButton(-1,150,85,98,"knife",game.playerStats.bookUpgradeCosts,game.playerStats.booksStats, "execution", 1, game.executionTab);
