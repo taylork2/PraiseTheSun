@@ -57,12 +57,12 @@ game.CostStats=function(costPP,costCult) {
 }
 
 game.ToolStats=function(costPP,costCult,prodRateCult,prodRatePris,prodRateExec,numTools) {
-    this.costPP=costPP;
-    this.costCult=costCult;
-    this.prodRatePris=prodRatePris;
-    this.prodRateCult=prodRateCult;
-    this.prodRateExec=prodRateExec;
-    this.numTools=numTools;
+    this.costPP=new game.StatNumber(costPP);
+    this.costCult=new game.StatNumber(costCult);
+    this.prodRatePris=new game.StatNumber(prodRatePris);
+    this.prodRateCult=new game.StatNumber(prodRateCult);
+    this.prodRateExec=new game.StatNumber(prodRateExec);
+    this.numTools=new game.StatNumber(numTools);
 }
 
 //Text objects are offset from a Background and go on top of it
@@ -159,6 +159,8 @@ game.Button.prototype.updateStats=function(context){
         this.hovered = true;
         if (context.mouse.down) {
             this.clicked = true;
+        } else {
+            this.clicked = false;
         }
     } else {
         this.hovered = false;
@@ -225,8 +227,8 @@ game.ToolButton.prototype.onClick = function() {
         game.playerStats.prayerPoints.number-=Math.floor(this.toolStats.costPP.number);
         game.playerStats.cultists.number-=Math.floor(this.toolStats.costCult.number);
         //Update the costs by a scaling factor
-        this.toolStats.costPP.number*=1.05;
-        this.toolStats.costCult.number*=1.05;
+        this.toolStats.costPP.number*=game.playerStats.costPPMultiplier.number;
+        this.toolStats.costCult.number*=game.playerStats.costCultMultiplier.number;
     }
 }
 
@@ -282,7 +284,6 @@ game.Tab=function(x,y,width,height,background,gameObjects) {
     this.tabVisible=false;
 }
 
-
 game.Tab.prototype=Object.create(game.Button.prototype);
 game.Tab.prototype.constructor=game.Tab;
 
@@ -293,15 +294,13 @@ game.Tab.prototype.onClick=function() {
         game.tabs[x].setTabVisible(false);
     }
     this.setTabVisible(true);
-    
 }
 
 game.Tab.prototype.setTabVisible=function(visible){
     this.tabVisible=visible;
-    
     //turn on this tab
     for(var x=0;x<this.gameObjects.length;x++) {
-        this.gameObjects[x].visible=this.tabVisible;
+        this.gameObjects[x].setVisible(visible);
     }
 }
 
@@ -337,6 +336,10 @@ game.update=function() {
 
     for(var x=0;x<game.backgrounds.length;x++) {
         game.backgrounds[x].update(game.context);
+    }
+    
+    for(var x=0;x<game.tabs.length;x++) {
+        game.tabs[x].update(game.context);
     }
     
     //update all stats
