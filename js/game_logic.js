@@ -1,12 +1,20 @@
 //PlayerStats is an array that holds all of the player's statistics
 game.playerStats=[];
 //Initialize all values
-game.playerStats.prayerPoints=new game.StatNumber(5000000000000000000000000);
-game.playerStats.cultists=new game.StatNumber(50000000000000000);
-game.playerStats.prisoners=new game.StatNumber(5000000000000000);
+var INITIAL_PRAYERPOINTS = 500;
+var INITIAL_CULTISTS = 500;
+var INITIAL_PRISONERS = 500;
+
+game.playerStats.prayerPoints=new game.StatNumber(INITIAL_PRAYERPOINTS);
+game.playerStats.cultists=new game.StatNumber(INITIAL_CULTISTS);
+game.playerStats.prisoners=new game.StatNumber(INITIAL_PRISONERS);
 game.playerStats.prodRateCult=new game.StatNumber(0);
 game.playerStats.prodRatePris=new game.StatNumber(0);
 game.playerStats.prodRateExec=new game.StatNumber(0);
+
+game.playerStats.totalPrayerPoints=new game.StatNumber(INITIAL_PRAYERPOINTS);
+game.playerStats.totalCultists=new game.StatNumber(INITIAL_CULTISTS);
+game.playerStats.totalPrisoners =new game.StatNumber(INITIAL_PRISONERS);
 
 game.playerStats.ppMultiplier=new game.StatNumber(4);
 game.playerStats.costPPMultiplier=new game.StatNumber(1.1);

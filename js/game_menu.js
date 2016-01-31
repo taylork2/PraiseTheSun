@@ -390,8 +390,19 @@ game.statHeader=new game.Background(0,0,584,126,"img/headers/execution.png");
 game.statHeader.setVisible(true);
 game.backgrounds.push(game.statHeader);
 
+game.statPPText=new game.Text(game.masterBackground,657,300,"Total Coin: ","bold 24pt lucida console ","white",6,"#5f3c0f");
+game.statPPNum=new game.TextNumber(game.masterBackground,900,300,"0","bold 24pt lucida console ","white",6,"#5f3c0f",game.playerStats.totalPrayerPoints);
+
+game.statCultistsText=new game.Text(game.masterBackground,657,420,"Total Followers: ","bold 24pt lucida console ","white",6,"#5f3c0f");
+game.statCultistsNum=new game.TextNumber(game.masterBackground,1000,420,"0","bold 24pt lucida console ","white",6,"#5f3c0f",game.playerStats.totalCultists);
+
+
 game.statObjects=[];
 game.statObjects.push(game.statHeader);
+game.statObjects.push(game.statPPText);
+game.statObjects.push(game.statPPNum);
+game.statObjects.push(game.statCultistsText);
+game.statObjects.push(game.statCultistsNum);
 
 game.statTab=new game.Tab(1150,137,113,108,"img/tab_buttons/stat_button.png",game.statObjects);
 game.statTab.setVisible(true);

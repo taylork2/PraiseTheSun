@@ -187,7 +187,7 @@ game.Overlay=function(button, width, height, x_offset, y_offset){
     this.x_offset=x_offset;
     this.y_offset=y_offset;
     this.background = new game.Background(this.button.x+x_offset, this.button.y+y_offset, this.width, this.height, "img/description.png");
-    this.description=new game.TextWrap(this.background,25,55,this.button.description,"bold 20pt lucida console ","white",3,"#5f3c0f",470,28);
+    this.description=new game.TextWrap(this.background,25,55,this.button.description,"bold 18pt lucida console ","white",3,"#5f3c0f",470,28);
     this.coin = new game.Background(this.button.x+x_offset+20, this.button.y+y_offset+12, 37, 37, "img/coin.png");
     this.costPP=new game.TextNumber(this.background,65,15,"0","bold 28pt lucida console ","white",6,"#5f3c0f",this.button.toolStats.costPP);
     
@@ -737,6 +737,7 @@ game.update=function() {
         
     //apply cultist rate
     game.playerStats.cultists.number+=game.playerStats.prodRateCult.number/60;
+    game.playerStats.totalCultists.number+=game.playerStats.prodRateCult.number/60;
     
     //apply prisoner rate
     game.playerStats.prisoners.number+=game.playerStats.prodRatePris.number/60;
@@ -745,7 +746,7 @@ game.update=function() {
     }
     
     //apply PP rate
-    game.playerStats.prayerPoints.number+=realExecutionRate/60*game.playerStats.ppMultiplier.number*sunMultiplier;    
+   game.playerStats.totalPrayerPoints.number+=realExecutionRate/60*game.playerStats.ppMultiplier.number*sunMultiplier;  game.playerStats.prayerPoints.number+=realExecutionRate/60*game.playerStats.ppMultiplier.number*sunMultiplier;    
     
     //render all objects in order
     for(var x=0;x<game.backgrounds.length;x++) {
