@@ -305,8 +305,6 @@ game.Sprite.prototype.render = function(context) {
     if(this.visible) {
         context.drawImage(this.img,
                   this.x, this.y,
-                  this.width, this.height,
-                  0, 0,
                   this.width, this.height);
     }
 }
@@ -318,9 +316,14 @@ game.Sprite.prototype.update=function() {
     this.y+=this.yspeed/60;
 }
 
+game.Sprite.prototype.setVisible=function(visible) {
+    this.visible=visible;
+}
+
 //A hardcoded sprite of a climber that is animated 
-game.SpriteClimber=function(x,y,width,height,xspeed,yspeed,imgSrc,maxIndex) {
-    game.Sprite.call(this,x,y,width,height,xspeed,yspeed,imgSrc);
+game.SpriteClimber=function(x,y,width,height,xspeed,yspeed,imgSrc,maxIndex,imgScale,color) {
+    //sprite image urls start with their color
+    game.Sprite.call(this,x,y,width,height,xspeed,yspeed,"img/sprites/"+color+imgSrc);
     //keep track of the current image index
     this.imageIndex=0;
     this.maxIndex=maxIndex;
@@ -328,6 +331,8 @@ game.SpriteClimber=function(x,y,width,height,xspeed,yspeed,imgSrc,maxIndex) {
     this.numFrames=0;
     //this.maxFramesSame=game.maxFramesSame;
     this.maxFramesSame=2;
+    this.imgScale=imgScale;
+    this.color=color;
 }
 
 game.SpriteClimber.prototype=Object.create(game.Sprite.prototype);
@@ -345,6 +350,10 @@ game.SpriteClimber.prototype.update=function() {
         //reset the same frame counter
         this.numFrames-=this.maxFramesSame;
     }
+    if(this.y<300) {
+        this.destroy=true;
+        console.log("destroy");
+    }
 }
 
 game.SpriteClimber.prototype.render = function(context) {
@@ -355,12 +364,58 @@ game.SpriteClimber.prototype.render = function(context) {
                   this.width*this.imageIndex, 0,
                   this.width, this.height,
                   this.x, this.y,
-                  this.width, this.height);
+                  this.width*this.imgScale, this.height*this.imgScale);
     }
 }
 
-game.SpriteClimber.prototype.setVisible=function(visible) {
-    this.visible=visible;
+game.SpriteClimber.prototype.onDestroy=function() {
+    var head=new game.SpriteHead(1500,300,135,135,0,20,"head.png",1,this.color);
+    head.setVisible(true);
+    game.sprites.unshift(head); //behind the cloud
+}
+
+game.SpriteHead=function(x,y,width,height,xspeed,yspeed,imgSrc,rotationSpd,color) {
+    game.Sprite.call(this,x,y,width,height,xspeed,yspeed,"img/sprites/"+color+imgSrc);
+    this.rotationSpd=rotationSpd;
+    this.rotationAngle=0;
+    this.color=color;
+}
+
+game.SpriteHead.prototype=Object.create(game.Sprite.prototype);
+game.SpriteHead.prototype.constructor=game.SpriteHead;
+
+game.SpriteHead.prototype.update=function() {
+    game.Sprite.prototype.update.call(this);
+    this.rotationAngle+=this.rotationSpd/60;
+}
+
+game.SpriteHead.prototype.render=function(context) {
+    context.save();
+    context.rotate(this.rotationAngle);
+    game.Sprite.prototype.render.call(this,context);
+    context.restore();
+}
+
+game.SpriteCloud=function(x,y,width,height,xspeed,yspeed,imgSrc) {
+    game.Sprite.call(this,x,y,width,height,xspeed,yspeed,imgSrc);
+    this.numFrames=0;
+    this.maxFrames=30;
+    this.position=0;
+    this.direction=1;
+}
+
+game.SpriteCloud.prototype=Object.create(game.Sprite.prototype);
+game.SpriteCloud.prototype.constructor=game.SpriteCloud;
+
+//SpriteClouds just bob, up and down by 1 pixel
+game.SpriteCloud.prototype.update=function() {
+    this.numFrames+=1;
+    if(this.numFrames>=this.maxFrames) {
+        this.numFrames-=this.maxFrames;
+        this.y-=this.position;
+        this.position=1-this.position;
+        this.y+=this.position;
+    }
 }
 
 //A Scrollbar is a Background with another movable Background on top of it
@@ -477,6 +532,20 @@ game.update=function() {
             sunMultiplier=0.5;
         }
     } 
+    //update the mood of the sun
+    if(sunMultiplier==1.5) {
+        game.sun.mood="happy";
+    } else {
+        if(sunMultiplier>0.75) {
+            game.sun.mood="normal";
+        } else {
+            if(sunMultiplier>0.5) {
+                game.sun.mood="sad";
+            } else {
+                game.sun.mood="angry";
+            }
+        }
+    }
         
     //apply cultist rate
     game.playerStats.cultists.number+=game.playerStats.prodRateCult.number/60;
@@ -503,6 +572,10 @@ game.update=function() {
         game.tabs[x].render(game.context);
     }
     
+    //render the sun
+    game.sun.img.src=game.sun.imgSrc+game.sun.mood+".png";
+    game.context.drawImage(game.sun.img,game.sun.x,game.sun.y,game.sun.img.width,game.sun.img.height);
+    
     //update and render sprites last for performance
     
     for(var x=0;x<game.sprites.length;x++) {
@@ -514,8 +587,8 @@ game.update=function() {
     while(x>=0) {
         if(game.sprites[x].destroy) {
             game.sprites[x].onDestroy();
-            game.sprites.splice(x,1);
-        }
+            game.sprites.splice(x+1,1);
+        } 
         x--;
     }
     

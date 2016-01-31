@@ -45,6 +45,14 @@ game.playerStats.camcorderUpgradeCosts=new game.CostStats(100,0);
 game.playerStats.computerUpgradeCosts=new game.CostStats(100,0);
 game.playerStats.laptopUpgradeCosts=new game.CostStats(100,0);
 
+//Controls the mood of the sun
+game.sun=[];
+game.sun.mood="happy";
+game.sun.x=1672;
+game.sun.y=80;
+game.sun.img=new Image();
+game.sun.imgSrc="img/sun_moods/sun_";
+
 //These are the reference resolutions for all images
 //Images are drawn scaled based on these
 game.nativeResolution=[];
@@ -75,11 +83,13 @@ game.tabs=[];
 //This array holds all of the sprites
 game.sprites=[];
 
-game.testSprite=new game.SpriteClimber(500,500,136,328,1,1,"img/sprites/blueclimb_strip16.png",16);
+game.testSprite=new game.SpriteClimber(1750,800,136,328,-50,-100,"climb_strip16.png",16,0.33,"blue");
 game.testSprite.setVisible(true);
 game.sprites.push(game.testSprite);
 
-
+game.cloud=new game.SpriteCloud(1330,230,400,300,0,0,"img/cloud.png");
+game.cloud.setVisible(true);
+game.sprites.push(game.cloud);
 
 //This master background is behind everything
 //It holds objects that will always appear on the screen
