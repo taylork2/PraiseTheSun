@@ -204,7 +204,8 @@ game.Button.prototype.setVisible=function(visible) {
 //Now we're getting into the game logic
 //A ToolButton is a type of Button that represents a Tool
 //Tools, when purchased, affect the rate of production
-//It has a Background(as per its superclass), Numbers that represent the cost
+//It has a Background(as per its superclass)
+//toolStats holds the cost and rate of production of the tool, as well as the number
 game.ToolButton = function(x,y,width,height,bgString,title,toolStats, tabString, tab) {
     var _background = "img/" + tabString + "_tool_icons/" + tabString + "_" + bgString + ".png";
     game.Button.call(this,x,y,width,height,_background);
@@ -220,8 +221,8 @@ game.ToolButton = function(x,y,width,height,bgString,title,toolStats, tabString,
     this.bgString=bgString;
     this.tabString=tabString;
     this.tab=tab;
-    var negBgSrc=_background.substring(0,_background.length-4)+"_negative.png";
-    this.negBackground=new game.Background(x,y,width,height,negBgSrc);
+    this.negBgSrc=_background.substring(0,_background.length-4)+"_negative.png";
+    this.negBackground=new game.Background(this.x,this.y,this.width,this.height,this.negBgSrc);
 }
 
 game.ToolButton.prototype=Object.create(game.Button.prototype);
@@ -232,9 +233,7 @@ game.ToolButton.prototype.update=function(context){
         this.negBackground.setVisible(true);
     }
     game.Button.prototype.update.call(this,context);
-    if (this.disabled &&  game.playerStats.prayerPoints.number>this.toolStats.costPP.number && game.playerStats.cultists.number>this.toolStats.costCult.number){
-        this.disabled=false;
-
+    if (game.playerStats.prayerPoints.number>this.toolStats.costPP.number || game.playerStats.cultists.number>this.toolStats.costCult.number){
         if (this.tab.tabVisible){
             this.setVisible(true);
             this.negBackground.setVisible(false);
