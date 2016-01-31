@@ -516,7 +516,11 @@ game.update=function() {
         game.tabs[x].update(game.context);
     }
     
-    
+    //update Upgrade buttons
+    if(game.playerStats.booksStats.numTools.number==1){
+        buttonConversionUpgradeBook.num=2;
+        buttonConversionUpgradeBook.setVisible(true);
+    }
     
     //update Upgrade buttons
     if(game.playerStats.booksStats.numTools.number==1){
