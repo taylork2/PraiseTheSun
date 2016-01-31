@@ -173,10 +173,10 @@ buttonConversionUpgradeSoapbox.setVisible(true);
 game.buttons.push(buttonConversionUpgradeSoapbox);
 game.conversionUpgradeButtons.push(buttonConversionUpgradeSoapbox);
 
-//var buttonConversionUpgradeSpeaker=new game.UpgradeButton(165,150,85,98,"speaker",game.playerStats.speakerUpgradeCosts,game.playerStats.speakerStats, "conversion", 1, game.conversionTab);
-//buttonConversionUpgradeSpeaker.setVisible(true);
-//game.buttons.push(buttonConversionUpgradeSpeaker);
-//game.conversionUpgradeButtons.push(buttonConversionUpgradeSpeaker);
+var buttonConversionUpgradeSpeaker=new game.UpgradeButton(165,150,85,98,"speaker",game.playerStats.speakerUpgradeCosts,game.playerStats.speakerStats, "conversion", 1, game.conversionTab,"upgrade");
+buttonConversionUpgradeSpeaker.setVisible(true);
+game.buttons.push(buttonConversionUpgradeSpeaker);
+game.conversionUpgradeButtons.push(buttonConversionUpgradeSpeaker);
 
 var buttonConversionUpgradePodium=new game.UpgradeButton(247,150,85,98,"podium",game.playerStats.podiumUpgradeCosts,game.playerStats.podiumStats, "conversion", 1, game.conversionTab, "hello my name is taylor and and something labh");
 buttonConversionUpgradePodium.setVisible(true);

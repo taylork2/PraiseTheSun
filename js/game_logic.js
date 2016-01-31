@@ -1,9 +1,9 @@
 //PlayerStats is an array that holds all of the player's statistics
 game.playerStats=[];
 //Initialize all values
-game.playerStats.prayerPoints=new game.StatNumber(50);
-game.playerStats.cultists=new game.StatNumber(5);
-game.playerStats.prisoners=new game.StatNumber(5);
+game.playerStats.prayerPoints=new game.StatNumber(5000000000000);
+game.playerStats.cultists=new game.StatNumber(50000000000000000);
+game.playerStats.prisoners=new game.StatNumber(5000000000000000);
 game.playerStats.prodRateCult=new game.StatNumber(0);
 game.playerStats.prodRatePris=new game.StatNumber(0);
 game.playerStats.prodRateExec=new game.StatNumber(0);
