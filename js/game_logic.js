@@ -1,7 +1,7 @@
 //PlayerStats is an array that holds all of the player's statistics
 game.playerStats=[];
 //Initialize all values
-game.playerStats.prayerPoints=new game.StatNumber(5000000000000);
+game.playerStats.prayerPoints=new game.StatNumber(5000000000000000000000000);
 game.playerStats.cultists=new game.StatNumber(50000000000000000);
 game.playerStats.prisoners=new game.StatNumber(5000000000000000);
 game.playerStats.prodRateCult=new game.StatNumber(0);
@@ -30,11 +30,11 @@ game.playerStats.cloningStats=new game.ToolStats(10000000,1,0,1000000,0,0);
 
 game.playerStats.knifeStats=new game.ToolStats(10,1,0,0,1,0);
 game.playerStats.cleaversStats=new game.ToolStats(100,1,0,0,10,0);
-game.playerStats.axeStats=new game.ToolStats(100,1,0,0,100,0);
-game.playerStats.bladeStats=new game.ToolStats(1000,1,0,0,1000,0);
-game.playerStats.guillotineStats=new game.ToolStats(10000,1,0,0,10000,0);
-game.playerStats.sawStats=new game.ToolStats(100000,1,0,0,100000,0);
-game.playerStats.lightsaberStats=new game.ToolStats(1000000,1,0,0,1000000,0);
+game.playerStats.axeStats=new game.ToolStats(1000,1,0,0,100,0);
+game.playerStats.bladeStats=new game.ToolStats(10000,1,0,0,1000,0);
+game.playerStats.guillotineStats=new game.ToolStats(100000,1,0,0,10000,0);
+game.playerStats.sawStats=new game.ToolStats(1000000,1,0,0,100000,0);
+game.playerStats.lightsaberStats=new game.ToolStats(10000000,1,0,0,1000000,0);
 
 //These are the upgrade stats
 game.playerStats.bookUpgradeCosts=new game.CostStats(100,0);
