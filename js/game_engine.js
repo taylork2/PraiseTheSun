@@ -798,6 +798,15 @@ game.update=function() {
     for(var x=0;x<game.achievements.length;x++) {
         game.achievements[x].update();
     }
+    //check all achievements for destroy
+    var y=game.achievements.length-1;
+    while(y>=0) {
+        if(game.achievements[y].destroy) {
+            game.achievements[y].setVisible(false);
+            game.achievements.splice(y,1);
+        }
+        y--;
+    }
     
     //render all objects in order
     for(var x=0;x<game.backgrounds.length;x++) {
@@ -822,7 +831,6 @@ game.update=function() {
     game.context.drawImage(game.sun.img,game.sun.x,game.sun.y,game.sun.img.width,game.sun.img.height);
     
     //update and render sprites last for performance
-    
     for(var x=0;x<game.sprites.length;x++) {
         game.sprites[x].update();
     }
