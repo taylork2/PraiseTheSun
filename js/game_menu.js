@@ -502,3 +502,7 @@ game.conversionTab.setTabVisible(true);
 game.captureTab.setTabVisible(false);
 game.executionTab.setTabVisible(false);
 game.statTab.setTabVisible(false);
+
+game.titleHeader=new game.Background(650,0,644,141,"img/logo.png");
+game.titleHeader.setVisible(true);
+game.backgrounds.push(game.titleHeader);
