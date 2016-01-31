@@ -1,9 +1,9 @@
 //PlayerStats is an array that holds all of the player's statistics
 game.playerStats=[];
 //Initialize all values
-game.playerStats.prayerPoints=new game.StatNumber(100);
-game.playerStats.cultists=new game.StatNumber(4);
-game.playerStats.prisoners=new game.StatNumber(1);
+game.playerStats.prayerPoints=new game.StatNumber(50);
+game.playerStats.cultists=new game.StatNumber(5);
+game.playerStats.prisoners=new game.StatNumber(5);
 game.playerStats.prodRateCult=new game.StatNumber(0);
 game.playerStats.prodRatePris=new game.StatNumber(0);
 game.playerStats.prodRateExec=new game.StatNumber(0);
@@ -12,38 +12,38 @@ game.playerStats.ppMultiplier=new game.StatNumber(4);
 game.playerStats.costPPMultiplier=new game.StatNumber(1.1);
 game.playerStats.costCultMultiplier=new game.StatNumber(1.1);
 
-game.playerStats.booksStats=new game.ToolStats(10,1,1,0,0,0);
-game.playerStats.soapboxStats=new game.ToolStats(10,1,1,0,0,0);
-game.playerStats.speakerStats=new game.ToolStats(10,1,1,0,0,0);
-game.playerStats.podiumStats=new game.ToolStats(10,1,1,0,0,0);
-game.playerStats.camcorderStats=new game.ToolStats(10,1,1,0,0,0);
-game.playerStats.computerStats=new game.ToolStats(10,1,1,0,0,0);
-game.playerStats.laptopStats=new game.ToolStats(10,1,1,0,0,0);
+game.playerStats.booksStats=new game.ToolStats(10,1,.1,0,0,0);
+game.playerStats.soapboxStats=new game.ToolStats(100,1,1,0,0,0);
+game.playerStats.speakerStats=new game.ToolStats(1000,1,10,0,0,0);
+game.playerStats.podiumStats=new game.ToolStats(10000,1,100,0,0,0);
+game.playerStats.camcorderStats=new game.ToolStats(100000,1,1000,0,0,0);
+game.playerStats.computerStats=new game.ToolStats(1000000,1,10000,0,0,0);
+game.playerStats.laptopStats=new game.ToolStats(10000000,1,100000,0,0,0);
 
 game.playerStats.netStats=new game.ToolStats(10,1,0,1,0,0);
-game.playerStats.lassoStats=new game.ToolStats(10,1,0,1,0,0);
-game.playerStats.trapdoorStats=new game.ToolStats(10,1,0,1,0,0);
-game.playerStats.vanStats=new game.ToolStats(10,1,0,1,0,0);
-game.playerStats.invasionStats=new game.ToolStats(10,1,0,1,0,0);
-game.playerStats.phaserStats=new game.ToolStats(10,1,0,1,0,0);
-game.playerStats.cloningStats=new game.ToolStats(10,1,0,1,0,0);
+game.playerStats.lassoStats=new game.ToolStats(100,1,0,10,0,0);
+game.playerStats.trapdoorStats=new game.ToolStats(1000,1,0,100,0,0);
+game.playerStats.vanStats=new game.ToolStats(10000,1,0,1000,0,0);
+game.playerStats.invasionStats=new game.ToolStats(100000,1,0,10000,0,0);
+game.playerStats.phaserStats=new game.ToolStats(1000000,1,0,100000,0,0);
+game.playerStats.cloningStats=new game.ToolStats(10000000,1,0,1000000,0,0);
 
 game.playerStats.knifeStats=new game.ToolStats(10,1,0,0,1,0);
-game.playerStats.cleaversStats=new game.ToolStats(10,1,0,0,1,0);
-game.playerStats.axeStats=new game.ToolStats(10,1,0,0,1,0);
-game.playerStats.bladeStats=new game.ToolStats(10,1,0,0,1,0);
-game.playerStats.guillotineStats=new game.ToolStats(10,1,0,0,1,0);
-game.playerStats.sawStats=new game.ToolStats(10,1,0,0,1,0);
-game.playerStats.lightsaberStats=new game.ToolStats(10,1,0,0,1,0);
+game.playerStats.cleaversStats=new game.ToolStats(100,1,0,0,10,0);
+game.playerStats.axeStats=new game.ToolStats(100,1,0,0,100,0);
+game.playerStats.bladeStats=new game.ToolStats(1000,1,0,0,1000,0);
+game.playerStats.guillotineStats=new game.ToolStats(10000,1,0,0,10000,0);
+game.playerStats.sawStats=new game.ToolStats(100000,1,0,0,100000,0);
+game.playerStats.lightsaberStats=new game.ToolStats(1000000,1,0,0,1000000,0);
 
 //These are the upgrade stats
 game.playerStats.bookUpgradeCosts=new game.CostStats(100,0);
-game.playerStats.soapboxUpgradeCosts=new game.CostStats(100,0);
-game.playerStats.speakerUpgradeCosts=new game.CostStats(100,0);
-game.playerStats.podiumUpgradeCosts=new game.CostStats(100,0);
-game.playerStats.camcorderUpgradeCosts=new game.CostStats(100,0);
-game.playerStats.computerUpgradeCosts=new game.CostStats(100,0);
-game.playerStats.laptopUpgradeCosts=new game.CostStats(100,0);
+game.playerStats.soapboxUpgradeCosts=new game.CostStats(10000,0);
+game.playerStats.speakerUpgradeCosts=new game.CostStats(1000000,0);
+game.playerStats.podiumUpgradeCosts=new game.CostStats(1000000,0);
+game.playerStats.camcorderUpgradeCosts=new game.CostStats(100000000,0);
+game.playerStats.computerUpgradeCosts=new game.CostStats(1000000000000,0);
+game.playerStats.laptopUpgradeCosts=new game.CostStats(100000000000000,0);
 
 //Controls the mood of the sun
 game.sun=[];
@@ -90,14 +90,19 @@ game.tabs=[];
 //This array holds all of the sprites
 game.sprites=[];
 
+//This array holds all of the overlays, so they will be drawn last on top of everything
+game.overlays=[];
+
 game.cloud=new game.SpriteCloud(1330,230,400,300,0,0,"img/cloud.png",30,1);
 game.cloud.setVisible(true);
 game.sprites.push(game.cloud);
 
 //In retrospect, bobbing up and down is more useful than it seemed at first
-game.lava=new game.SpriteCloud(1370,740,100,110,0,0,"img/sprites/lava.png",125,5);
+game.lava=new game.SpriteCloud(1369,740,104,110,0,0,"img/sprites/lava.png",125,5);
 game.lava.setVisible(true);
 game.sprites.push(game.lava);
+
+
 
 //controls the spawning of climbers
 game.climberCount=0;
@@ -132,6 +137,10 @@ game.backgrounds.push(game.prisonersIcon);
 //unshift to put panel behind tracker icons
 game.trackerPanel.setVisible(true);
 game.backgrounds.unshift(game.trackerPanel);
+
+game.lavaBackground=new game.Background(1369,840,104,400,"img/sprites/lava2.png");
+game.lavaBackground.setVisible(true);
+game.backgrounds.unshift(game.lavaBackground);
 
 game.mountainBackground=new game.Background(1470,395,452,690,"img/volcano_mountain.png");
 game.mountainBackground.setVisible(true);
