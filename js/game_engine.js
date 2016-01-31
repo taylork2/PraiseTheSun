@@ -711,7 +711,6 @@ game.update=function() {
     game.playerStats.totalExecuted.number+=realExecutionRate/60;
     game.playerStats.prodRatePris.number=captureRate-realExecutionRate;
     
-    game.playerStats.statExecutionRate.number=executionRate;
     //check sun happiness
     var sunMultiplier=1.5;//normally bonus
     if(realExecutionRate<0.75*Math.max(executionRate,captureRate)) {
