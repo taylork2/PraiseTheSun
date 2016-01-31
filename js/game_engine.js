@@ -237,13 +237,18 @@ game.ToolButton.prototype.onClick = function() {
 //An UpgradeButton has an effect on some game system
 //Typically, this will be increasing the effectiveness of a Tool
 //UpgradeButtons are smaller squares that have no text
-game.UpgradeButton=function(x,y,width,height,background,costStats,toolStats,negBackground) {
+game.UpgradeButton=function(x,y,width,height,background,costStats,toolStats, tab, num) {
+    var background = "img/" + tab + "_upgrades/upgrade_" + background + num.toString() + ".png";
+    console.log(background);
     game.Button.call(this,x,y,width,height,background);
+    console.log(this.background);
     this.costStats=costStats;
     this.toolStats=toolStats;
     this.disabled=false;
-    this.negBackground=new game.Background(x,y,width,height,negBackground);
+    var negBgSrc=background.substring(0,background.length-4)+"_negative.png";
+    this.negBackground=new game.Background(x,y,width,height,negBgSrc);
     this.negBackground.setVisible(true);
+    this.num=num;
 }
 
 game.UpgradeButton.prototype=Object.create(game.Button.prototype);
@@ -507,6 +512,12 @@ game.update=function() {
     
     for(var x=0;x<game.tabs.length;x++) {
         game.tabs[x].update(game.context);
+    }
+    
+    //update Upgrade buttons
+    if(game.playerStats.booksStats.numTools.number==1){
+        buttonConversionUpgradeBook.num=2;
+        buttonConversionUpgradeBook.setVisible(true);
     }
     
     //update all stats

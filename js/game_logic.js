@@ -1,7 +1,7 @@
 //PlayerStats is an array that holds all of the player's statistics
 game.playerStats=[];
 //Initialize all values
-game.playerStats.prayerPoints=new game.StatNumber(100000);
+game.playerStats.prayerPoints=new game.StatNumber(1000);
 game.playerStats.cultists=new game.StatNumber(4);
 game.playerStats.prisoners=new game.StatNumber(1);
 game.playerStats.prodRateCult=new game.StatNumber(0);
@@ -140,7 +140,7 @@ game.conversionHeader.setVisible(true);
 game.backgrounds.push(game.conversionHeader);
 
 //These are all the upgrade buttons
-var buttonConversionUpgradeBook=new game.UpgradeButton(-1,150,85,98,"img/conversion_upgrades/upgrade_book1.png",game.playerStats.bookUpgradeCosts,game.playerStats.booksStats, "img/conversion_upgrades/upgrade_book1_negative.png");
+var buttonConversionUpgradeBook=new game.UpgradeButton(-1,150,85,98,"book",game.playerStats.bookUpgradeCosts,game.playerStats.booksStats, "conversion", 1);
 buttonConversionUpgradeBook.setVisible(true);
 game.buttons.push(buttonConversionUpgradeBook);
 game.conversionUpgradeButtons.push(buttonConversionUpgradeBook);
@@ -347,6 +347,16 @@ game.conversionTab.setTabVisible(true);
 game.captureTab.setTabVisible(false);
 game.executionTab.setTabVisible(false);
 game.statTab.setTabVisible(false);
+
+//All upgrade buttons
+game.upgradeButtons=[];
+for(var x=0;x<game.conversionUpgradeButtons.length;x++){
+    game.upgradeButtons.push(game.conversionUpgradeButtons[x]);
+}
+
+//for (int x=0;x<captureUpgradeButtons.length;x++){
+//    upgradeButtons.push(captureUpgradeButtons[x]);
+//}
 
 function button1Click(){
 	b1+=1;
