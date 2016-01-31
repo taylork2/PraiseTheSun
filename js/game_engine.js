@@ -822,13 +822,43 @@ game.update=function() {
     //render dynamic sprites(backgrounds since they are static) on panels
     var yLocs=[267,384,500,617,734,849,964];
     var convNames=['book','soapbox','speaker','podium','camcorder','computer','laptop'];
+    var convStats=[game.playerStats.booksStats,game.playerStats.soapboxStats,game.playerStats.speakerStats,
+game.playerStats.podiumStats,
+game.playerStats.camcorderStats,
+game.playerStats.computerStats,
+game.playerStats.laptopStats];
+    var convWidths=[29,50,51,43,47,75,60];
+    var convHeights=[53,82,78,50,69,67,63];
     var capNames=['net','lasso','trapdoor','van','invasion','phaser','cloning'];
+    var capStats=[game.playerStats.netStats,
+game.playerStats.lassoStats,
+game.playerStats.trapdoorStats,
+game.playerStats.vanStats,
+game.playerStats.invasionStats,
+game.playerStats.phaserStats,
+game.playerStats.cloningStats];
+
+        var execStats=[game.playerStats.knifeStats,
+game.playerStats.cleaversStats,
+game.playerStats.axeStats,
+game.playerStats.bladeStats,
+game.playerStats.guillotineStats,
+game.playerStats.sawStats,
+game.playerStats.lightsaberStats];
     var execNames=['knife','cleaver','axe','blade','guillotine','saw','lightsaber'];
-    if(game.conversionTab.tabVisible) {
-        for(var x=0;
+    
+    /*if(game.conversionTab.tabVisible) {
+        for(var x=0;x<yLocs.length;x++) {
+            var numIter=Math.min(15,convStats[x].numTools);
+            for(var x=0;x<numIter;x++) {
+                var tempSprite=new game.Sprite(646+x*40,yLocs[x]+50*(x%2),convWidths[x],convHeights[x],0,0,"img/conversion_panel_icons/panel_"+convNames[x]+"_person"+(numIter%3+1)+".png");
+                tempSprite.setVisible(true);
+                this.sprites.push(tempSprite);
+            }
+        }
     } else if(game.conversionTab.tabVisible) {
     } else if(game.executionTab.tabVisible) {
-    }
+    }*/
     
     
     for(var x=0;x<game.buttons.length;x++) {
