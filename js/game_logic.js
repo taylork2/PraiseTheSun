@@ -22,7 +22,7 @@ game.playerStats.ppMultiplier=new game.StatNumber(4);
 game.playerStats.costPPMultiplier=new game.StatNumber(1.1);
 game.playerStats.costCultMultiplier=new game.StatNumber(1.1);
 
-game.playerStats.booksStats=new game.ToolStats(10,1,.1,0,0,0);
+game.playerStats.bookStats=new game.ToolStats(10,1,.1,0,0,0);
 game.playerStats.soapboxStats=new game.ToolStats(100,1,1,0,0,0);
 game.playerStats.speakerStats=new game.ToolStats(1000,1,10,0,0,0);
 game.playerStats.podiumStats=new game.ToolStats(10000,1,100,0,0,0);
@@ -39,7 +39,7 @@ game.playerStats.phaserStats=new game.ToolStats(1000000,1,0,100000,0,0);
 game.playerStats.cloningStats=new game.ToolStats(10000000,1,0,1000000,0,0);
 
 game.playerStats.knifeStats=new game.ToolStats(10,1,0,0,1,0);
-game.playerStats.cleaversStats=new game.ToolStats(100,1,0,0,10,0);
+game.playerStats.cleaverStats=new game.ToolStats(100,1,0,0,10,0);
 game.playerStats.axeStats=new game.ToolStats(1000,1,0,0,100,0);
 game.playerStats.bladeStats=new game.ToolStats(10000,1,0,0,1000,0);
 game.playerStats.guillotineStats=new game.ToolStats(100000,1,0,0,10000,0);

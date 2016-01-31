@@ -824,7 +824,7 @@ game.update=function() {
     //render dynamic sprites(backgrounds since they are static) on panels
     var yLocs=[267,384,500,617,734,849,964];
     var convNames=['book','soapbox','speaker','podium','camcorder','computer','laptop'];
-    var convStats=[game.playerStats.booksStats,game.playerStats.soapboxStats,game.playerStats.speakerStats,
+    var convStats=[game.playerStats.bookStats,game.playerStats.soapboxStats,game.playerStats.speakerStats,
 game.playerStats.podiumStats,
 game.playerStats.camcorderStats,
 game.playerStats.computerStats,
@@ -844,7 +844,7 @@ game.playerStats.cloningStats];
     var capHeights=[65,66,33,55,66,72,82];
 
         var execStats=[game.playerStats.knifeStats,
-game.playerStats.cleaversStats,
+game.playerStats.cleaverStats,
 game.playerStats.axeStats,
 game.playerStats.bladeStats,
 game.playerStats.guillotineStats,
