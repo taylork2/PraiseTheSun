@@ -48,10 +48,17 @@ game.playerStats.laptopUpgradeCosts=new game.CostStats(100,0);
 //Controls the mood of the sun
 game.sun=[];
 game.sun.mood="happy";
-game.sun.x=1672;
-game.sun.y=80;
+game.sun.x=1650;
+game.sun.y=58;
 game.sun.img=new Image();
-game.sun.imgSrc="img/sun_moods/sun_";
+game.sun.nextImg=new Image();
+game.sun.imgSrc="img/sunny/sun_";
+game.sun.imgIndex=0;
+game.sun.maxIndex=4;
+game.sun.frameCount=0;
+game.sun.maxFrames=80;
+game.sun.img.src=game.sun.imgSrc+game.sun.mood+game.sun.imgIndex+".png";
+game.sun.nextImg.src=game.sun.imgSrc+game.sun.mood+(game.sun.imgIndex+1)+".png";
 
 //These are the reference resolutions for all images
 //Images are drawn scaled based on these
@@ -98,9 +105,7 @@ game.climberColors=["red","blue","gold"];
 
 //This master background is behind everything
 //It holds objects that will always appear on the screen
-game.masterBackground=new game.Background(0,0,1920,1080,"img/example.png");
-
-
+game.masterBackground=new game.Background(0,0,1920,1080,"img/background.png");
 
 //Create the tracker area at the bottom right
 game.trackerPanel=new game.Background(1365,935,554,119,"img/money.png");
@@ -127,6 +132,10 @@ game.backgrounds.push(game.prisonersIcon);
 //unshift to put panel behind tracker icons
 game.trackerPanel.setVisible(true);
 game.backgrounds.unshift(game.trackerPanel);
+
+game.mountainBackground=new game.Background(1470,395,452,690,"img/volcano_mountain.png");
+game.mountainBackground.setVisible(true);
+game.backgrounds.unshift(game.mountainBackground);
 
 game.masterBackground.setVisible(true);
 //unshift puts the master background to the front of the list
@@ -210,6 +219,22 @@ var buttonConversionLaptop=new game.ToolButton(0,964,580,98,"img/conversion_tool
 buttonConversionLaptop.setVisible(true);
 game.buttons.push(buttonConversionLaptop);
 game.conversionToolButtons.push(buttonConversionLaptop);
+
+var panelLine=new game.Background(-73,250,648,17,"img/panel_line.png");
+panelLine.setVisible(true);
+game.backgrounds.push(panelLine);
+
+panelLine=new game.Background(-73,365,648,17,"img/panel_line.png");
+panelLine.setVisible(true);
+game.backgrounds.push(panelLine);
+
+panelLine=new game.Background(-73,481,648,17,"img/panel_line.png");
+panelLine.setVisible(true);
+game.backgrounds.push(panelLine);
+
+panelLine=new game.Background(-73,481,648,17,"img/panel_line.png");
+panelLine.setVisible(true);
+game.backgrounds.push(panelLine);
 
 game.conversionObjects=[];
 for(var x=0;x<game.conversionToolButtons.length;x++) {

@@ -501,6 +501,8 @@ game.update=function() {
     //clear the screen
     game.context.clearRect(0, 0, game.canvas.width, game.canvas.height);
     
+    
+    
     //update all objects to reflect the new game state
     for(var x=0;x<game.buttons.length;x++) {
         game.buttons[x].update(game.context);
@@ -513,6 +515,8 @@ game.update=function() {
     for(var x=0;x<game.tabs.length;x++) {
         game.tabs[x].update(game.context);
     }
+    
+    
     
     //update Upgrade buttons
     if(game.playerStats.booksStats.numTools.number==1){
@@ -590,6 +594,22 @@ game.update=function() {
     //apply PP rate
     game.playerStats.prayerPoints.number+=realExecutionRate/60*game.playerStats.ppMultiplier.number*sunMultiplier;    
     
+    //update the sun
+    
+    game.sun.frameCount++;
+    if(game.sun.frameCount>=game.sun.maxFrames) {
+        game.sun.frameCount-=game.sun.maxFrames;
+        game.sun.imgIndex+=1;
+        if(game.sun.imgIndex>=game.sun.maxIndex) {
+            game.sun.imgIndex-=game.sun.maxIndex;
+        }
+        game.sun.img=game.sun.nextImg;
+        game.sun.nextImg=new Image();
+        game.sun.nextImg.src=game.sun.imgSrc+game.sun.mood+game.sun.imgIndex+".png";
+    }
+    
+    //render the sun
+    
     //render all objects in order
     for(var x=0;x<game.backgrounds.length;x++) {
         game.backgrounds[x].render(game.context);
@@ -602,10 +622,7 @@ game.update=function() {
     for(var x=0;x<game.tabs.length;x++) {
         game.tabs[x].render(game.context);
     }
-    
-    //render the sun
-    game.sun.img.src=game.sun.imgSrc+game.sun.mood+".png";
-    game.context.drawImage(game.sun.img,game.sun.x,game.sun.y,game.sun.img.width,game.sun.img.height);
+        game.context.drawImage(game.sun.img,game.sun.x,game.sun.y,game.sun.img.width,game.sun.img.height);
     
     //update and render sprites last for performance
     
