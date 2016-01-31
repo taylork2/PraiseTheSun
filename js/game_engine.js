@@ -208,16 +208,17 @@ game.Button.prototype.setVisible=function(visible) {
 //toolStats holds the cost and rate of production of the tool, as well as the number
 game.ToolButton = function(x,y,width,height,bgString,title,toolStats, tabString, tab) {
     var _background = "img/" + tabString + "_tool_icons/" + tabString + "_" + bgString + ".png";
+    this.textArray=[];
     game.Button.call(this,x,y,width,height,_background);
     this.toolStats=toolStats;
-    this.costPPText=new game.TextNumber(this.background,300,55,"0","bold 28pt lucida console ","white",6,"#5f3c0f",this.toolStats.costPP);
+    this.costPPText=new game.TextNumber(this,300,55,"0","bold 28pt lucida console ","white",6,"#5f3c0f",this.toolStats.costPP);
     this.costPPText.visible=this.visible;
-    this.costCultText=new game.TextNumber(this.background,450,55,"0","bold 28pt lucida console ","white",6,"#5f3c0f",this.toolStats.costCult);
+    this.costCultText=new game.TextNumber(this,450,55,"0","bold 28pt lucida console ","white",6,"#5f3c0f",this.toolStats.costCult);
     this.costCultText.visible=this.visible;
-    this.numToolsText=new game.TextNumber(this.background,150,55,"0","bold 28pt lucida console ","white",6,"#5f3c0f",this.toolStats.numTools);
+    this.numToolsText=new game.TextNumber(this,150,55,"0","bold 28pt lucida console ","white",6,"#5f3c0f",this.toolStats.numTools);
     this.numToolsText.visible=this.visible;
     this.title=title;
-    this.titleText=new game.Text(this.background,150,5,this.title,"bold 30pt lucida console ","white",6,"#5f3c0f");
+    this.titleText=new game.Text(this,150,5,this.title,"bold 30pt lucida console ","white",6,"#5f3c0f");
     this.bgString=bgString;
     this.tabString=tabString;
     this.tab=tab;
@@ -238,18 +239,24 @@ game.ToolButton.prototype.update=function(context){
     
     if(this.tab.tabVisible) {
         if (game.playerStats.prayerPoints.number>this.toolStats.costPP.number && game.playerStats.cultists.number>this.toolStats.costCult.number){
-            this.setVisible(true);
+            this.background.setVisible(true);
             this.negBackground.setVisible(false);
         } else {
-            this.setVisible(false);
+            this.background.setVisible(false);
             this.negBackground.setVisible(true);
         }
+    }
+    for(var x=0;x<this.textArray.length;x++) {
+        this.textArray[x].update();
     }
 }
 
 game.ToolButton.prototype.render=function(context){
     this.negBackground.render(context);
     game.Button.prototype.render.call(this, context);
+    for(var x=0;x<this.textArray.length;x++) {
+        this.textArray[x].render(context);
+    }
 }
 
 //When clicked, a ToolButton will buy one more of that tool, provided the cost is appropriate
@@ -262,6 +269,13 @@ game.ToolButton.prototype.onClick = function() {
         //Update the costs by a scaling factor
         this.toolStats.costPP.number*=game.playerStats.costPPMultiplier.number;
         this.toolStats.costCult.number*=game.playerStats.costCultMultiplier.number;
+    }
+}
+
+game.ToolButton.prototype.setVisible=function(visible) {
+    game.Button.prototype.setVisible.call(this,visible);
+    for(var x=0;x<this.textArray.length;x++) {
+        this.textArray[x].setVisible(visible);
     }
 }
 
