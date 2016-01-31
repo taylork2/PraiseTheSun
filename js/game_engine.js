@@ -829,6 +829,7 @@ game.playerStats.computerStats,
 game.playerStats.laptopStats];
     var convWidths=[29,50,51,43,47,75,60];
     var convHeights=[53,82,78,50,69,67,63];
+    
     var capNames=['net','lasso','trapdoor','van','invasion','phaser','cloning'];
     var capStats=[game.playerStats.netStats,
 game.playerStats.lassoStats,
@@ -837,6 +838,8 @@ game.playerStats.vanStats,
 game.playerStats.invasionStats,
 game.playerStats.phaserStats,
 game.playerStats.cloningStats];
+    var capWidths=[55,63,54,85,50,40,44];
+    var capHeights=[65,66,33,55,66,72,82];
 
         var execStats=[game.playerStats.knifeStats,
 game.playerStats.cleaversStats,
@@ -846,19 +849,43 @@ game.playerStats.guillotineStats,
 game.playerStats.sawStats,
 game.playerStats.lightsaberStats];
     var execNames=['knife','cleaver','axe','blade','guillotine','saw','lightsaber'];
+    var execWidths=[63,69,93,108,107,57,54];
+    var execHeights=[70,73,73,108,99,73,74];
     
-    /*if(game.conversionTab.tabVisible) {
+    if(game.conversionTab.tabVisible) {
         for(var x=0;x<yLocs.length;x++) {
-            var numIter=Math.min(15,convStats[x].numTools);
-            for(var x=0;x<numIter;x++) {
-                var tempSprite=new game.Sprite(646+x*40,yLocs[x]+50*(x%2),convWidths[x],convHeights[x],0,0,"img/conversion_panel_icons/panel_"+convNames[x]+"_person"+(numIter%3+1)+".png");
+            var numIter=Math.min(15,convStats[x].numTools.number);
+            for(var y=game.numConvSprites[x];y<numIter;y++) {
+                var tempSprite=new game.Sprite(646+y*41,yLocs[x]+20*(y%2),convWidths[x],convHeights[x],0,0,"img/conversion_panel_icons/panel_"+convNames[x]+"_person"+(y%3+1)+".png");
                 tempSprite.setVisible(true);
-                this.sprites.push(tempSprite);
+                this.sprites.unshift(tempSprite);
+                this.conversionObjects.push(tempSprite);
+                game.numConvSprites[x]+=1;
             }
         }
-    } else if(game.conversionTab.tabVisible) {
+    } else if(game.captureTab.tabVisible) {
+        for(var x=0;x<yLocs.length;x++) {
+            var numIter=Math.min(15,capStats[x].numTools.number);
+            for(var y=game.numCapSprites[x];y<numIter;y++) {
+                var tempSprite=new game.Sprite(646+y*41,yLocs[x]+20*(y%2),capWidths[x],capHeights[x],0,0,"img/capture_panel_icons/panel_capture_"+capNames[x]+"_person"+(y%3+1)+".png");
+                tempSprite.setVisible(true);
+                this.sprites.unshift(tempSprite);
+                this.captureObjects.push(tempSprite);
+                game.numCapSprites[x]+=1;
+            }
+        }
     } else if(game.executionTab.tabVisible) {
-    }*/
+        for(var x=0;x<yLocs.length;x++) {
+            var numIter=Math.min(15,execStats[x].numTools.number);
+            for(var y=game.numExecSprites[x];y<numIter;y++) {
+                var tempSprite=new game.Sprite(646+y*41,yLocs[x]+20*(y%2),execWidths[x],execHeights[x],0,0,"img/execution_panel_icons/panel_execution_"+execNames[x]+"_person"+(y%3+1)+".png");
+                tempSprite.setVisible(true);
+                this.sprites.unshift(tempSprite);
+                this.executionObjects.push(tempSprite);
+                game.numExecSprites[x]+=1;
+            }
+        }
+    }
     
     
     for(var x=0;x<game.buttons.length;x++) {

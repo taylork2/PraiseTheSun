@@ -55,6 +55,10 @@ game.playerStats.camcorderUpgradeCosts=new game.CostStats(100000000,0);
 game.playerStats.computerUpgradeCosts=new game.CostStats(1000000000000,0);
 game.playerStats.laptopUpgradeCosts=new game.CostStats(100000000000000,0);
 
+game.numConvSprites=[0,0,0,0,0,0,0];
+game.numCapSprites=[0,0,0,0,0,0,0];
+game.numExecSprites=[0,0,0,0,0,0,0];
+
 //Controls the mood of the sun
 game.sun=[];
 game.sun.mood="happy";

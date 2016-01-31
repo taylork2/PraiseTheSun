@@ -225,7 +225,7 @@ buttonCaptureLasso.setVisible(true);
 game.buttons.push(buttonCaptureLasso);
 game.captureToolButtons.push(buttonCaptureLasso);
 
-var buttonCaptureTrapdoor=new game.ToolButton(0,500,580,98,"trapdoor","",game.playerStats.trapdoorStats,"capture",game.captureTab,"Also makes for good flowerpots");
+var buttonCaptureTrapdoor=new game.ToolButton(0,500,580,98,"trapdoor","",game.playerStats.trapdoorStats,"capture",game.captureTab,"Also can be used for flowerpots, and that weird stand thing in front of bars.");
 buttonCaptureTrapdoor.setVisible(true);
 game.buttons.push(buttonCaptureTrapdoor);
 game.captureToolButtons.push(buttonCaptureTrapdoor);
