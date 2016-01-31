@@ -299,6 +299,7 @@ game.Sprite=function(x,y,width,height,xspeed,yspeed,imgSrc) {
     this.img.src=this.imgSrc;
     this.destroy=false;
     this.visible=false;
+    this.spriteCreated=false;
 }
 
 game.Sprite.prototype.render = function(context) {
@@ -333,6 +334,7 @@ game.SpriteClimber=function(x,y,width,height,xspeed,yspeed,imgSrc,maxIndex,imgSc
     this.maxFramesSame=2;
     this.imgScale=imgScale;
     this.color=color;
+    this.spriteCreated=true;
 }
 
 game.SpriteClimber.prototype=Object.create(game.Sprite.prototype);
@@ -369,7 +371,7 @@ game.SpriteClimber.prototype.render = function(context) {
 }
 
 game.SpriteClimber.prototype.onDestroy=function() {
-    var head=new game.SpriteHead(1500,300,135,135,0,20,"head.png",1,this.color);
+    var head=new game.SpriteHead(1405+40*Math.random(),350,135,135,0,30,"head.png",1.2+.5*Math.random(),this.color);
     head.setVisible(true);
     game.sprites.unshift(head); //behind the cloud
 }
@@ -379,6 +381,8 @@ game.SpriteHead=function(x,y,width,height,xspeed,yspeed,imgSrc,rotationSpd,color
     this.rotationSpd=rotationSpd;
     this.rotationAngle=0;
     this.color=color;
+    this.imgScale=0.33;
+    this.destroy=false;
 }
 
 game.SpriteHead.prototype=Object.create(game.Sprite.prototype);
@@ -387,20 +391,33 @@ game.SpriteHead.prototype.constructor=game.SpriteHead;
 game.SpriteHead.prototype.update=function() {
     game.Sprite.prototype.update.call(this);
     this.rotationAngle+=this.rotationSpd/60;
+    if(this.y>800) {
+        this.destroy=true;
+    }
 }
 
 game.SpriteHead.prototype.render=function(context) {
     context.save();
+    context.translate(this.x,this.y);
     context.rotate(this.rotationAngle);
-    game.Sprite.prototype.render.call(this,context);
+    if(this.visible) {
+        context.drawImage(this.img,
+                  -this.width/2*this.imgScale,-this.height/2*this.imgScale,
+                  this.width*this.imgScale, this.height*this.imgScale);
+    }
     context.restore();
 }
 
-game.SpriteCloud=function(x,y,width,height,xspeed,yspeed,imgSrc) {
+game.SpriteHead.prototype.onDestroy=function() {
+    //pass
+}
+
+game.SpriteCloud=function(x,y,width,height,xspeed,yspeed,imgSrc,maxFrames,maxDisplacement) {
     game.Sprite.call(this,x,y,width,height,xspeed,yspeed,imgSrc);
     this.numFrames=0;
-    this.maxFrames=30;
+    this.maxFrames=maxFrames;
     this.position=0;
+    this.maxDisplacement=maxDisplacement;
     this.direction=1;
 }
 
@@ -413,7 +430,10 @@ game.SpriteCloud.prototype.update=function() {
     if(this.numFrames>=this.maxFrames) {
         this.numFrames-=this.maxFrames;
         this.y-=this.position;
-        this.position=1-this.position;
+        this.position+=this.direction;
+        if(this.position<=0 || this.position>=this.maxDisplacement) {
+            this.direction=-this.direction;
+        }
         this.y+=this.position;
     }
 }
@@ -586,14 +606,29 @@ game.update=function() {
     var x=game.sprites.length-1;
     while(x>=0) {
         if(game.sprites[x].destroy) {
-            game.sprites[x].onDestroy();
-            game.sprites.splice(x+1,1);
+            
+            if(game.sprites[x].spriteCreated) {
+                game.sprites[x].onDestroy();
+                game.sprites.splice(x+1,1);
+            } else {
+                game.sprites[x].onDestroy();
+                game.sprites.splice(x,1);
+            }
         } 
         x--;
     }
     
     for(var x=0;x<game.sprites.length;x++) {
         game.sprites[x].render(game.context);
+    }
+    
+    //spawn climbers
+    game.climberCount+=realExecutionRate/60;
+    if(game.climberCount>=1) {
+        game.climberCount-=1;
+        var newClimber=new game.SpriteClimber(1750+30*Math.random(),800+30*Math.random(),136,328,-50,-100,"climb_strip16.png",16,0.33,game.climberColors[Math.floor(game.climberColors.length*Math.random())]);
+        newClimber.setVisible(true);
+        game.sprites.splice(game.sprites.length-3,0,newClimber);
     }
     
     // request new frame

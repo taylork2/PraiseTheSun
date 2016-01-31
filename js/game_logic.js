@@ -83,13 +83,18 @@ game.tabs=[];
 //This array holds all of the sprites
 game.sprites=[];
 
-game.testSprite=new game.SpriteClimber(1750,800,136,328,-50,-100,"climb_strip16.png",16,0.33,"blue");
-game.testSprite.setVisible(true);
-game.sprites.push(game.testSprite);
-
-game.cloud=new game.SpriteCloud(1330,230,400,300,0,0,"img/cloud.png");
+game.cloud=new game.SpriteCloud(1330,230,400,300,0,0,"img/cloud.png",30,1);
 game.cloud.setVisible(true);
 game.sprites.push(game.cloud);
+
+//In retrospect, bobbing up and down is more useful than it seemed at first
+game.lava=new game.SpriteCloud(1370,740,100,110,0,0,"img/sprites/lava.png",125,5);
+game.lava.setVisible(true);
+game.sprites.push(game.lava);
+
+//controls the spawning of climbers
+game.climberCount=0;
+game.climberColors=["red","blue","gold"];
 
 //This master background is behind everything
 //It holds objects that will always appear on the screen
