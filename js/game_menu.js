@@ -570,7 +570,30 @@ game.a8.checkCondition=function(){
         return true;
     }
 }
-
+game.a9=new game.Achievement(800,1000,"img/achievements/cleaver1.png", "Cleaver1");
+game.a9.checkCondition=function(){
+    if(game.playerStats.cleaversStats.numTools.number > 1){
+        return true;
+    }
+}
+game.a10=new game.Achievement(800,1000,"img/achievements/cleaver2.png", "Cleaver2");
+game.a9.checkCondition=function(){
+    if(game.playerStats.cleaversStats.numTools.number > 10){
+        return true;
+    }
+}
+game.a11=new game.Achievement(800,1000,"img/achievements/cleaver3.png", "Cleaver3");
+game.a11.checkCondition=function(){
+    if(game.playerStats.cleaversStats.numTools.number > 100){
+        return true;
+    }
+}
+game.a12=new game.Achievement(800,1000,"img/achievements/clone1.png", "Clone1");
+game.a12.checkCondition=function(){
+    if(game.playerStats.cloningStats.numTools.number > 1){
+        return true;
+    }
+}
 
 game.achievements.push(game.a1);
 game.achievements.push(game.a2);
