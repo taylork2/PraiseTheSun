@@ -1,9 +1,9 @@
 //PlayerStats is an array that holds all of the player's statistics
 game.playerStats=[];
 //Initialize all values
-game.playerStats.prayerPoints=new game.StatNumber(10000);
-game.playerStats.cultists=new game.StatNumber(1000);
-game.playerStats.prisoners=new game.StatNumber(500);
+game.playerStats.prayerPoints=new game.StatNumber(34600000000000000);
+game.playerStats.cultists=new game.StatNumber(3160478162894712369846);
+game.playerStats.prisoners=new game.StatNumber(132460123806580123);
 game.playerStats.prodRateCult=new game.StatNumber(0);
 game.playerStats.prodRatePris=new game.StatNumber(0);
 game.playerStats.prodRateExec=new game.StatNumber(0);
@@ -64,27 +64,32 @@ game.executionToolButtons.push(test4);
 game.masterBackground=new game.Background(0,0,1920,1080,"img/example.png");
 
 
+
+//Create the tracker area at the bottom right
+game.trackerPanel=new game.Background(1365,935,554,119,"img/money.png");
 //Create the text number tracker for prayerPoints
-game.prayerPointsText=new game.TextNumber(game.masterBackground,1470,980,"0","bold 28pt lucida console ","white",6,"#5f3c0f",game.playerStats.prayerPoints);
+game.prayerPointsText=new game.TextNumber(game.trackerPanel,70,45,"0","bold 24pt lucida console ","white",6,"#5f3c0f",game.playerStats.prayerPoints);
 //Create the icon for prayerPoints
-//game.prayerPointsIcon=new game.Background(1450,1000,37,37,"img/coin.png");
-//game.prayerPointsIcon.setVisible(true);
-//game.backgrounds.push(game.prayerPointsIcon);
+game.prayerPointsIcon=new game.Background(1400,977,37,37,"img/coin.png");
+game.prayerPointsIcon.setVisible(true);
+game.backgrounds.push(game.prayerPointsIcon);
 
 //Create the text number tracker for cultists
-game.cultistsText=new game.TextNumber(game.masterBackground,1650,980,"0","bold 28pt lucida console ","white",6,"#5f3c0f",game.playerStats.cultists);
+game.cultistsText=new game.TextNumber(game.trackerPanel,240,45,"0","bold 24pt lucida console ","white",6,"#5f3c0f",game.playerStats.cultists);
 //Create the icon for cultists
-game.cultistsIcon=new game.Background(1600,980,37,37,"img/happy.png");
+game.cultistsIcon=new game.Background(1566,977,37,37,"img/happy.png");
 game.cultistsIcon.setVisible(true);
 game.backgrounds.push(game.cultistsIcon);
 
 //Create the text number tracker for prisoners
-game.prisonersText=new game.TextNumber(game.masterBackground,1800,980,"0","bold 28pt lucida console ","white",6,"#5f3c0f",game.playerStats.prisoners);
+game.prisonersText=new game.TextNumber(game.trackerPanel,402,45,"0","bold 24pt lucida console ","white",6,"#5f3c0f",game.playerStats.prisoners);
 //Create the icon for prisoners
-game.prisonersIcon=new game.Background(1750,980,37,37,"img/anger.png");
+game.prisonersIcon=new game.Background(1729,977,37,37,"img/anger.png");
 game.prisonersIcon.setVisible(true);
 game.backgrounds.push(game.prisonersIcon);
-
+//unshift to put panel behind tracker icons
+game.trackerPanel.setVisible(true);
+game.backgrounds.unshift(game.trackerPanel);
 
 game.masterBackground.setVisible(true);
 //unshift puts the master background to the front of the list

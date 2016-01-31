@@ -93,7 +93,6 @@ game.Text.prototype.render = function(context) {
         context.lineJoin='round';
         context.miterLimit=2;
 
-
     context.strokeText(this.text,this.background.x+this.x_offset,this.background.y+this.y_offset);           context.fillText(this.text,this.background.x+this.x_offset,this.background.y+this.y_offset);
     }
 }
@@ -113,14 +112,24 @@ game.Text.prototype.setVisible = function(visible) {
 game.TextNumber=function(background,x_offset,y_offset,text,font,fillStyle,lineWidth,strokeStyle,trackedStat) {
                 game.Text.call(this,background,x_offset,y_offset,text,font,fillStyle,lineWidth,strokeStyle); //Numbers are a subclass of Text
     this.trackedStat=trackedStat;
+    this.suffixes=['','k','m','b','t'];
 }
 
 game.TextNumber.prototype=Object.create(game.Text.prototype);
 game.TextNumber.prototype.constructor=game.TextNumber;
 
 game.TextNumber.prototype.update = function(context){
-    
-        this.text=Math.floor(this.trackedStat.number);
+    if(this.trackedStat.number==0) {
+        this.text=this.trackedStat.number;
+    } else{
+        var power=Math.floor(Math.log10(this.trackedStat.number));
+        var order=Math.floor(power/3);
+        if(Math.log10(this.trackedStat.number)<15) {
+            this.text=Math.floor(this.trackedStat.number/Math.pow(10,3*order))+this.suffixes[order];
+        } else {
+            this.text=parseFloat(this.trackedStat.number/Math.pow(10,power)).toFixed(1)+"e"+power;
+        }
+    }
 }
 
 //a Button is a rectangular canvas element that can be clicked
