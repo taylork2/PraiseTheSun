@@ -645,6 +645,7 @@ game.Achievement=function(x,y,width,height,imgSrc,text) {
     this.x=x;
     this.y=y;
     this.ySpeed=-20;
+    this.minY=900;
     this.width=width;
     this.height=height;
     this.background=new game.Background(x,y,width,height,"img/description.png");
@@ -662,11 +663,16 @@ game.Achievement.prototype.update=function() {
     this.achievementIcon.update();
     this.active=this.checkCondition();
     if(this.active) {
+        this.setVisible(true);
         this.activeFrames++;
         if(this.activeFrames>=this.maxActiveFrames) {
             this.destroy=true;
         }
-        this.y+=this.ySpeed/60;
+        if(this.y>this.minY) {
+            this.y+=this.ySpeed/60;
+        }
+    } else {
+        this.setVisible(false);
     }
 }
 
