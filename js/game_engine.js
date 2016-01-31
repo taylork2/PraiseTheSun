@@ -794,6 +794,11 @@ game.update=function() {
     //apply PP rate
    game.playerStats.totalPrayerPoints.number+=realExecutionRate/60*game.playerStats.ppMultiplier.number*sunMultiplier;  game.playerStats.prayerPoints.number+=realExecutionRate/60*game.playerStats.ppMultiplier.number*sunMultiplier;    
     
+    //check all achievements
+    for(var x=0;x<game.achievements.length;x++) {
+        game.achievements[x].update();
+    }
+    
     //render all objects in order
     for(var x=0;x<game.backgrounds.length;x++) {
         game.backgrounds[x].render(game.context);
@@ -840,6 +845,11 @@ game.update=function() {
     
     for(var x=0;x<game.sprites.length;x++) {
         game.sprites[x].render(game.context);
+    }
+    
+    //render all achievements(if active)
+    for(var x=0;x<game.achievements.length;x++) {
+        game.achievements[x].render(this.context);
     }
     
     for (var x=0; x<game.overlays.length; x++){
