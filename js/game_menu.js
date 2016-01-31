@@ -522,6 +522,14 @@ game.captureTab.setTabVisible(false);
 game.executionTab.setTabVisible(false);
 game.statTab.setTabVisible(false);
 
+game.a1=new game.Achievement(0,0,150,38,"img/achievements/angry1.png", "Anger");
+game.a1.setVisible(true);
+game.achievements.push(game.a1);
+
+for (var x=0; x<game.achievements.length; x++){
+    game.backgrounds.push(game.achievements[x]);
+}
+
 game.titleHeader=new game.Background(650,0,644,141,"img/logo.png");
 game.titleHeader.setVisible(true);
 game.backgrounds.push(game.titleHeader);

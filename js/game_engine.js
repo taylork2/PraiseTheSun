@@ -688,6 +688,11 @@ game.Achievement.prototype.render=function(context) {
     }
 }
 
+game.Achievement.prototype.checkCondition=function(){
+    this.active = false;
+    return true;
+}
+
 window.requestAnimFrame = (function(callback) {
     return window.requestAnimationFrame     || 
         window.webkitRequestAnimationFrame  || 
