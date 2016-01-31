@@ -20,6 +20,7 @@ game.context.mouse = {
 game.canvas.addEventListener("mousemove", function(e) {
     game.context.mouse.x = e.offsetX/game.widthScale;
     game.context.mouse.y = e.offsetY/game.heightScale;
+    console.log(game.context.mouse.y);
     game.context.mouse.clicked = (e.which == 1 && !game.context.mouse.down);
     game.context.mouse.down = (e.which == 1);
 });
