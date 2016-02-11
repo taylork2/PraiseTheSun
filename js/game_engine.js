@@ -245,17 +245,24 @@ game.Overlay = function (button, width, height,x,y,produces) {
     this.childObjects.push(this.happy);
     this.costCult = new game.TextNumber(this, 215, 15, "", "bold 28pt lucida console ", "white", 6, "#5f3c0f", this.button.costStats, "costCult");
     if (produces) {
-        this.description = new game.TextWrap(this, 25, 95, this.button.description, "bold 18pt lucida console ", "white", 3, "#5f3c0f", 470, 28);
         this.prodText = new game.Text(this, 25, 62, "Produces:", "bold 18pt lucida console ", "white", 3, "#5f3c0f");
         if (produces == "cult") {
             this.prodIcon = new game.Background(155, 52, 37, 37, this, "img/happy.png");
             this.prodNumber = new game.TextNumber(this, 192, 53, "/s", "bold 28pt lucida console ", "white", 6, "#5f3c0f", this.button.costStats, "prodRateCult");
+            this.description = new game.TextWrap(this, 25, 95, this.button.description, "bold 18pt lucida console ", "white", 3, "#5f3c0f", 470, 28);
         } else if (produces == "pris") {
-            this.prodIcon = new game.Background(155, 52, 37, 37, this, "img/angry.png");
+            this.prodIcon = new game.Background(155, 52, 37, 37, this, "img/anger.png");
             this.prodNumber = new game.TextNumber(this, 192, 53, "/s", "bold 28pt lucida console ", "white", 6, "#5f3c0f", this.button.costStats, "prodRatePris");
+            this.description = new game.TextWrap(this, 25, 95, this.button.description, "bold 18pt lucida console ", "white", 3, "#5f3c0f", 470, 28);
         } else if (produces == "exec") {
             this.prodIcon = new game.Background(155, 52, 37, 37, this, "img/coin.png");
             this.prodNumber = new game.TextNumber(this, 192, 53, "/s", "bold 28pt lucida console ", "white", 6, "#5f3c0f", this.button.costStats, "prodRateExec");
+            this.consText = new game.Text(this, 25, 96, "Consumes:", "bold 18pt lucida console ", "white", 3, "#5f3c0f");
+            this.consIcon = new game.Background(155, 94, 37, 37, this, "img/anger.png");
+            this.consIcon.setVisible(this.visible);
+            this.childObjects.push(this.consIcon);
+            this.consNumber = new game.TextNumber(this, 192, 95, "/s", "bold 28pt lucida console ", "white", 6, "#5f3c0f", this.button.costStats, "prodRateExec");
+            this.description = new game.TextWrap(this, 25, 137, this.button.description, "bold 18pt lucida console ", "white", 3, "#5f3c0f", 470, 28);
         }
         this.childObjects.push(this.prodIcon);
     } else {
@@ -276,6 +283,11 @@ game.Overlay.prototype.render = function (context) {
         this.prodText.render(context);
         this.prodIcon.render(context);
         this.prodNumber.render(context);
+        if (this.consText) {
+            this.consText.render(context);
+            this.consIcon.render(context);
+            this.consNumber.render(context);
+        }
     }
 }
 
