@@ -5,22 +5,22 @@ var INITIAL_PRAYERPOINTS = 50000;
 var INITIAL_CULTISTS = 500;
 var INITIAL_PRISONERS = 10000;
 
-game.playerStats.prayerPoints=new game.StatNumber(INITIAL_PRAYERPOINTS);
-game.playerStats.cultists=new game.StatNumber(INITIAL_CULTISTS);
-game.playerStats.prisoners=new game.StatNumber(INITIAL_PRISONERS);
-game.playerStats.prodRateCult=new game.StatNumber(0);
-game.playerStats.prodRatePris=new game.StatNumber(0);
-game.playerStats.prodRateExec=new game.StatNumber(0);
+game.playerStats.prayerPoints=INITIAL_PRAYERPOINTS;
+game.playerStats.cultists=INITIAL_CULTISTS;
+game.playerStats.prisoners=INITIAL_PRISONERS;
+game.playerStats.prodRateCult=0;
+game.playerStats.prodRatePris=0;
+game.playerStats.prodRateExec=0;
 
-game.playerStats.totalPrayerPoints=new game.StatNumber(INITIAL_PRAYERPOINTS);
-game.playerStats.totalCultists=new game.StatNumber(INITIAL_CULTISTS);
-game.playerStats.totalExecuted =new game.StatNumber(0);
-game.playerStats.statFollowerRate=new game.StatNumber(0);
-game.playerStats.time=new game.StatNumber(0);
+game.playerStats.totalPrayerPoints=INITIAL_PRAYERPOINTS;
+game.playerStats.totalCultists=INITIAL_CULTISTS;
+game.playerStats.totalExecuted =0;
+game.playerStats.statFollowerRate=0;
+game.playerStats.time=0;
 
-game.playerStats.ppMultiplier=new game.StatNumber(4);
-game.playerStats.costPPMultiplier=new game.StatNumber(1.1);
-game.playerStats.costCultMultiplier=new game.StatNumber(1.1);
+game.playerStats.ppMultiplier=4;
+game.playerStats.costPPMultiplier=1.1;
+game.playerStats.costCultMultiplier=1.1;
 
 game.playerStats.bookStats=new game.ToolStats(10,1,.1,0,0,0);
 game.playerStats.soapboxStats=new game.ToolStats(100,1,1,0,0,0);
@@ -53,7 +53,49 @@ game.playerStats.speakerUpgradeCosts=new game.CostStats(1000000,0);
 game.playerStats.podiumUpgradeCosts=new game.CostStats(1000000,0);
 game.playerStats.camcorderUpgradeCosts=new game.CostStats(100000000,0);
 game.playerStats.computerUpgradeCosts=new game.CostStats(1000000000000,0);
-game.playerStats.laptopUpgradeCosts=new game.CostStats(100000000000000,0);
+game.playerStats.laptopUpgradeCosts = new game.CostStats(100000000000000, 0);
+
+game.playerStats.netUpgradeCosts = new game.CostStats(100, 0);
+game.playerStats.lassoUpgradeCosts = new game.CostStats(10000, 0);
+game.playerStats.trapdoorUpgradeCosts = new game.CostStats(1000000, 0);
+game.playerStats.vanUpgradeCosts = new game.CostStats(1000000, 0);
+game.playerStats.invasionUpgradeCosts = new game.CostStats(100000000, 0);
+game.playerStats.phaserUpgradeCosts = new game.CostStats(1000000000000, 0);
+game.playerStats.cloningUpgradeCosts = new game.CostStats(100000000000000, 0);
+
+game.playerStats.knifeUpgradeCosts = new game.CostStats(100, 0);
+game.playerStats.cleaverUpgradeCosts = new game.CostStats(10000, 0);
+game.playerStats.axeUpgradeCosts = new game.CostStats(1000000, 0);
+game.playerStats.bladeUpgradeCosts = new game.CostStats(1000000, 0);
+game.playerStats.guillotineUpgradeCosts = new game.CostStats(100000000, 0);
+game.playerStats.sawUpgradeCosts = new game.CostStats(1000000000000, 0);
+game.playerStats.lightsaberUpgradeCosts = new game.CostStats(100000000000000, 0);
+
+var convNames=['book','soapbox','speaker','podium','camcorder','computer','laptop'];
+    var convStats=[game.playerStats.bookStats, game.playerStats.soapboxStats, game.playerStats.speakerStats,
+game.playerStats.podiumStats,
+game.playerStats.camcorderStats,
+game.playerStats.computerStats,
+game.playerStats.laptopStats];
+
+var capNames=['net','lasso','trapdoor','van','invasion','phaser','cloning'];
+var capStats=[game.playerStats.netStats,
+    game.playerStats.lassoStats,
+    game.playerStats.trapdoorStats,
+    game.playerStats.vanStats,
+    game.playerStats.invasionStats,
+    game.playerStats.phaserStats,
+    game.playerStats.cloningStats];
+
+var execNames=['knife','cleaver','axe','blade','guillotine','saw','lightsaber'];
+var execStats=[game.playerStats.knifeStats,
+    game.playerStats.cleaverStats,
+    game.playerStats.axeStats,
+    game.playerStats.bladeStats,
+    game.playerStats.guillotineStats,
+    game.playerStats.sawStats,
+    game.playerStats.lightsaberStats];
+
 
 game.numConvSprites=[0,0,0,0,0,0,0];
 game.numCapSprites=[0,0,0,0,0,0,0];
@@ -110,12 +152,12 @@ game.overlays=[];
 //This array holds all of the achievements
 game.achievements=[];
 
-game.cloud=new game.SpriteCloud(1330,230,400,300,0,0,"img/cloudkun.png",30,1);
+game.cloud = new game.SpriteCloud(1330, 230, 400, 300, null, 0, 0, "img/cloudkun.png", 30, 1);
 game.cloud.setVisible(true);
 game.sprites.push(game.cloud);
 
 //In retrospect, bobbing up and down is more useful than it seemed at first
-game.lava=new game.SpriteCloud(1369,740,104,337,0,0,"img/lava/volcano_lava.png",125,5);
+game.lava = new game.SpriteCloud(1369, 740, 104, 337, null, 0, 0, "img/lava/volcano_lava.png", 125, 5);
 game.lava.setVisible(true);
 //game.sprites.push(game.lava);
 
@@ -129,39 +171,39 @@ game.climberColors=["red","blue","gold"];
 
 //This master background is behind everything
 //It holds objects that will always appear on the screen
-game.masterBackground=new game.Background(0,0,1920,1080,"img/background.png");
+game.masterBackground=new game.Background(0,0,1920,1080,null,"img/background.png");
 
 //Create the tracker area at the bottom right
-game.trackerPanel=new game.Background(1365,935,554,119,"img/money.png");
+game.trackerPanel=new game.Background(1365,935,554,119,null,"img/money.png");
 //Create the text number tracker for prayerPoints
-game.prayerPointsText=new game.TextNumber(game.trackerPanel,70,45,"0","bold 24pt lucida console ","white",6,"#5f3c0f",game.playerStats.prayerPoints);
+game.prayerPointsText=new game.TextNumber(game.trackerPanel,70,45,"","bold 24pt lucida console ","white",6,"#5f3c0f",game.playerStats,"prayerPoints");
 //Create the icon for prayerPoints
-game.prayerPointsIcon=new game.Background(1400,977,37,37,"img/coin.png");
+game.prayerPointsIcon=new game.Background(1400,977,37,37,null,"img/coin.png");
 game.prayerPointsIcon.setVisible(true);
 //game.backgrounds.push(game.prayerPointsIcon);
 
 //Create the text number tracker for cultists
-game.cultistsText=new game.TextNumber(game.trackerPanel,240,45,"0","bold 24pt lucida console ","white",6,"#5f3c0f",game.playerStats.cultists);
+game.cultistsText=new game.TextNumber(game.trackerPanel,240,45,"","bold 24pt lucida console ","white",6,"#5f3c0f",game.playerStats,"cultists");
 //Create the icon for cultists
-game.cultistsIcon=new game.Background(1566,977,37,37,"img/happy.png");
+game.cultistsIcon=new game.Background(1566,977,37,37,null,"img/happy.png");
 game.cultistsIcon.setVisible(true);
 //game.backgrounds.push(game.cultistsIcon);
 
 //Create the text number tracker for prisoners
-game.prisonersText=new game.TextNumber(game.trackerPanel,402,45,"0","bold 24pt lucida console ","white",6,"#5f3c0f",game.playerStats.prisoners);
+game.prisonersText=new game.TextNumber(game.trackerPanel,402,45,"","bold 24pt lucida console ","white",6,"#5f3c0f",game.playerStats,"prisoners");
 //Create the icon for prisoners
-game.prisonersIcon=new game.Background(1729,977,37,37,"img/anger.png");
+game.prisonersIcon=new game.Background(1729,977,37,37,null,"img/anger.png");
 game.prisonersIcon.setVisible(true);
 //game.backgrounds.push(game.prisonersIcon);
 //unshift to put panel behind tracker icons
 game.trackerPanel.setVisible(true);
 //game.backgrounds.unshift(game.trackerPanel);
 
-game.guard=new game.Background(1850,840,75,140,"img/volcano_guard.png");
+game.guard=new game.Background(1850,840,75,140,null,"img/volcano_guard.png");
 game.guard.setVisible(true);
 game.backgrounds.unshift(game.guard);
 
-game.mountainBackground=new game.Background(1470,395,452,690,"img/volcano_mountain.png");
+game.mountainBackground=new game.Background(1470,395,452,690,null,"img/volcano_mountain.png");
 game.mountainBackground.setVisible(true);
 game.backgrounds.unshift(game.mountainBackground);
 
