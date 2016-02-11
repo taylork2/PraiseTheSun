@@ -163,7 +163,7 @@ game.backgrounds.push(panelLine);
 
 
 //These are all the upgrade buttons
-var buttonConversionUpgradeBook=new game.UpgradeButton(-1,150,85,98,null,"book",game.playerStats.bookUpgradeCosts,game.playerStats.bookStats, "conversion", 1, game.conversionTab, "Increases the conversion rate from books by 1.5");
+var buttonConversionUpgradeBook=new game.UpgradeButton(-1,150,85,98,null,"book",game.playerStats.bookUpgradeCosts,game.playerStats.bookStats, "conversion", 1, game.conversionTab, "Increases the conversion rate of books by 1.5");
 buttonConversionUpgradeBook.setVisible(true);
 game.buttons.push(buttonConversionUpgradeBook);
 game.conversionUpgradeButtons.push(buttonConversionUpgradeBook);
@@ -475,25 +475,25 @@ game.statHeader.setVisible(true);
 game.backgrounds.push(game.statHeader);
 
 game.statPPText=new game.Text(game.masterBackground,657,300,"Total Coin: ","bold 24pt lucida console ","white",6,"#5f3c0f");
-game.statPPNum=new game.TextNumber(game.masterBackground,900,300,"0","bold 24pt lucida console ","white",6,"#5f3c0f",game.playerStats,"totalPrayerPoints");
+game.statPPNum=new game.TextNumber(game.masterBackground,900,300,"","bold 24pt lucida console ","white",6,"#5f3c0f",game.playerStats,"totalPrayerPoints");
 
 game.statCultistsText=new game.Text(game.masterBackground,657,420,"Max Followers: ","bold 24pt lucida console ","white",6,"#5f3c0f");
-game.statCultistsNum=new game.TextNumber(game.masterBackground,960,420,"0","bold 24pt lucida console ","white",6,"#5f3c0f", game.playerStats,"totalCultists");
+game.statCultistsNum=new game.TextNumber(game.masterBackground,960,420,"","bold 24pt lucida console ","white",6,"#5f3c0f", game.playerStats,"totalCultists");
 
 game.statExecutedText=new game.Text(game.masterBackground,657,533,"Total Executed: ","bold 24pt lucida console ","white",6,"#5f3c0f");
-game.statExecutedNum=new game.TextNumber(game.masterBackground,990,533,"0","bold 24pt lucida console ","white",6,"#5f3c0f", game.playerStats,"totalExecuted");
+game.statExecutedNum=new game.TextNumber(game.masterBackground,990,533,"","bold 24pt lucida console ","white",6,"#5f3c0f", game.playerStats,"totalExecuted");
 
 game.statExecutionRateText=new game.Text(game.masterBackground,657,647,"Execution Rate: ","bold 24pt lucida console ","white",6,"#5f3c0f");
-game.statExecutionRateNum=new game.TextNumber(game.masterBackground,990,647,"0","bold 24pt lucida console ","white",6,"#5f3c0f", game.playerStats,"prodRateExec");
+game.statExecutionRateNum=new game.TextNumber(game.masterBackground,990,647,"","bold 24pt lucida console ","white",6,"#5f3c0f", game.playerStats,"prodRateExec");
 
 game.statFollowerRateText=new game.Text(game.masterBackground,657,755,"Conversion Rate: ","bold 24pt lucida console ","white",6,"#5f3c0f");
-game.statFollowerRateNum=new game.TextNumber(game.masterBackground,995,755,"0","bold 24pt lucida console ","white",6,"#5f3c0f", game.playerStats,"prodRateCult");
+game.statFollowerRateNum=new game.TextNumber(game.masterBackground,995,755,"","bold 24pt lucida console ","white",6,"#5f3c0f", game.playerStats,"prodRateCult");
 
 game.statPPRateText=new game.Text(game.masterBackground,657,875,"Coin Rate: ","bold 24pt lucida console ","white",6,"#5f3c0f");
-game.statPPRateNum=new game.TextNumber(game.masterBackground,995,875,"0","bold 24pt lucida console ","white",6,"#5f3c0f", game.playerStats,"prodRateCult");
+game.statPPRateNum=new game.TextNumber(game.masterBackground,995,875,"","bold 24pt lucida console ","white",6,"#5f3c0f", game.playerStats,"prodRateCult");
 
 game.statTimeText=new game.Text(game.masterBackground,657,995,"Time Played: ","bold 24pt lucida console ","white",6,"#5f3c0f");
-game.statTimeNum=new game.TextNumber(game.masterBackground,995,995,"0","bold 24pt lucida console ","white",6,"#5f3c0f", game.playerStats,"time");
+game.statTimeNum=new game.TextNumber(game.masterBackground,995,995,"","bold 24pt lucida console ","white",6,"#5f3c0f", game.playerStats,"time");
 
 game.saveButton=new game.ButtonSave(0,300,50,50,"img/description.png");
 game.buttons.push(game.saveButton);

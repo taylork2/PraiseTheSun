@@ -176,21 +176,21 @@ game.masterBackground=new game.Background(0,0,1920,1080,null,"img/background.png
 //Create the tracker area at the bottom right
 game.trackerPanel=new game.Background(1365,935,554,119,null,"img/money.png");
 //Create the text number tracker for prayerPoints
-game.prayerPointsText=new game.TextNumber(game.trackerPanel,70,45,"0","bold 24pt lucida console ","white",6,"#5f3c0f",game.playerStats,"prayerPoints");
+game.prayerPointsText=new game.TextNumber(game.trackerPanel,70,45,"","bold 24pt lucida console ","white",6,"#5f3c0f",game.playerStats,"prayerPoints");
 //Create the icon for prayerPoints
 game.prayerPointsIcon=new game.Background(1400,977,37,37,null,"img/coin.png");
 game.prayerPointsIcon.setVisible(true);
 //game.backgrounds.push(game.prayerPointsIcon);
 
 //Create the text number tracker for cultists
-game.cultistsText=new game.TextNumber(game.trackerPanel,240,45,"0","bold 24pt lucida console ","white",6,"#5f3c0f",game.playerStats,"cultists");
+game.cultistsText=new game.TextNumber(game.trackerPanel,240,45,"","bold 24pt lucida console ","white",6,"#5f3c0f",game.playerStats,"cultists");
 //Create the icon for cultists
 game.cultistsIcon=new game.Background(1566,977,37,37,null,"img/happy.png");
 game.cultistsIcon.setVisible(true);
 //game.backgrounds.push(game.cultistsIcon);
 
 //Create the text number tracker for prisoners
-game.prisonersText=new game.TextNumber(game.trackerPanel,402,45,"0","bold 24pt lucida console ","white",6,"#5f3c0f",game.playerStats,"prisoners");
+game.prisonersText=new game.TextNumber(game.trackerPanel,402,45,"","bold 24pt lucida console ","white",6,"#5f3c0f",game.playerStats,"prisoners");
 //Create the icon for prisoners
 game.prisonersIcon=new game.Background(1729,977,37,37,null,"img/anger.png");
 game.prisonersIcon.setVisible(true);

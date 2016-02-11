@@ -198,6 +198,7 @@ game.TextNumber = function (parent, x, y, text, font, fillStyle, lineWidth, stro
     this.statLocation = statLocation;
     this.statIndex = statIndex;
     this.suffixes = ['', 'k', 'm', 'b', 't'];
+    this.textSuffix = text;
 }
 
 game.TextNumber.prototype = Object.create(game.Text.prototype);
@@ -205,7 +206,11 @@ game.TextNumber.prototype.constructor = game.TextNumber;
 
 game.TextNumber.prototype.update = function (context) {
     if (this.statLocation[this.statIndex] < 1000) {
-        this.text = Math.floor(this.statLocation[this.statIndex]);
+        if (this.statLocation[this.statIndex] < 1 && this.statLocation[this.statIndex] > 0) {
+            this.text = "."+Math.floor(this.statLocation[this.statIndex]*10);
+        } else {
+            this.text = Math.floor(this.statLocation[this.statIndex]);
+        }
     } else {
         var power = Math.floor(Math.log10(this.statLocation[this.statIndex]));
         var order = Math.floor(power / 3);
@@ -215,6 +220,7 @@ game.TextNumber.prototype.update = function (context) {
             this.text = parseFloat(this.statLocation[this.statIndex] / Math.pow(10, power)).toFixed(1) + "e" + power;
         }
     }
+    this.text += this.textSuffix;
 }
 
 game.TextNumber.prototype.setVisible = function (visible) {
@@ -222,7 +228,7 @@ game.TextNumber.prototype.setVisible = function (visible) {
 }
 
 //Overlays are objects that appear when a button is hovered over
-game.Overlay = function (button, width, height,x,y) {
+game.Overlay = function (button, width, height,x,y,produces) {
     game.GameObject.call(this, x, y, width, height, button);
     this.x = x+this.parent.x;
     this.y = y+this.parent.y;
@@ -231,14 +237,30 @@ game.Overlay = function (button, width, height,x,y) {
     this.button = button;
     this.background = new game.Background(0, 0, this.width, this.height, this, "img/description.png");
     this.childObjects.push(this.background);
-    this.description = new game.TextWrap(this, 25, 55, this.button.description, "bold 18pt lucida console ", "white", 3, "#5f3c0f", 470, 28);
     this.coin = new game.Background(20, 12, 37, 37, this, "img/coin.png");
     this.childObjects.push(this.coin);
-    this.costPP = new game.TextNumber(this, 65, 15, "0", "bold 28pt lucida console ", "white", 6, "#5f3c0f", this.button.costStats, "costPP");
+    this.costPP = new game.TextNumber(this, 65, 15, "", "bold 28pt lucida console ", "white", 6, "#5f3c0f", this.button.costStats, "costPP");
     
     this.happy = new game.Background(170, 12, 37, 37, this, "img/happy.png");
     this.childObjects.push(this.happy);
-    this.costCult = new game.TextNumber(this, 215, 15, "0", "bold 28pt lucida console ", "white", 6, "#5f3c0f", this.button.costStats, "costCult");
+    this.costCult = new game.TextNumber(this, 215, 15, "", "bold 28pt lucida console ", "white", 6, "#5f3c0f", this.button.costStats, "costCult");
+    if (produces) {
+        this.description = new game.TextWrap(this, 25, 95, this.button.description, "bold 18pt lucida console ", "white", 3, "#5f3c0f", 470, 28);
+        this.prodText = new game.Text(this, 25, 62, "Produces:", "bold 18pt lucida console ", "white", 3, "#5f3c0f");
+        if (produces == "cult") {
+            this.prodIcon = new game.Background(155, 52, 37, 37, this, "img/happy.png");
+            this.prodNumber = new game.TextNumber(this, 192, 53, "/s", "bold 28pt lucida console ", "white", 6, "#5f3c0f", this.button.costStats, "prodRateCult");
+        } else if (produces == "pris") {
+            this.prodIcon = new game.Background(155, 52, 37, 37, this, "img/angry.png");
+            this.prodNumber = new game.TextNumber(this, 192, 53, "/s", "bold 28pt lucida console ", "white", 6, "#5f3c0f", this.button.costStats, "prodRatePris");
+        } else if (produces == "exec") {
+            this.prodIcon = new game.Background(155, 52, 37, 37, this, "img/coin.png");
+            this.prodNumber = new game.TextNumber(this, 192, 53, "/s", "bold 28pt lucida console ", "white", 6, "#5f3c0f", this.button.costStats, "prodRateExec");
+        }
+        this.childObjects.push(this.prodIcon);
+    } else {
+        this.description = new game.TextWrap(this, 25, 65, this.button.description, "bold 18pt lucida console ", "white", 3, "#5f3c0f", 470, 28);
+    }
     game.overlays.push(this);
 }
 
@@ -250,6 +272,11 @@ game.Overlay.prototype.render = function (context) {
     this.description.render(context);
     this.costPP.render(context);
     this.costCult.render(context);
+    if (this.prodText) {
+        this.prodText.render(context);
+        this.prodIcon.render(context);
+        this.prodNumber.render(context);
+    }
 }
 
 game.Overlay.prototype.update = function (context) {
@@ -353,13 +380,13 @@ game.ToolButton = function (x, y, width, height, parent, bgString, title, toolSt
     game.Button.call(this, x, y, width, height, parent, _background);
     this.toolStats = toolStats;
     this.costStats = this.toolStats;
-    this.costPPText = new game.TextNumber(this, 300, 55, "0", "bold 28pt lucida console ", "white", 6, "#5f3c0f", this.toolStats, "costPP");
+    this.costPPText = new game.TextNumber(this, 300, 55, "", "bold 28pt lucida console ", "white", 6, "#5f3c0f", this.toolStats, "costPP");
     this.costPPText.visible = this.visible;
     this.childObjects.push(this.costPPText);
-    this.costCultText = new game.TextNumber(this, 450, 55, "0", "bold 28pt lucida console ", "white", 6, "#5f3c0f", this.toolStats, "costCult");
+    this.costCultText = new game.TextNumber(this, 450, 55, "", "bold 28pt lucida console ", "white", 6, "#5f3c0f", this.toolStats, "costCult");
     this.costCultText.visible = this.visible;
     this.childObjects.push(this.costCultText);
-    this.numToolsText = new game.TextNumber(this, 150, 55, "0", "bold 28pt lucida console ", "white", 6, "#5f3c0f", this.toolStats, "numTools");
+    this.numToolsText = new game.TextNumber(this, 150, 55, "", "bold 28pt lucida console ", "white", 6, "#5f3c0f", this.toolStats, "numTools");
     this.numToolsText.visible = this.visible;
     this.title = title;
     this.titleText = new game.Text(this, 150, 5, this.title, "bold 30pt lucida console ", "white", 6, "#5f3c0f");
@@ -369,7 +396,13 @@ game.ToolButton = function (x, y, width, height, parent, bgString, title, toolSt
     this.negBgSrc = _background.substring(0, _background.length - 4) + "_negative.png";
     this.negBackground = new game.Background(0, 0, this.width, this.height, this, this.negBgSrc);
     this.description = description;
-    this.overlay = new game.Overlay(this, 500, 200, 580, -100);
+    if (this.toolStats.prodRateCult > 0) {
+        this.overlay = new game.Overlay(this, 500, 200, 580, -100, "cult");
+    } else if (this.toolStats.prodRatePris > 0) {
+        this.overlay = new game.Overlay(this, 500, 200, 580, -100, "pris");
+    } else if (this.toolStats.prodRateExec > 0) {
+        this.overlay = new game.Overlay(this, 500, 200, 580, -100, "exec");
+    }
 }
 
 game.ToolButton.prototype = Object.create(game.Button.prototype);
@@ -434,7 +467,7 @@ game.ToolButton.prototype.setVisible=function(visible) {
 //UpgradeButtons are smaller squares that have no text
 //All description is in the overlay
 //The cost of an UpgradeButton is in costStats
-game.UpgradeButton=function(x,y,width,height,parent,bgString,costStats,toolStats, tabString, num, tab, description) {
+game.UpgradeButton=function(x,y,width,height,parent,bgString,costStats,toolStats,tabString, num, tab, description) {
     this.description=description;
     var _background = "img/" + tabString + "_upgrades/upgrade_" + bgString + num.toString() + ".png";
     game.Button.call(this,x,y,width,height,parent,_background);
