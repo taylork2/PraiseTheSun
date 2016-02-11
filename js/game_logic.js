@@ -53,7 +53,23 @@ game.playerStats.speakerUpgradeCosts=new game.CostStats(1000000,0);
 game.playerStats.podiumUpgradeCosts=new game.CostStats(1000000,0);
 game.playerStats.camcorderUpgradeCosts=new game.CostStats(100000000,0);
 game.playerStats.computerUpgradeCosts=new game.CostStats(1000000000000,0);
-game.playerStats.laptopUpgradeCosts=new game.CostStats(100000000000000,0);
+game.playerStats.laptopUpgradeCosts = new game.CostStats(100000000000000, 0);
+
+game.playerStats.netUpgradeCosts = new game.CostStats(100, 0);
+game.playerStats.lassoUpgradeCosts = new game.CostStats(10000, 0);
+game.playerStats.trapdoorUpgradeCosts = new game.CostStats(1000000, 0);
+game.playerStats.vanUpgradeCosts = new game.CostStats(1000000, 0);
+game.playerStats.invasionUpgradeCosts = new game.CostStats(100000000, 0);
+game.playerStats.phaserUpgradeCosts = new game.CostStats(1000000000000, 0);
+game.playerStats.cloningUpgradeCosts = new game.CostStats(100000000000000, 0);
+
+game.playerStats.knifeUpgradeCosts = new game.CostStats(100, 0);
+game.playerStats.cleaverUpgradeCosts = new game.CostStats(10000, 0);
+game.playerStats.axeUpgradeCosts = new game.CostStats(1000000, 0);
+game.playerStats.bladeUpgradeCosts = new game.CostStats(1000000, 0);
+game.playerStats.guillotineUpgradeCosts = new game.CostStats(100000000, 0);
+game.playerStats.sawUpgradeCosts = new game.CostStats(1000000000000, 0);
+game.playerStats.lightsaberUpgradeCosts = new game.CostStats(100000000000000, 0);
 
 var convNames=['book','soapbox','speaker','podium','camcorder','computer','laptop'];
     var convStats=[game.playerStats.bookStats, game.playerStats.soapboxStats, game.playerStats.speakerStats,
