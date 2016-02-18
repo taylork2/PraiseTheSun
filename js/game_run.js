@@ -1,8 +1,3 @@
-
-
-
-var b1 = 0;
-
 game.canvas = document.getElementById('game');
 game.context = game.canvas.getContext('2d');
 
@@ -37,9 +32,7 @@ game.canvas.addEventListener("mouseup", function(e) {
 // wait one second before starting animation
 setTimeout(function() {
     game.startTime = (new Date()).getTime();
-    //animate(myRectangle, canvas, context, startTime);
-    
+
     //This function is the main tick for the game
     game.update();
-    console.log(game);
 }, 1000);
