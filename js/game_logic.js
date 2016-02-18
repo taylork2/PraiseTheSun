@@ -20,81 +20,91 @@ game.playerStats.time=0;
 
 game.playerStats.ppMultiplier=4;
 game.playerStats.costPPMultiplier=1.1;
-game.playerStats.costCultMultiplier=1.1;
+game.playerStats.costCultMultiplier = 1.1;
+game.costUpgradeMultiplier = 10;
 
-game.playerStats.bookStats=new game.ToolStats(10,1,.1,0,0,0);
-game.playerStats.soapboxStats=new game.ToolStats(100,1,1,0,0,0);
-game.playerStats.speakerStats=new game.ToolStats(1000,1,10,0,0,0);
-game.playerStats.podiumStats=new game.ToolStats(10000,1,100,0,0,0);
-game.playerStats.camcorderStats=new game.ToolStats(100000,1,1000,0,0,0);
-game.playerStats.computerStats=new game.ToolStats(1000000,1,10000,0,0,0);
-game.playerStats.laptopStats=new game.ToolStats(10000000,1,100000,0,0,0);
+game.prodCultMultiplier = 1.5;
+game.prodPrisMultiplier = 1.5;
+game.prodExecMultiplier = 10;
 
-game.playerStats.netStats=new game.ToolStats(10,10,0,1,0,0);
-game.playerStats.lassoStats=new game.ToolStats(100,100,0,10,0,0);
-game.playerStats.trapdoorStats=new game.ToolStats(1000,1000,0,100,0,0);
-game.playerStats.vanStats=new game.ToolStats(10000,10000,0,1000,0,0);
-game.playerStats.invasionStats=new game.ToolStats(100000,100000,0,10000,0,0);
-game.playerStats.phaserStats=new game.ToolStats(1000000,1000000,0,100000,0,0);
-game.playerStats.cloningStats=new game.ToolStats(10000000,10000000,0,1000000,0,0);
+// container for tool statistics
+game.toolStats = [];
 
-game.playerStats.knifeStats=new game.ToolStats(5,5,0,0,1,0);
-game.playerStats.cleaverStats=new game.ToolStats(50,50,0,0,8,0);
-game.playerStats.axeStats=new game.ToolStats(500,500,0,0,64,0);
-game.playerStats.bladeStats=new game.ToolStats(5000,5000,0,0,512,0);
-game.playerStats.guillotineStats=new game.ToolStats(50000,50000,0,0,2048,0);
-game.playerStats.sawStats=new game.ToolStats(500000,500000,0,0,16384,0);
-game.playerStats.lightsaberStats=new game.ToolStats(5000000,5000000,0,0,131072,0);
+game.toolStats.bookStats=new game.ToolStats(10,1,.1,0,0,0);
+game.toolStats.soapboxStats=new game.ToolStats(100,1,1,0,0,0);
+game.toolStats.speakerStats=new game.ToolStats(1000,1,10,0,0,0);
+game.toolStats.podiumStats=new game.ToolStats(10000,1,100,0,0,0);
+game.toolStats.camcorderStats=new game.ToolStats(100000,1,1000,0,0,0);
+game.toolStats.computerStats=new game.ToolStats(1000000,1,10000,0,0,0);
+game.toolStats.laptopStats=new game.ToolStats(10000000,1,100000,0,0,0);
 
-//These are the upgrade stats
-game.playerStats.bookUpgradeCosts=new game.CostStats(100,0);
-game.playerStats.soapboxUpgradeCosts=new game.CostStats(10000,0);
-game.playerStats.speakerUpgradeCosts=new game.CostStats(1000000,0);
-game.playerStats.podiumUpgradeCosts=new game.CostStats(1000000,0);
-game.playerStats.camcorderUpgradeCosts=new game.CostStats(100000000,0);
-game.playerStats.computerUpgradeCosts=new game.CostStats(1000000000000,0);
-game.playerStats.laptopUpgradeCosts = new game.CostStats(100000000000000, 0);
+game.toolStats.netStats=new game.ToolStats(10,10,0,1,0,0);
+game.toolStats.lassoStats=new game.ToolStats(100,100,0,10,0,0);
+game.toolStats.trapdoorStats=new game.ToolStats(1000,1000,0,100,0,0);
+game.toolStats.vanStats=new game.ToolStats(10000,10000,0,1000,0,0);
+game.toolStats.invasionStats=new game.ToolStats(100000,100000,0,10000,0,0);
+game.toolStats.phaserStats=new game.ToolStats(1000000,1000000,0,100000,0,0);
+game.toolStats.cloningStats=new game.ToolStats(10000000,10000000,0,1000000,0,0);
 
-game.playerStats.netUpgradeCosts = new game.CostStats(100, 0);
-game.playerStats.lassoUpgradeCosts = new game.CostStats(10000, 0);
-game.playerStats.trapdoorUpgradeCosts = new game.CostStats(1000000, 0);
-game.playerStats.vanUpgradeCosts = new game.CostStats(1000000, 0);
-game.playerStats.invasionUpgradeCosts = new game.CostStats(100000000, 0);
-game.playerStats.phaserUpgradeCosts = new game.CostStats(1000000000000, 0);
-game.playerStats.cloningUpgradeCosts = new game.CostStats(100000000000000, 0);
+game.toolStats.knifeStats=new game.ToolStats(5,5,0,0,1,0);
+game.toolStats.cleaverStats=new game.ToolStats(50,50,0,0,8,0);
+game.toolStats.axeStats=new game.ToolStats(500,500,0,0,64,0);
+game.toolStats.bladeStats=new game.ToolStats(5000,5000,0,0,512,0);
+game.toolStats.guillotineStats=new game.ToolStats(50000,50000,0,0,2048,0);
+game.toolStats.sawStats=new game.ToolStats(500000,500000,0,0,16384,0);
+game.toolStats.lightsaberStats=new game.ToolStats(5000000,5000000,0,0,131072,0);
 
-game.playerStats.knifeUpgradeCosts = new game.CostStats(100, 0);
-game.playerStats.cleaverUpgradeCosts = new game.CostStats(10000, 0);
-game.playerStats.axeUpgradeCosts = new game.CostStats(1000000, 0);
-game.playerStats.bladeUpgradeCosts = new game.CostStats(1000000, 0);
-game.playerStats.guillotineUpgradeCosts = new game.CostStats(100000000, 0);
-game.playerStats.sawUpgradeCosts = new game.CostStats(1000000000000, 0);
-game.playerStats.lightsaberUpgradeCosts = new game.CostStats(100000000000000, 0);
+//container for upgrade stats
+game.upgradeStats = [];
+
+game.upgradeStats.bookUpgradeCosts=new game.CostStats(100,0);
+game.upgradeStats.soapboxUpgradeCosts=new game.CostStats(1000,0);
+game.upgradeStats.speakerUpgradeCosts=new game.CostStats(10000,0);
+game.upgradeStats.podiumUpgradeCosts=new game.CostStats(100000,0);
+game.upgradeStats.camcorderUpgradeCosts=new game.CostStats(1000000,0);
+game.upgradeStats.computerUpgradeCosts=new game.CostStats(10000000,0);
+game.upgradeStats.laptopUpgradeCosts = new game.CostStats(100000000, 0);
+
+game.upgradeStats.netUpgradeCosts = new game.CostStats(100, 0);
+game.upgradeStats.lassoUpgradeCosts = new game.CostStats(1000, 0);
+game.upgradeStats.trapdoorUpgradeCosts = new game.CostStats(10000, 0);
+game.upgradeStats.vanUpgradeCosts = new game.CostStats(100000, 0);
+game.upgradeStats.invasionUpgradeCosts = new game.CostStats(1000000, 0);
+game.upgradeStats.phaserUpgradeCosts = new game.CostStats(10000000, 0);
+game.upgradeStats.cloningUpgradeCosts = new game.CostStats(100000000, 0);
+
+game.upgradeStats.knifeUpgradeCosts = new game.CostStats(100, 0);
+game.upgradeStats.cleaverUpgradeCosts = new game.CostStats(1000, 0);
+game.upgradeStats.axeUpgradeCosts = new game.CostStats(10000, 0);
+game.upgradeStats.bladeUpgradeCosts = new game.CostStats(100000, 0);
+game.upgradeStats.guillotineUpgradeCosts = new game.CostStats(1000000, 0);
+game.upgradeStats.sawUpgradeCosts = new game.CostStats(10000000, 0);
+game.upgradeStats.lightsaberUpgradeCosts = new game.CostStats(100000000, 0);
 
 var convNames=['book','soapbox','speaker','podium','camcorder','computer','laptop'];
-    var convStats=[game.playerStats.bookStats, game.playerStats.soapboxStats, game.playerStats.speakerStats,
-game.playerStats.podiumStats,
-game.playerStats.camcorderStats,
-game.playerStats.computerStats,
-game.playerStats.laptopStats];
+    var convStats=[game.toolStats.bookStats, game.toolStats.soapboxStats, game.toolStats.speakerStats,
+game.toolStats.podiumStats,
+game.toolStats.camcorderStats,
+game.toolStats.computerStats,
+game.toolStats.laptopStats];
 
 var capNames=['net','lasso','trapdoor','van','invasion','phaser','cloning'];
-var capStats=[game.playerStats.netStats,
-    game.playerStats.lassoStats,
-    game.playerStats.trapdoorStats,
-    game.playerStats.vanStats,
-    game.playerStats.invasionStats,
-    game.playerStats.phaserStats,
-    game.playerStats.cloningStats];
+var capStats=[game.toolStats.netStats,
+    game.toolStats.lassoStats,
+    game.toolStats.trapdoorStats,
+    game.toolStats.vanStats,
+    game.toolStats.invasionStats,
+    game.toolStats.phaserStats,
+    game.toolStats.cloningStats];
 
 var execNames=['knife','cleaver','axe','blade','guillotine','saw','lightsaber'];
-var execStats=[game.playerStats.knifeStats,
-    game.playerStats.cleaverStats,
-    game.playerStats.axeStats,
-    game.playerStats.bladeStats,
-    game.playerStats.guillotineStats,
-    game.playerStats.sawStats,
-    game.playerStats.lightsaberStats];
+var execStats=[game.toolStats.knifeStats,
+    game.toolStats.cleaverStats,
+    game.toolStats.axeStats,
+    game.toolStats.bladeStats,
+    game.toolStats.guillotineStats,
+    game.toolStats.sawStats,
+    game.toolStats.lightsaberStats];
 
 
 game.numConvSprites=[0,0,0,0,0,0,0];

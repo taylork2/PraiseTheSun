@@ -228,7 +228,7 @@ game.TextNumber.prototype.setVisible = function (visible) {
 }
 
 //Overlays are objects that appear when a button is hovered over
-game.Overlay = function (button, width, height,x,y,produces) {
+game.Overlay = function (button, width, height, x, y, produces) {
     game.GameObject.call(this, x, y, width, height, button);
     this.x = x+this.parent.x;
     this.y = y+this.parent.y;
@@ -409,11 +409,11 @@ game.ToolButton = function (x, y, width, height, parent, bgString, title, toolSt
     this.negBackground = new game.Background(0, 0, this.width, this.height, this, this.negBgSrc);
     this.description = description;
     if (this.toolStats.prodRateCult > 0) {
-        this.overlay = new game.Overlay(this, 500, 200, 580, -100, "cult");
+        this.overlay = new game.Overlay(this, 500, 220, 580, -120, "cult");
     } else if (this.toolStats.prodRatePris > 0) {
-        this.overlay = new game.Overlay(this, 500, 200, 580, -100, "pris");
+        this.overlay = new game.Overlay(this, 500, 220, 580, -120, "pris");
     } else if (this.toolStats.prodRateExec > 0) {
-        this.overlay = new game.Overlay(this, 500, 200, 580, -100, "exec");
+        this.overlay = new game.Overlay(this, 500, 220, 580, -120, "exec");
     }
 }
 
@@ -512,10 +512,10 @@ game.UpgradeButton.prototype.onClick = function() {
         //Costs are stored as floats, but are used and displayed as ints
         game.playerStats.prayerPoints-=Math.floor(this.costStats.costPP);
         game.playerStats.cultists-=Math.floor(this.costStats.costCult);
-        this.toolStats.prodRateCult*=1.5;
-        this.toolStats.prodRatePris*=1.5;
-        this.toolStats.prodRateExec*=1.5;
-        this.costStats.costPP*=100;
+        this.toolStats.prodRateCult *= game.prodCultMultiplier;
+        this.toolStats.prodRatePris *= game.prodPrisMultiplier;
+        this.toolStats.prodRateExec *= game.prodExecMultiplier;
+        this.costStats.costPP*=game.costUpgradeMultiplier;
         //destroy this/make it invisible forever
         this.setVisible(false);
         this.negBackground.setVisible(true);
@@ -930,32 +930,32 @@ game.update = function () {
     //render dynamic sprites(backgrounds since they are static) on panels
     var yLocs=[267,384,500,617,734,849,964];
     var convNames=['book','soapbox','speaker','podium','camcorder','computer','laptop'];
-    var convStats=[game.playerStats.bookStats,game.playerStats.soapboxStats,game.playerStats.speakerStats,
-game.playerStats.podiumStats,
-game.playerStats.camcorderStats,
-game.playerStats.computerStats,
-game.playerStats.laptopStats];
+    var convStats=[game.toolStats.bookStats,game.toolStats.soapboxStats,game.toolStats.speakerStats,
+game.toolStats.podiumStats,
+game.toolStats.camcorderStats,
+game.toolStats.computerStats,
+game.toolStats.laptopStats];
     var convWidths=[29,50,51,43,47,75,60];
     var convHeights=[53,82,78,50,69,67,63];
     
     var capNames=['net','lasso','trapdoor','van','invasion','phaser','cloning'];
-    var capStats=[game.playerStats.netStats,
-game.playerStats.lassoStats,
-game.playerStats.trapdoorStats,
-game.playerStats.vanStats,
-game.playerStats.invasionStats,
-game.playerStats.phaserStats,
-game.playerStats.cloningStats];
+    var capStats=[game.toolStats.netStats,
+game.toolStats.lassoStats,
+game.toolStats.trapdoorStats,
+game.toolStats.vanStats,
+game.toolStats.invasionStats,
+game.toolStats.phaserStats,
+game.toolStats.cloningStats];
     var capWidths=[55,63,54,85,50,40,44];
     var capHeights=[65,66,33,55,66,72,82];
 
-    var execStats=[game.playerStats.knifeStats,
-game.playerStats.cleaverStats,
-game.playerStats.axeStats,
-game.playerStats.bladeStats,
-game.playerStats.guillotineStats,
-game.playerStats.sawStats,
-game.playerStats.lightsaberStats];
+    var execStats=[game.toolStats.knifeStats,
+game.toolStats.cleaverStats,
+game.toolStats.axeStats,
+game.toolStats.bladeStats,
+game.toolStats.guillotineStats,
+game.toolStats.sawStats,
+game.toolStats.lightsaberStats];
     var execNames=['knife','cleaver','axe','blade','guillotine','saw','lightsaber'];
     var execWidths=[63,69,93,108,107,57,54];
     var execHeights=[70,73,73,108,99,73,74];
