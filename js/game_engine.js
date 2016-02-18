@@ -516,35 +516,32 @@ game.UpgradeButton.prototype.onClick = function() {
         this.toolStats.prodRatePris *= game.prodPrisMultiplier;
         this.toolStats.prodRateExec *= game.prodExecMultiplier;
         this.costStats.costPP*=game.costUpgradeMultiplier;
-        //destroy this/make it invisible forever
-        this.setVisible(false);
-        this.negBackground.setVisible(true);
-        this.disabled=true;
+        if (this.num < 3) {
+            this.num++;
+            this.background.img.src = "img/" + this.tabString + "_upgrades/upgrade_" + this.bgString + this.num.toString() + ".png";
+            this.negBackground.img.src = this.background.img.src.substring(0, this.background.img.src.length - 4) + "_negative.png";
+        } else {
+            this.disabled = true;
+            this.setVisible(false);
+            this.overlay.setVisible(false);
+        }
     }
 }
 
 game.UpgradeButton.prototype.update=function(context){
     this.overlay.update(context);
-    if(this.hovered && this.tab.tabVisible){
+    if (this.hovered && this.tab.tabVisible && !this.disabled) {
         this.overlay.setVisible(true);
     } else{
         this.overlay.setVisible(false);
     }
     
     game.Button.prototype.update.call(this,context);
-    if (this.disabled &&  game.playerStats.prayerPoints>this.costStats.costPP && game.playerStats.cultists>this.costStats.costCult){
-        this.disabled=false;
-        if (this.num <3){
-            this.num++;
-        }
-        else{
-            this.disabled=true;
-        }
-        this.background.img.src="img/" + this.tabString + "_upgrades/upgrade_" + this.bgString + this.num.toString() + ".png";   
-        this.negBackground.img.src=this.background.img.src.substring(0,this.background.img.src.length-4)+"_negative.png";
-        if (this.tab.tabVisible){
+    if (game.playerStats.prayerPoints > this.costStats.costPP && game.playerStats.cultists > this.costStats.costCult) {
+        if (this.tab.tabVisible) {
             this.setVisible(true);
         }
+    } else {
     }
 }
 game.UpgradeButton.prototype.setVisible=function(visible) {
@@ -555,7 +552,8 @@ game.UpgradeButton.prototype.setVisible=function(visible) {
     } else {
         this.visible=false;
         this.background.setVisible(false);
-        this.negBackground.setVisible(visible);
+        this.negBackground.setVisible(false);
+        this.overlay.setVisible(false);
     }
 }
 
