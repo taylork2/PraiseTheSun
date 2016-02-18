@@ -486,11 +486,11 @@ game.statExecutedNum=new game.TextNumber(game.masterBackground,990,533,"","bold 
 game.statExecutionRateText=new game.Text(game.masterBackground,657,647,"Execution Rate: ","bold 24pt lucida console ","white",6,"#5f3c0f");
 game.statExecutionRateNum=new game.TextNumber(game.masterBackground,990,647,"","bold 24pt lucida console ","white",6,"#5f3c0f", game.playerStats,"prodRateExec");
 
-game.statFollowerRateText=new game.Text(game.masterBackground,657,755,"Conversion Rate: ","bold 24pt lucida console ","white",6,"#5f3c0f");
-game.statFollowerRateNum=new game.TextNumber(game.masterBackground,995,755,"","bold 24pt lucida console ","white",6,"#5f3c0f", game.playerStats,"prodRateCult");
+game.statFollowerRateText=new game.Text(game.masterBackground,657,765,"Conversion Rate: ","bold 24pt lucida console ","white",6,"#5f3c0f");
+game.statFollowerRateNum=new game.TextNumber(game.masterBackground,995,765,"","bold 24pt lucida console ","white",6,"#5f3c0f", game.playerStats,"prodRateCult");
 
-game.statPPRateText=new game.Text(game.masterBackground,657,875,"Coin Rate: ","bold 24pt lucida console ","white",6,"#5f3c0f");
-game.statPPRateNum=new game.TextNumber(game.masterBackground,995,875,"","bold 24pt lucida console ","white",6,"#5f3c0f", game.playerStats,"prodRateCult");
+game.statPPRateText=new game.Text(game.masterBackground,657,880,"Prisoner Rate: ","bold 24pt lucida console ","white",6,"#5f3c0f");
+game.statPPRateNum=new game.TextNumber(game.masterBackground,995,880,"","bold 24pt lucida console ","white",6,"#5f3c0f", game.playerStats,"prodRatePris");
 
 game.statTimeText=new game.Text(game.masterBackground,657,995,"Time Played: ","bold 24pt lucida console ","white",6,"#5f3c0f");
 game.statTimeNum=new game.TextNumber(game.masterBackground,995,995,"","bold 24pt lucida console ","white",6,"#5f3c0f", game.playerStats,"time");

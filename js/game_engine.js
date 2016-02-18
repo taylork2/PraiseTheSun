@@ -1066,7 +1066,7 @@ game.playerStats.lightsaberStats];
         }
     }   
     
-    game.playerStats.time = (new Date()).getTime()-game.startTime;
+    game.playerStats.time = ((new Date()).getTime()-game.startTime)/1000;
     
     // request new frame
      requestAnimFrame(function() {
