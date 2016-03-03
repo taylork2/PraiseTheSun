@@ -1,9 +1,9 @@
 //PlayerStats is an array that holds all of the player's statistics
 game.playerStats=[];
 //Initialize all values
-var INITIAL_PRAYERPOINTS = 50000;
-var INITIAL_CULTISTS = 500;
-var INITIAL_PRISONERS = 10000;
+var INITIAL_PRAYERPOINTS = 100;
+var INITIAL_CULTISTS = 50;
+var INITIAL_PRISONERS = 100;
 
 game.playerStats.prayerPoints=INITIAL_PRAYERPOINTS;
 game.playerStats.cultists=INITIAL_CULTISTS;
@@ -25,7 +25,7 @@ game.costUpgradeMultiplier = 10;
 
 game.prodCultMultiplier = 1.5;
 game.prodPrisMultiplier = 1.5;
-game.prodExecMultiplier = 10;
+game.prodExecMultiplier = 5;
 
 // container for tool statistics
 game.toolStats = [];
@@ -216,6 +216,46 @@ game.backgrounds.unshift(game.guard);
 game.mountainBackground=new game.Background(1470,395,452,690,null,"img/volcano_mountain.png");
 game.mountainBackground.setVisible(true);
 game.backgrounds.unshift(game.mountainBackground);
+
+//Create the one time tutorial text
+game.tutorial = new game.Background(100, 100, 1700, 900, null, "img/description.png");
+game.tutorialButton = new game.Button(1620, 140, 113, 108, game.tutorial, "img/exit_button.png");
+game.tutorial.childObjects.push(game.tutorialButton);
+game.tutorialButton.setVisible(true);
+game.tutorialButton.onClick = function () {
+    this.parent.setVisible(false);
+}
+game.tutorialSun = new game.Background(900, 330, 205, 205, game.tutorial, "img/sun_moods/sun_angry.png");
+game.tutorial.childObjects.push(game.tutorialSun);
+game.tutorialText = [];
+idx = 0; idx2 = 0;
+game.tutorialText[idx++] = new game.Text(game.tutorial, 60, 60+40*(idx2++),
+    "Welcome to Praise The Sun!", "bold 32pt lucida console", "white", 6, "#5f3c0f");
+idx2++;
+game.tutorialText[idx++] = new game.Text(game.tutorial, 60, 60 + 40 * (idx2++),
+    "You are the leader of a cult in charge of capturing and", "bold 32pt lucida console", "white", 6, "#5f3c0f");
+game.tutorialText[idx++] = new game.Text(game.tutorial, 60, 60 + 40 * (idx2++),
+    " sacrificing prisoners to keep the Sun happy.", "bold 32pt lucida console", "white", 6, "#5f3c0f");
+idx2++;
+game.tutorialText[idx++] = new game.Text(game.tutorial, 60, 60 + 40 * (idx2++),
+    "Buy tools and upgrades to convert more cultists and", "bold 32pt lucida console", "white", 6, "#5f3c0f");
+game.tutorialText[idx++] = new game.Text(game.tutorial, 60, 60 + 40 * (idx2++),
+    " capture and execute prisoners.", "bold 32pt lucida console", "white", 6, "#5f3c0f");
+idx2++;
+game.tutorialText[idx++] = new game.Text(game.tutorial, 60, 60 + 40 * (idx2++),
+    "Sometimes, the Sun gets angry: ", "bold 32pt lucida console", "white", 6, "#5f3c0f");
+idx2 += 4;
+game.tutorialText[idx++] = new game.Text(game.tutorial, 60, 60 + 40 * (idx2++),
+    "When this happens, you should start sacrificing faster!", "bold 32pt lucida console", "white", 6, "#5f3c0f");
+idx2++;
+game.tutorialText[idx++] = new game.Text(game.tutorial, 60, 60 + 40 * (idx2++),
+    "If you're out of prisoners to execute, capture more.", "bold 32pt lucida console", "white", 6, "#5f3c0f");
+game.tutorialText[idx++] = new game.Text(game.tutorial, 60, 60 + 40 * (idx2++),
+    "If too many prisoners are waiting in line, execute faster.", "bold 32pt lucida console", "white", 6, "#5f3c0f");
+idx2++;
+game.tutorialText[idx++] = new game.Text(game.tutorial, 60, 60 + 40 * (idx2++),
+    "That's all you need to know. Now get started!", "bold 32pt lucida console", "white", 6, "#5f3c0f");
+game.tutorial.setVisible(true);
 
 game.masterBackground.setVisible(true);
 //unshift puts the master background to the front of the list

@@ -1062,7 +1062,11 @@ game.toolStats.lightsaberStats];
             newClimber.setVisible(true);
             game.sprites.splice(game.sprites.length-3,0,newClimber);
         }
-    }   
+    }
+
+    //overlay tutorial over everything
+    game.tutorial.update(game.context);
+    game.tutorial.render(game.context);
     
     game.playerStats.time = ((new Date()).getTime()-game.startTime)/1000;
     

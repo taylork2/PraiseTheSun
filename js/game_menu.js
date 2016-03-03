@@ -115,37 +115,37 @@ for(var x=0;x<game.conversionPanels.length;x++) {
 }
 
 //These are all the upgrade buttons
-var buttonConversionUpgradeBook=new game.UpgradeButton(-1,150,85,98,null,"book",game.upgradeStats.bookUpgradeCosts,game.toolStats.bookStats, "conversion", 1, game.conversionTab, "Increases the conversion rate of books by 1.5");
+var buttonConversionUpgradeBook=new game.UpgradeButton(-1,150,85,98,null,"book",game.upgradeStats.bookUpgradeCosts,game.toolStats.bookStats, "conversion", 1, game.conversionTab, "Multiplies the conversion rate of books by "+game.prodCultMultiplier);
 buttonConversionUpgradeBook.setVisible(true);
 game.buttons.push(buttonConversionUpgradeBook);
 game.conversionUpgradeButtons.push(buttonConversionUpgradeBook);
 
-var buttonConversionUpgradeSoapbox=new game.UpgradeButton(82,150,85,98,null, "soapbox",game.upgradeStats.soapboxUpgradeCosts,game.toolStats.soapboxStats, "conversion", 1, game.conversionTab, "Increases the conversion rate of soapbox by 1.5");
+var buttonConversionUpgradeSoapbox = new game.UpgradeButton(82, 150, 85, 98, null, "soapbox", game.upgradeStats.soapboxUpgradeCosts, game.toolStats.soapboxStats, "conversion", 1, game.conversionTab, "Multiplies the conversion rate of soapboxs by " + game.prodCultMultiplier);
 buttonConversionUpgradeSoapbox.setVisible(true);
 game.buttons.push(buttonConversionUpgradeSoapbox);
 game.conversionUpgradeButtons.push(buttonConversionUpgradeSoapbox);
 
-var buttonConversionUpgradeSpeaker=new game.UpgradeButton(165,150,85,98,null,"speaker",game.upgradeStats.speakerUpgradeCosts,game.toolStats.speakerStats, "conversion", 1, game.conversionTab,"Increases the conversion rate of speaker by 1.5");
+var buttonConversionUpgradeSpeaker = new game.UpgradeButton(165, 150, 85, 98, null, "speaker", game.upgradeStats.speakerUpgradeCosts, game.toolStats.speakerStats, "conversion", 1, game.conversionTab, "Multiplies the conversion rate of speakers by " + game.prodCultMultiplier);
 buttonConversionUpgradeSpeaker.setVisible(true);
 game.buttons.push(buttonConversionUpgradeSpeaker);
 game.conversionUpgradeButtons.push(buttonConversionUpgradeSpeaker);
 
-var buttonConversionUpgradePodium=new game.UpgradeButton(247,150,85,98,null,"podium",game.upgradeStats.podiumUpgradeCosts,game.toolStats.podiumStats, "conversion", 1, game.conversionTab, "Increases the conversion rate of podium by 1.5");
+var buttonConversionUpgradePodium = new game.UpgradeButton(247, 150, 85, 98, null, "podium", game.upgradeStats.podiumUpgradeCosts, game.toolStats.podiumStats, "conversion", 1, game.conversionTab, "Multiplies the conversion rate of podiums by " + game.prodCultMultiplier);
 buttonConversionUpgradePodium.setVisible(true);
 game.buttons.push(buttonConversionUpgradePodium);
 game.conversionUpgradeButtons.push(buttonConversionUpgradePodium);
 
-var buttonConversionUpgradeCamcorder=new game.UpgradeButton(329,150,85,98,null, "camcorder",game.upgradeStats.camcorderUpgradeCosts,game.toolStats.camcorderStats, "conversion", 1, game.conversionTab, "Increases the conversion rate of camcorder by 1.5");
+var buttonConversionUpgradeCamcorder = new game.UpgradeButton(329, 150, 85, 98, null, "camcorder", game.upgradeStats.camcorderUpgradeCosts, game.toolStats.camcorderStats, "conversion", 1, game.conversionTab, "Multiplies the conversion rate of camcorders by " + game.prodCultMultiplier);
 buttonConversionUpgradeCamcorder.setVisible(true);
 game.buttons.push(buttonConversionUpgradeCamcorder);
 game.conversionUpgradeButtons.push(buttonConversionUpgradeCamcorder);
 
-var buttonConversionUpgradeComputer=new game.UpgradeButton(410,150,85,98,null, "computer",game.upgradeStats.computerUpgradeCosts,game.toolStats.computerStats, "conversion", 1, game.conversionTab, "Increases the conversion rate of computer by 1.5");
+var buttonConversionUpgradeComputer = new game.UpgradeButton(410, 150, 85, 98, null, "computer", game.upgradeStats.computerUpgradeCosts, game.toolStats.computerStats, "conversion", 1, game.conversionTab, "Multiplies the conversion rate of computers by " + game.prodCultMultiplier);
 buttonConversionUpgradeComputer.setVisible(true);
 game.buttons.push(buttonConversionUpgradeComputer);
 game.conversionUpgradeButtons.push(buttonConversionUpgradeComputer);
 
-var buttonConversionUpgradeLaptop=new game.UpgradeButton(494,150,85,98,null, "laptop",game.upgradeStats.laptopUpgradeCosts,game.toolStats.laptopStats, "conversion", 1, game.conversionTab, "Increases the conversion rate of laptop by 1.5");
+var buttonConversionUpgradeLaptop = new game.UpgradeButton(494, 150, 85, 98, null, "laptop", game.upgradeStats.laptopUpgradeCosts, game.toolStats.laptopStats, "conversion", 1, game.conversionTab, "Multiplies the conversion rate of laptop by " + game.prodCultMultiplier);
 buttonConversionUpgradeLaptop.setVisible(true);
 game.buttons.push(buttonConversionUpgradeLaptop);
 game.conversionUpgradeButtons.push(buttonConversionUpgradeLaptop);
@@ -249,37 +249,37 @@ for(var x=0;x<game.capturePanels.length;x++) {
 }
 
 //These are all the capture upgrade buttons
-var buttonCaptureUpgradeNet=new game.UpgradeButton(-1,150,85,98,null, "net",game.upgradeStats.netUpgradeCosts,game.toolStats.netStats, "capture", 1, game.captureTab, "Increases the capture rate of  net by 1.5");
+var buttonCaptureUpgradeNet = new game.UpgradeButton(-1, 150, 85, 98, null, "net", game.upgradeStats.netUpgradeCosts, game.toolStats.netStats, "capture", 1, game.captureTab, "Multiplies the capture rate of net by " + game.prodPrisMultiplier);
 buttonCaptureUpgradeNet.setVisible(true);
 game.buttons.push(buttonCaptureUpgradeNet);
 game.captureUpgradeButtons.push(buttonCaptureUpgradeNet);
 
-var buttonCaptureUpgradeLasso=new game.UpgradeButton(82,150,85,98,null, "lasso",game.upgradeStats.lassoUpgradeCosts,game.toolStats.lassoStats, "capture", 1, game.captureTab, "Increases the capture rate of  lasso by 1.5");
+var buttonCaptureUpgradeLasso = new game.UpgradeButton(82, 150, 85, 98, null, "lasso", game.upgradeStats.lassoUpgradeCosts, game.toolStats.lassoStats, "capture", 1, game.captureTab, "Multiplies the capture rate of lasso by " + game.prodPrisMultiplier);
 buttonCaptureUpgradeLasso.setVisible(true);
 game.buttons.push(buttonCaptureUpgradeLasso);
 game.captureUpgradeButtons.push(buttonCaptureUpgradeLasso);
 
-var buttonCaptureUpgradeTrapdoor=new game.UpgradeButton(165,150,85,98,null, "trapdoor",game.upgradeStats.trapdoorUpgradeCosts,game.toolStats.trapdoorStats, "capture", 1, game.captureTab, "Increases the capture rate of trapdoor by 1.5");
+var buttonCaptureUpgradeTrapdoor = new game.UpgradeButton(165, 150, 85, 98, null, "trapdoor", game.upgradeStats.trapdoorUpgradeCosts, game.toolStats.trapdoorStats, "capture", 1, game.captureTab, "Multiplies the capture rate of trapdoor " + game.prodPrisMultiplier);
 buttonCaptureUpgradeTrapdoor.setVisible(true);
 game.buttons.push(buttonCaptureUpgradeTrapdoor);
 game.captureUpgradeButtons.push(buttonCaptureUpgradeTrapdoor);
 
-var buttonCaptureUpgradeVan=new game.UpgradeButton(247,150,85,98,null, "van",game.upgradeStats.vanUpgradeCosts,game.toolStats.vanStats, "capture", 1, game.captureTab, "Increases the capture rate of van by 1.5");
+var buttonCaptureUpgradeVan = new game.UpgradeButton(247, 150, 85, 98, null, "van", game.upgradeStats.vanUpgradeCosts, game.toolStats.vanStats, "capture", 1, game.captureTab, "Multiplies the capture rate of van by " + game.prodPrisMultiplier);
 buttonCaptureUpgradeVan.setVisible(true);
 game.buttons.push(buttonCaptureUpgradeVan);
 game.captureUpgradeButtons.push(buttonCaptureUpgradeVan);
 
-var buttonCaptureUpgradeInvasion=new game.UpgradeButton(329,150,85,98,null, "invasion",game.upgradeStats.invasionUpgradeCosts,game.toolStats.invasionStats, "capture", 1, game.captureTab, "Increases the capture rate of invasion by 1.5");
+var buttonCaptureUpgradeInvasion = new game.UpgradeButton(329, 150, 85, 98, null, "invasion", game.upgradeStats.invasionUpgradeCosts, game.toolStats.invasionStats, "capture", 1, game.captureTab, "Multiplies the capture rate of invasion by " + game.prodPrisMultiplier);
 buttonCaptureUpgradeInvasion.setVisible(true);
 game.buttons.push(buttonCaptureUpgradeInvasion);
 game.captureUpgradeButtons.push(buttonCaptureUpgradeInvasion);
 
-var buttonCaptureUpgradePhaser=new game.UpgradeButton(410,150,85,98,null, "phaser",game.upgradeStats.phaserUpgradeCosts,game.toolStats.phaserStats, "capture", 1, game.captureTab, "Increases the capture rate of phaser by 1.5");
+var buttonCaptureUpgradePhaser = new game.UpgradeButton(410, 150, 85, 98, null, "phaser", game.upgradeStats.phaserUpgradeCosts, game.toolStats.phaserStats, "capture", 1, game.captureTab, "Multiplies the capture rate of phaser by " + game.prodPrisMultiplier);
 buttonCaptureUpgradePhaser.setVisible(true);
 game.buttons.push(buttonCaptureUpgradePhaser);
 game.captureUpgradeButtons.push(buttonCaptureUpgradePhaser);
 
-var buttonCaptureUpgradeCloning=new game.UpgradeButton(494,150,85,98,null, "cloning",game.upgradeStats.cloningUpgradeCosts,game.toolStats.cloningStats, "capture", 1, game.captureTab, "Increases the capture rate of cloning by 1.5");
+var buttonCaptureUpgradeCloning = new game.UpgradeButton(494, 150, 85, 98, null, "cloning", game.upgradeStats.cloningUpgradeCosts, game.toolStats.cloningStats, "capture", 1, game.captureTab, "Multiplies the capture rate of cloning by " + game.prodPrisMultiplier);
 buttonCaptureUpgradeCloning.setVisible(true);
 game.buttons.push(buttonCaptureUpgradeCloning);
 game.captureUpgradeButtons.push(buttonCaptureUpgradeCloning);
@@ -301,37 +301,37 @@ game.executionTab.setVisible(true);
 game.tabs.push(game.executionTab);
 
 //These are all the execution upgrade buttons
-var buttonExecutionUpgradeKnife=new game.UpgradeButton(-1,150,85,98,null, "knife",game.upgradeStats.knifeUpgradeCosts,game.toolStats.knifeStats, "execution", 1, game.executionTab, "Increases the execution rate of knife by 10");
+var buttonExecutionUpgradeKnife = new game.UpgradeButton(-1, 150, 85, 98, null, "knife", game.upgradeStats.knifeUpgradeCosts, game.toolStats.knifeStats, "execution", 1, game.executionTab, "Multiplies the execution rate of knife by " + game.prodExecMultiplier);
 buttonExecutionUpgradeKnife.setVisible(true);
 game.buttons.push(buttonExecutionUpgradeKnife);
 game.executionUpgradeButtons.push(buttonExecutionUpgradeKnife);
 
-var buttonExecutionUpgradeCleaver=new game.UpgradeButton(82,150,85,98,null, "cleaver",game.upgradeStats.cleaverUpgradeCosts,game.toolStats.cleaverStats, "execution", 1, game.executionTab, "Increases the execution rate of cleaver by 10");
+var buttonExecutionUpgradeCleaver = new game.UpgradeButton(82, 150, 85, 98, null, "cleaver", game.upgradeStats.cleaverUpgradeCosts, game.toolStats.cleaverStats, "execution", 1, game.executionTab, "Multiplies the execution rate of cleaver by " + game.prodExecMultiplier);
 buttonExecutionUpgradeCleaver.setVisible(true);
 game.buttons.push(buttonExecutionUpgradeCleaver);
 game.executionUpgradeButtons.push(buttonExecutionUpgradeCleaver);
 
-var buttonExecutionUpgradeAxe=new game.UpgradeButton(165,150,85,98,null, "axe",game.upgradeStats.axeUpgradeCosts,game.toolStats.axeStats, "execution", 1, game.executionTab, "Increases the execution rate of axe by 10");
+var buttonExecutionUpgradeAxe = new game.UpgradeButton(165, 150, 85, 98, null, "axe", game.upgradeStats.axeUpgradeCosts, game.toolStats.axeStats, "execution", 1, game.executionTab, "Multiplies the execution rate of axe by " + game.prodExecMultiplier);
 buttonExecutionUpgradeAxe.setVisible(true);
 game.buttons.push(buttonExecutionUpgradeAxe);
 game.executionUpgradeButtons.push(buttonExecutionUpgradeAxe);
 
-var buttonExecutionUpgradeBlade=new game.UpgradeButton(247,150,85,98,null, "blade",game.upgradeStats.bladeUpgradeCosts,game.toolStats.bladeStats, "execution", 1, game.executionTab, "Increases the execution rate of blade by 10");
+var buttonExecutionUpgradeBlade = new game.UpgradeButton(247, 150, 85, 98, null, "blade", game.upgradeStats.bladeUpgradeCosts, game.toolStats.bladeStats, "execution", 1, game.executionTab, "Multiplies the execution rate of blade by " + game.prodExecMultiplier);
 buttonExecutionUpgradeBlade.setVisible(true);
 game.buttons.push(buttonExecutionUpgradeBlade);
 game.executionUpgradeButtons.push(buttonExecutionUpgradeBlade);
 
-var buttonExecutionUpgradeGuillotine=new game.UpgradeButton(329,150,85,98,null, "guillotine",game.upgradeStats.guillotineUpgradeCosts,game.toolStats.guillotineStats, "execution", 1, game.executionTab, "Increases the execution rate of guillotine by 10");
+var buttonExecutionUpgradeGuillotine = new game.UpgradeButton(329, 150, 85, 98, null, "guillotine", game.upgradeStats.guillotineUpgradeCosts, game.toolStats.guillotineStats, "execution", 1, game.executionTab, "Multiplies the execution rate of guillotine by " + game.prodExecMultiplier);
 buttonExecutionUpgradeGuillotine.setVisible(true);
 game.buttons.push(buttonExecutionUpgradeGuillotine);
 game.executionUpgradeButtons.push(buttonExecutionUpgradeGuillotine);
 
-var buttonExecutionUpgradeSaw=new game.UpgradeButton(410,150,85,98,null, "saw",game.upgradeStats.sawUpgradeCosts,game.toolStats.sawStats, "execution", 1, game.executionTab, "Increases the execution rate of saw by 10");
+var buttonExecutionUpgradeSaw = new game.UpgradeButton(410, 150, 85, 98, null, "saw", game.upgradeStats.sawUpgradeCosts, game.toolStats.sawStats, "execution", 1, game.executionTab, "Multiplies the execution rate of saw by " + game.prodExecMultiplier);
 buttonExecutionUpgradeSaw.setVisible(true);
 game.buttons.push(buttonExecutionUpgradeSaw);
 game.executionUpgradeButtons.push(buttonExecutionUpgradeSaw);
 
-var buttonExecutionUpgradeLightsaber=new game.UpgradeButton(494,150,85,98,null, "lightsaber",game.upgradeStats.lightsaberUpgradeCosts,game.toolStats.lightsaberStats, "execution", 1, game.executionTab, "Increases the execution rate of lightsaber by 10");
+var buttonExecutionUpgradeLightsaber = new game.UpgradeButton(494, 150, 85, 98, null, "lightsaber", game.upgradeStats.lightsaberUpgradeCosts, game.toolStats.lightsaberStats, "execution", 1, game.executionTab, "Multiplies the execution rate of lightsaber by " + game.prodExecMultiplier);
 buttonExecutionUpgradeLightsaber.setVisible(true);
 game.buttons.push(buttonExecutionUpgradeLightsaber);
 game.executionUpgradeButtons.push(buttonExecutionUpgradeLightsaber);
@@ -505,74 +505,6 @@ game.happy2.checkCondition=function(){
     }
 }
 game.achievements.push(game.happy2);
-
-//game.a3=new game.Achievement(800,1000,"img/achievements/axe1.png", "Axe1");
-//game.a3.checkCondition=function(){
-//    if(game.toolStats.axeStats.numTools> 1){
-//        return true;
-//    }
-//}
-//game.a4=new game.Achievement(800,1000,"img/achievements/axe2.png", "Axe2");
-//game.a4.checkCondition=function(){
-//    if(game.toolStats.axeStats.numTools > 100){
-//        return true;
-//    }
-//}
-//game.a5=new game.Achievement(800,1000,"img/achievements/axe3.png", "Axe3");
-//game.a5.checkCondition=function(){
-//    if(game.toolStats.axeStats.numTools > 1001){
-//        return true;
-//    }
-//}
-//game.a6=new game.Achievement(800,1000,"img/achievements/blade1.png", "Blade1");
-//game.a6.checkCondition=function(){
-//    if(game.toolStats.bladeStats.numTools > 1){
-//        return true;
-//    }
-//}
-//game.a7=new game.Achievement(800,1000,"img/achievements/blade2.png", "Blade2");
-//game.a7.checkCondition=function(){
-//    if(game.toolStats.bladeStats.numTools > 10){
-//        return true;
-//    }
-//}
-//game.a8=new game.Achievement(800,1000,"img/achievements/blade3.png", "Blade3");
-//game.a8.checkCondition=function(){
-//    if(game.toolStats.bladeStats.numTools > 100){
-//        return true;
-//    }
-//}
-//game.a9=new game.Achievement(800,1000,"img/achievements/cleaver1.png", "Cleaver1");
-//game.a9.checkCondition=function(){
-//    if(game.toolStats.cleaverStats.numTools > 1){
-//        return true;
-//    }
-//}
-//game.a10=new game.Achievement(800,1000,"img/achievements/cleaver2.png", "Cleaver2");
-//game.a9.checkCondition=function(){
-//    if(game.toolStats.cleaverStats.numTools > 10){
-//        return true;
-//    }
-//}
-//game.a11=new game.Achievement(800,1000,"img/achievements/cleaver3.png", "Cleaver3");
-//game.a11.checkCondition=function(){
-//    if(game.toolStats.cleaverStats.numTools > 100){
-//        return true;
-//    }
-//}
-//game.a12=new game.Achievement(800,1000,"img/achievements/clone1.png", "Clone1");
-//game.a12.checkCondition=function(){
-//    if(game.toolStats.cloningStats.numTools > 1){
-//        return true;
-//    }
-//}
-//
-//
-//game.achievements.push(game.a2);
-//game.achievements.push(game.a3);
-//game.achievements.push(game.a4);
-//game.achievements.push(game.a5);
-//game.achievements.push(game.a6);
 
 game.aaxe_1=new game.Achievement(800,1000,"img/achievements/axe1.png", "Axe_1"); game.aaxe_1.checkCondition=function(){     if(game.toolStats.axeStats.numTools > 10){         return true;     } } 
 game.achievements.push(game.aaxe_1); game.aaxe_2=new game.Achievement(800,1000,"img/achievements/axe2.png", "Axe_2"); game.aaxe_2.checkCondition=function(){     if(game.toolStats.axeStats.numTools > 100){         return true;     } } 
