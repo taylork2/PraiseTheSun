@@ -312,7 +312,7 @@ game.Button=function(x,y,width,height,parent,imgSrc) {
 
 //These prototype methods will be inherited by all buttons
 game.Button.prototype.intersects=function(mouse) {
-    var t = 2; //tolerance
+    var t = -3; //tolerance
     var xIntersect = (mouse.x + t) > this.x && (mouse.x - t) < this.x + this.width;
     var yIntersect = (mouse.y + t) > this.y && (mouse.y - t) < this.y + this.height;
     return  xIntersect && yIntersect;
@@ -542,6 +542,10 @@ game.UpgradeButton.prototype.update=function(context){
             this.setVisible(true);
         }
     } else {
+        this.setVisible(false);
+        if (this.tab.tabVisible) {
+            this.negBackground.setVisible(true);
+        }
     }
 }
 game.UpgradeButton.prototype.setVisible=function(visible) {
@@ -883,7 +887,7 @@ game.update = function () {
         if(sunMultiplier>0.75) {
             game.sun.mood="normal";
         } else {
-            if(sunMultiplier>0.5) {
+            if(sunMultiplier>0.5||game.playerStats.prodRatePris>0||game.playerStats.prisoners>0) {
                 game.sun.mood="sad";
             } else {
                 game.sun.mood="angry";

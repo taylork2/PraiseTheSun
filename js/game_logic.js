@@ -1,7 +1,7 @@
 //PlayerStats is an array that holds all of the player's statistics
 game.playerStats=[];
 //Initialize all values
-var INITIAL_PRAYERPOINTS = 100;
+var INITIAL_PRAYERPOINTS = 90;
 var INITIAL_CULTISTS = 50;
 var INITIAL_PRISONERS = 100;
 
@@ -225,7 +225,7 @@ game.tutorialButton.setVisible(true);
 game.tutorialButton.onClick = function () {
     this.parent.setVisible(false);
 }
-game.tutorialSun = new game.Background(900, 330, 205, 205, game.tutorial, "img/sun_moods/sun_angry.png");
+game.tutorialSun = new game.Background(900, 330, 205, 205, game.tutorial, "img/sun_moods/sun_sad.png");
 game.tutorial.childObjects.push(game.tutorialSun);
 game.tutorialText = [];
 idx = 0; idx2 = 0;
@@ -243,7 +243,7 @@ game.tutorialText[idx++] = new game.Text(game.tutorial, 60, 60 + 40 * (idx2++),
     " capture and execute prisoners.", "bold 32pt lucida console", "white", 6, "#5f3c0f");
 idx2++;
 game.tutorialText[idx++] = new game.Text(game.tutorial, 60, 60 + 40 * (idx2++),
-    "Sometimes, the Sun gets angry: ", "bold 32pt lucida console", "white", 6, "#5f3c0f");
+    "Sometimes, the Sun gets sad: ", "bold 32pt lucida console", "white", 6, "#5f3c0f");
 idx2 += 4;
 game.tutorialText[idx++] = new game.Text(game.tutorial, 60, 60 + 40 * (idx2++),
     "When this happens, you should start sacrificing faster!", "bold 32pt lucida console", "white", 6, "#5f3c0f");
